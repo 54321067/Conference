@@ -4,11 +4,21 @@
         <hgroup class ="item">
       		<i class="icon github alternate"></i>
           <a href="/list/admin">
-      			<font color="white">Admin</font>
+      			<font color="white">
+              @if(Auth::user()->status == 'superadmin')
+                  SuperAdmin
+              @else
+                  Admin
+              @endif
+            </font>
           </a>
         </hgroup>
         <a class="ui simple dropdown item">
+            @if(Auth::user()->status == 'superadmin')
+            โคตรเก้าอี้นวม
+            @else
             เก้าอี้นวม
+            @endif
             <i class="dropdown icon"></i>
             <div class="menu">
                 <div onclick="location.href='/list/install'" class="item">
@@ -19,14 +29,17 @@
                   <i class="icon book"></i>
                   View All Conference
                 </div> 
-                <div class="item">
+                
+                <div onclick="location.href='/homecon'" class="item">
                     <i class="icon payment"></i>
-                    Payment Status
-                </div>
+                    ไปส่งpaper
+                </div> 
+                @if(Auth::user()->status == 'superadmin')
                 <div  onclick="location.href='/list'" class="item">
                     <i class="icon spy"></i>
                     Admin team
-                </div>    
+                </div>  
+                @endif  
             </div>
       </a>
       <hgroup class="item ">

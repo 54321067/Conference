@@ -1,0 +1,751 @@
+@charset "utf-8";
+/*
+ CSS Create by 2fellows
+*/
+.home-top-banner2f{
+  height: 700px;
+  overflow: hidden;
+}
+.home-top-banner2f .container-fluid{
+  padding: 0;
+}
+.top-text2f{
+  color: #000;
+  position: absolute;
+  z-index: 9999;
+  top: 35px;
+  left: 140px;
+}
+.top-text2f h2{
+  font-size: 24px;
+  font-family: 'DBHeaventMedv3_2';
+  line-height: 24px;
+}
+.top-text2f h3{
+  font-size: 18px;
+  line-height: 16px;
+}
+.home-top-left2f{
+  position: relative;
+
+}
+.top-content01,
+.control-home-top02,
+.top-content03{
+  position: relative;
+  overflow: hidden;
+
+}
+.top-content01{
+  height: 250px;
+  background-color: #363636;
+}
+.control-home-top02{
+  height:200px;
+  background-color: #f15c22;
+  padding: 30px 0;
+}
+.top-content03{
+  height: 250px;
+  background-color: #363636;
+}
+.home-top-img2f{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-color: #000;
+}
+.top-text-onimg{
+  position: relative;
+  z-index: 10;
+  color: #fff;
+  text-align: center;
+}
+.home-top-img2f img{
+  width: 100%;
+  opacity: 0.5;
+}
+.top-content01 .top-text-onimg{
+  padding-top: 60px;
+}
+.top-text-onimg h2{
+  font-size: 55px;
+  /*font-size: 70px;*/
+  line-height: 60px;
+  padding-top: 10px;
+  background-image:url(../images/border-white01.jpg);
+  background-repeat:no-repeat;
+  background-position:center top;
+  font-weight: bold;
+}
+.t-detail2f{
+  font-size: 22px;
+  line-height: 20px;
+}
+.top-content01 .t-detail2f{
+  max-width: 70%;
+  margin: 0 auto;
+  height: 62px;
+  overflow: hidden;
+
+}
+.top-content02{
+  position: relative;
+}
+.home-iconcalendar2f{
+  width: 55px;
+  height: 55px;
+  background-color: #f15c22;
+  position: absolute;
+  left: -55px;
+  top: 0;
+  z-index: 100;
+  padding: 15px 17px;
+  display: none;
+}
+.home-iconcalendar2f img{
+  height: 23px;
+}
+.arrow-calendar2f{
+  position: absolute;
+  bottom: 20px;
+  right:20px;
+  z-index: 100;
+}
+.arrow-calendar2f a{
+  display: inline-block;
+}
+.arrow-calendar2f img{
+  width: 24px;
+}
+.home-calendar-date2f{
+  max-width: 90px;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+}
+.home-calendar-date2f strong,
+.home-calendar-date2f span{
+  display: block;
+}
+.home-calendar-date2f strong{
+  font-family: 'steelfib';
+  font-size: 60px;
+  line-height: 60px;
+  margin-bottom: 0;
+  padding-top: 0;
+}
+.home-calendar-date2f span{
+  font-size: 30px;
+  line-height: 30px;
+  opacity: 0.5;
+
+}
+.control-home-top02 .t-detail2f{
+  width: 78%;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+.control-home-top02 .t-detail2f a{
+  color: #fff;
+  display: block;
+  max-height: 80px;
+  overflow: hidden;
+}
+.control-home-top02 .t-detail2f a:hover{
+  color: #000;
+}
+.top-content03 h2{
+  font-size: 60px;
+}
+.top-content03 .top-text-onimg{
+  padding-top: 50px;
+}
+.top-content03 .top-text-onimg label{
+  display: none;
+}
+.top-content03 .form-control{
+  max-width: 285px;
+  margin: 0 auto 20px;
+  height: 40px;
+  background-color: transparent;
+  border:1px solid #fff;
+  color: #fff;
+  font-size: 22px;
+  line-height: 22px;
+}
+.top-content03 select.form-control{
+  background-image: url(../images/arrow-down01.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+.top-search2f {
+  position: absolute;
+  z-index: 999;
+  right: 85px;
+  top: 15px;
+}
+.top-search2f a{
+  display: inline-block;
+}
+.top-search2f ul{
+  display: inline-block;
+      position: relative;
+    top: -8px;
+}
+.top-search2f img{
+  width: 25px;
+  margin-right: 15px;
+}
+.popup_topsearch2f .modal-dialog {
+    width: 100%;
+    margin: 0;
+}
+.popup_topsearch2f .modal-body {
+    padding: 0;
+}
+.popup_topsearch2f{
+  position: absolute;
+  z-index: 99999;
+}
+.modal-backdrop{
+  z-index: 9999;
+}
+.popup_topsearch2f .modal-content {
+    border: none;
+    border-radius: 0;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.popup_topsearch2f .input-group-addon {
+  padding: 0;
+}
+.popup_topsearch2f .input-group-addon button{
+  width: 100px;
+  height: 78px;
+  padding: 15px 25px 15px 15px;
+    text-align: center;
+    border: none;
+    border-radius: 0;
+    background-color: #f15c22;
+    cursor: pointer;
+    -moz-transition: color .2s ease-in,background-color .2s ease-in, background-image .2s ease-in;
+       -o-transition: color .2s ease-in,background-color .2s ease-in, background-image .2s ease-in;
+       -webkit-transition: color .2s ease-in,background-color .2s ease-in, background-image .2s ease-in;
+       transition: color .2s ease-in,background-color .2s ease-in, background-image .2s ease-in;
+}
+.popup_topsearch2f .input-group-addon button:hover{
+    background-color:#b1510a;
+}
+.popup_topsearch2f .input-group-addon:hover{
+  background-color: #666;
+}
+.popup_topsearch2f .input-group-addon img{
+  width: 25px;
+}
+.popup_topsearch2f label{
+	display: none;
+}
+.popup_topsearch2f .form-control{
+	font-size: 28px;
+	color:#7b7b7b;
+	padding: 20px 40px;
+	height: 78px;
+	border:none;
+	}
+select option{
+  color: #555;
+}
+.des-on-slide2f{
+  position: absolute;
+  z-index: 9999;
+  top: 230px;
+  left: 100px;
+  color: #000;
+  }
+.des-on-slide2f h3{
+  font-size: 50px;
+  line-height: 30px;
+  font-family: 'DBHeaventMedv3_2';
+}
+.des-on-slide2f h2{
+  font-size: 90px;
+  line-height: 70px;
+  font-family: 'DBHeaventMedv3_2';
+}
+.des-on-slide2f .t-detail2f{
+  max-width: 300px;
+  color: #101010;
+}
+.home-section01{
+  padding: 80px 0;
+}
+.home-information2f h2{
+  font-size: 70px;
+  line-height: 50px;
+}
+.home-information2f h2,
+.home-larship-research2f h3{
+  color: #f15c22;
+  font-family: 'DBHeaventMedv3_2';
+  margin-bottom: 20px;
+}
+.home-thumb-inf{
+  overflow: hidden;
+  height: 230px;
+  margin-bottom: 45px;
+  background-color: #000;
+}
+.home-thumb-inf img{
+  width: 100%;
+  min-height: 100%;
+}
+.home-information2f  h5{
+  font-size: 50px;
+  line-height: 46px;
+  margin-bottom: 15px;
+  height: 88px;
+  overflow: hidden;
+  font-weight: bold;
+}
+.home-information2f  a{
+  color: #7b7b7b;
+}
+.home-information2f  a:hover,.home-section01 .home-larship-research2f .t-detail2f a:hover{
+	color: #000;
+}
+.home-information2f{
+	padding-right: 20px;
+}
+.home-section01 .t-detail2f{
+  font-size: 25px;
+  line-height: 24px;
+  margin-bottom: 30px;
+width: 90%;
+height: 71px;
+overflow: hidden;
+}
+.home-larship-research2f h3{
+  font-size: 45px;
+  line-height: 40px;
+  margin-bottom: 30px;
+}
+.btn-readmore2f .btn{
+  border: 1px solid #aeaeae;
+  color: #676767;
+  font-size: 24px;
+  line-height: 20px;
+  padding: 8px 15px;
+}
+.btn-readmore2f .btn:hover{
+  color: #fff;
+  border: 1px solid #f15c22;
+  background-color: #f15c22;
+}
+.home-thumbnail-news2f{
+  height: 250px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background-color: #000;
+}
+.home-thumbnail-news2f img{
+  width: 100%;
+  min-height: 100%;
+}
+.home-section01 .home-larship-research2f .t-detail2f{
+
+    margin-bottom: 55px;
+    height: 142px;
+    overflow: hidden;
+}
+.home-section01 .home-larship-research2f .t-detail2f a{
+	color: #7b7b7b;
+}
+.home-section04{
+  padding: 40px 0;
+}
+.home-testimonial-right2f{
+  height: 360px;
+  overflow: hidden;
+}
+.home-testimonial-right2f img{
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+.heading-black2f{
+  font-size: 125px;
+  line-height: 100px;
+  color: #151515;
+  margin-bottom: 20px;
+}
+.heading-black2f strong{
+  color:  #f15c22;
+}
+.t-testimonial01{
+  color: #525252;
+  font-family: 'steelfib';
+  font-size: 100px;
+  line-height: 80px;
+  float: left;
+  margin-right: 30px;
+}
+.home-testimonial01{
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.home-testimonial01 .t-testimonial{
+ /* max-width: 200px;*/
+  float: left;
+}
+.home-testimonial01 .t-testimonial,
+.home-testimonial02 .t-detail2f{
+  font-size: 25px;
+  line-height: 24px;
+  color: #7b7b7b;
+}
+.home-testimonial01 .t-testimonial a{
+  color: #7b7b7b;
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 35px;
+  height: 77px;
+  overflow: hidden;
+  display: block;
+}
+.home-testimonial01 .t-testimonial a:hover{
+	color: #000;
+}
+.home-testimonial02{
+  clear: left;
+}
+.testimonial-date{
+    font-family: 'DBHeaventMedv3_2';
+    color: #7b7b7b;
+    font-size: 35px;
+    line-height: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.home-testimonial02 .t-detail2f{
+  width: 90%;
+  height: 94px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.home-section05{
+  border:10px solid  #f15c22;
+  position: relative;
+  padding: 35px 0;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+.home-arrowalumni{
+  width: 95px;
+  height: 85px;
+
+  top: 0;
+  right: 0;
+  position: absolute;
+}
+.home-arrowalumni a {
+    display: block;
+    padding: 28px 25px;
+    background-color: #f15c22;
+}
+.home-arrowalumni a:hover{
+  background-color: #434343;
+}
+.home-arrowalumni img{
+  width: 40px;
+}
+.home-present-left2f{
+  max-width: 380px;
+}
+.home-box-img2f,
+.box-home-space2f,
+.home-box-text2f{
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.home-detail-alumni2f{
+  height: 66px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.home-box-text2f{
+    background-color: #f15c22;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+.home-box-text2f span{
+  display: block;
+  text-align: center;
+  font-size: 60px;
+  line-height: 50px;
+  font-family: 'DBHeaventMedv3_2';
+}
+.home-detail-alumni2f {
+    font-size: 25px;
+    line-height: 22px;
+    color: #7b7b7b;
+}
+.home-present-right2f h2{
+  font-size: 180px;
+  line-height: 160px;
+  color: #434343;
+  font-family: 'DBHeaventMedv3_2';
+}
+.home-introl-alumni a{
+	color: #7b7b7b;
+}
+.home-introl-alumni a:hover{
+	color: #000;
+}
+.home-introl-alumni{
+  color: #7b7b7b;
+  font-size: 48px;
+  line-height: 40px;
+  margin-bottom: 30px;
+}
+.home-des-alumni2f p{
+  color: #7b7b7b;
+  line-height: 25px;
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+.home-box-img2f img{
+  height: 100%;
+}
+.home-des-alumni2f{
+  width: 90%;
+}
+.home-banner-img2f .bx-wrapper .bx-controls-direction a{
+  display: none;
+}
+.home-banner-img2f .bx-wrapper img{
+  height: 100%;
+  width: auto;
+  max-width: inherit;
+  margin: 0 auto;
+}
+.popup_topsearch2f .modal.fade.in{
+  padding: 0 !important;
+}
+.box-current-img01{
+	height: 260px;
+	overflow: hidden;
+  margin-bottom: 10px
+}
+.box-current-img01 img,
+.box-current-img02 img,
+.box-current-img03 img,
+.box-current-img04 img{
+  width: 100%;
+  padding-left: 10px;
+}
+.box-current-img02{
+  height:390px;
+  overflow: hidden;
+  margin-bottom: 10px
+}
+.box-current-img03{
+  height:330px;
+  overflow: hidden;
+  margin-bottom: 10px
+}
+.box-current-img04{
+  height:320px;
+  overflow: hidden;
+  margin-bottom: 10px
+}
+.home-current-right2f{
+  padding-right: 15px;
+}
+.home-section02{
+  background-image: url(../images/bg-home.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 40px 0 50px 0;
+}
+.home-current-left2f h2{
+  font-size: 140px;
+  line-height: 100px;
+  color: #767676;
+  font-weight: bold;
+}
+.home-current-left2f h1{
+  font-size: 200px;
+  line-height: 110px;
+  color: #acacac;
+  font-style: italic;
+  font-family: 'DBHeaventLiv3_2';
+  margin-bottom: 40px;
+}
+.home-current-left2f h3{
+  font-size: 50px;
+  line-height: 40px;
+  color: #6d6c6c;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.t-intro-current2f{
+  font-size: 26px;
+  line-height: 22px;
+  color: #676767;
+  max-width: 350px;
+  margin-bottom: 30px;
+}
+.home-current-left2f{
+  padding-top: 200px;
+}
+.home-section03{
+  background-color: #f47521;
+  position: relative;
+}
+.home-staff-left2f{
+  text-align: center;
+}
+.home-staff-left2f span{
+  color: #fff;
+  font-size: 100px;
+  line-height:60px;
+  font-style: italic;
+}
+
+.home-staff-left2f,
+.home-staff-right2f{
+    height: 155px;
+    padding: 55px 0;
+}
+.home-staff-left2f,.bg-org-left{ background-color: #c15a2d;}
+.bg-org-left{
+  position: absolute;
+  left: 0;
+  right: 0;
+  width:40%;
+    height: 155px;
+}
+.home-staff-right2f{  background-color: #f47521; padding-left: 50px;}
+.home-staff-right2f select.form-control{
+  height: 55px;
+  font-size: 25px;
+  background-image: url(../images/arrow-down03.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  color: #9a9a9a;
+  padding: 15px 0 15px 15px;
+  cursor: pointer;
+}
+.home-banner-img2f .bx-wrapper .bx-pager,
+.home-banner-img2f .bx-wrapper .bx-controls-auto{bottom: 20px;}
+.home-banner-img2f .bx-wrapper .bx-pager.bx-default-pager a:hover,
+.home-banner-img2f .bx-wrapper .bx-pager.bx-default-pager a.active{
+	background-color: #f15c22;
+}
+.home-banner-img2f  .bx-wrapper .bx-pager.bx-default-pager a{ background-color: #000; }
+
+.top-search2f ul li,.top-search2f ul li a{
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+}
+.top-search2f ul li a:hover{
+  color: #f15c22;
+}
+.slide-event .slick-dots{
+    list-style: none;
+    position: absolute;
+    bottom: -20px;
+    text-align: center;
+    width: 100%;
+  }
+.slide-event .slick-dots li{
+  display:inline-block;
+  margin-right:7px;
+  }
+.slide-event .slick-dots li button{
+    border: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #000;
+    text-indent: 15px;
+    overflow: hidden;
+    padding: 0;
+  }
+.slide-event .slick-dots li.slick-active button{
+  background-color:#fff;
+  }
+ .slide-event .slick-dots li button{ display: none; }
+ .home-banner-img2f .bx-wrapper li{
+   position: relative;
+ }
+.home-banner-img2f .bx-wrapper .newsmore2f .btn{
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  bottom: 0;
+  display: block;
+  padding: 16px 18px;
+  background-color: #f15c22;
+  border-radius: 0;
+}
+.home-banner-img2f .bx-wrapper .newsmore2f .btn:hover{
+  background-color: #434343;
+}
+.home-banner-img2f .bx-wrapper .newsmore2f .btn img {
+    width: 40px;
+}
+.top-text2f h1{
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 44px;
+}
+.control-home-top02 h2{
+  font-size: 40px;
+  line-height: 45px;
+  padding-top: 0;
+  background-image: url(../images/border-white01.jpg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.control-home-top02 {
+    padding: 10px 0;
+}
+.home-event-list{
+  height: 90px;
+  padding-right: 50px;
+}
+.home-testimonial-right2f{
+  background-color: #eee;
+  display: block;
+}
+.home-banner-img2f .bx-wrapper .newsmore2f .btn img {
+  min-height: initial !important;
+  width: 24px !important;
+  max-height: initial !important;
+  height: auto !important;
+}
+.home-banner-img2f .bx-wrapper .bx-viewport {
+    background: #000;
+	}

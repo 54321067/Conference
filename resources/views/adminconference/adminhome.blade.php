@@ -18,19 +18,14 @@
                                         
                                         <tr style="background-color: #99ffce">
                                             <th>
-                                                <div style="padding-bottom:10pt">Acronym</div>
+                                                <div style="padding-bottom:10pt">ชื่อย่อ</div>
                                             </th>
-                                            <th>Name</th>
-                                            <th>Location</th>
-                                            <th >
-                                                <div style="padding-bottom:10pt">
-                                                    Submission<br/>deadline
-                                                </div>
-                                            </th>
-                                            <th>
-                                                <div style="padding-bottom:10pt">Start date</div>
-                                            </th>
-                                            <th>Topics</th>
+                                            <th>ชื่อการประชุม</th>
+                                            <th>สถานที่ตั้ง</th>
+                                            <th>วันประกาศผลบทความ</th>
+                                            <th>วันที่สิ้นสุดการรับบทความ</th>
+                                            <th>วันนำเสนอบทความ</th>
+                                            <th>หัวข้อ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,7 +44,7 @@
                                     <?php
                                        
                                         
-                                            echo($value->name);
+                                            echo($value->Acronym_L);
                                        ?> 
                                        </a>
                                      </td>
@@ -81,20 +76,21 @@
  
                                     <?php
                                        
-                                        
-                                            echo($value->D_Line);
+                                            echo($value->S_Line);
 
-
-                                        
-                                       ?> 
-                                           
+                                    ?>
+                                    </td>
+                                    <td>
+                                   <?php
+                                           echo($value->D_Line);
+                                    ?>
                                      </td>  
                                      <td>
  
                                     <?php
                                        
                                         
-                                            echo($value->S_Line);
+                                            echo($value->R_Line);
 
 
                                         
@@ -103,13 +99,22 @@
                                      </td>
                                      <td>
                                      
+                                        <?php
+                                       
                                         
- 
+                                            echo($value->topic_1);
+                                            echo($value->topic_2);
+
+                                        
+                                       ?> 
+                                            
                                     
                                            
                                      </td>     
                                      </tr>
                                      <?php
+
+
                                         }
                                      ?>
                                       

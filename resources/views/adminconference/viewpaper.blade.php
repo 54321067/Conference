@@ -12,7 +12,7 @@
 
     <div class="ui segment" style="margin-top: 0%;margin-left: 4.5%;margin-right: 4.5%">
       <div class="ui blue segment">
-      	<div style="display: inline-block;max-width: 49%"><h2>{{$id}}All Papers of Name Conference</h2></div>
+      	<div style="display: inline-block;max-width: 49%"><h2>{{$id}}_{{$names->Acronym_N}}</h2></div>
         <div style="display: inline-block;margin-left: 60%;max-width: 49%"></div>
       </div>
       <div style="margin-bottom: 1%">
@@ -29,8 +29,12 @@
                   <th>ชื่อPaper</th>
                   <th>Preview Paper</th>
                   <th>Reviewer</th>
+                  <th>StatusPaper</th>
                   <th>StatusPayment</th>
                   <th>Topic</th>
+                  @if(Auth::user()->status == 'superadmin')
+                  <th style="text-align: center;">Edit</th>
+                  @endif
                 </tr>
 
               </thead>
@@ -38,21 +42,46 @@
 
                 <?php foreach ($values as $value) {?>
                   <tr>
-                  <td><a href="{{ route('adminconference.choosereviewer',['id'=>$value->paperid ]) }}">{{$value->paperid}}</a></td>
-                  <td>{{$value->name}}</td>
-                  <td><a href="">{{$value->file}}</a></td>
+                  @if($value->status_reviewer == 0)
+                  <td><a href="{{ route('gg',['id'=>$value->paper_id,'conid'=>$names->conid ]) }}">{{$value->paper_id}}</a></td>
+                  @else
+                  <td><a>{{$value->paper_id}}</a></td>
+                  @endif
+                  <td>{{$value->paper_name}}</td>
+                  <td><a href="">{{$value->pdf_name}}</a></td>
                   @if($value->status_reviewer == 0)
                       <td class="negative"><i class="icon close"></i>ยังไม่เลือก</td>
                   @else
 
                       <td class="positive"><i class="icon checkmark"></i>เลือกแล้ว</td>
                   @endif
-                  @if($value->status_payment==0)
+                  @if($value->status_check == 0)
+                      <td class="negative"><i class="icon close"></i>ยังไม่ตรวจ</td>
                       <td class="negative"><i class="icon close"></i>ยังไม่ชำระ</td>
+                  @elseif($value->status_check == 1)
+                      <td class="positive"><i class="icon checkmark"></i>ผ่านแล้ว</td>
+                      @if($value->status_payment==0)
+                      <td class="negative"><i class="icon close"></i>ยังไม่ชำระ</td>
+                      @elseif($value->status_payment==1)
+                      <td class="positive"><i class="icon checkmark"></i>
+                      <a href="">รออนุมัติ</a>
+                      </td>
+                      @else
+                      <td class="positive"><i class="icon checkmark"></i>อนุมัติแล้ว</td>
+                      @endif
                   @else
-                      <td class="positive"><i class="icon checkmark"></i>ชำระแล้ว</td>
+                      <td class="negative"><i class="icon close"></i>ไม่ผ่าน</td>
+                      <td class="negative" style="text-align: center;">-</td>
                   @endif
-                  <td>{{$value->topic}}</td>
+                  
+                  <td>{{$value->keyword1}}</td>
+                  @if(Auth::user()->status == 'superadmin')
+                  <td>
+                      
+                      <button type="submit" style="float: right;" class="ui google plus button">D E L E T E</button>
+
+                  </td>
+                  @endif
                 </tr>              
 
 

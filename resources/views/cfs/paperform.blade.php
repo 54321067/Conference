@@ -5,12 +5,7 @@
      @include('cfs.header')
     <style>
 		.body { 
-			-webkit-filter: grayscale(50%);
-			-moz-filter: grayscale(50%);
-			-ms-filter: grayscale(50%);
-			-o-filter: grayscale(50%);
-			filter: gray;
-			filter: grayscale(50%);
+			
 			/*overflow:scroll;*/
 			background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
 			background: -moz-linear-gradient(top, #FFFFFF, #abdb92);
@@ -65,7 +60,7 @@
 </head>
 <body class="body">
 	@include('cfs.userheader')
-	<div class="ui segment" style="padding: 3%;margin: 4.5%;">
+	<div class="ui segment" style="padding: 3%;margin: 4.5%;margin-top: 1%">
 		<div class="ui tertiary segment"
 			style="margin: 2%;
 			border-bottom: thick solid #358C3E;
@@ -76,15 +71,31 @@
     			<tr>
     				<td style="width: 20%;
     				height:auto;">
-    					<img src="" class="ui small image" style="margin: 0 auto;">
+    					@if($con->name == "การประชุม")
+    					<img src="/images/Conference.jpg" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "หนังสือ")
+    					<img src="/images/book.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "ใช้สำหรับการเรียนการสอน")
+    					<img src="/images/teach.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "วารสารฉบับพิเศษ")
+    					<img src="/images/special journal.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "วารสาร")
+    					<img src="/images/journal.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "การดำเนินงานประชุม")
+    					<img src="/images/conference2.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "การประมวลผลคำขอเงินทุนหรือข้อเสนออื่นๆ")
+    					<img src="/images/money.png" class="ui small image" style="margin: 0 auto;">
+    					@else
+    					<img src="/images/main.png" class="ui small image" style="margin: 0 auto;">
+    					@endif
     				</td>
     				<td style="width: 80%;padding-left: 2%">
 						<h1>
-						Acronym : Conference name
+						Acronym : {{$con->Acronym_N}}
 						</h1>
 						<div class="ui divider" style="max-width: 95%"></div>
-						<p>Organizer</p>
-						<p><b>Location , Date</b></p>
+						
+						<p><b>{{$con->Loca}}</b></p>
 						
 					</td>
 				</tr>
@@ -94,7 +105,7 @@
 			<h1 class="ui header">Install Paper</h1>
 		</div>
 		<div style="margin-top: 3%">
-		<form action="{{ url('/paperform') }}" method="post" id="form" enctype = "multipart/form-data">
+		<form action="{{ url('/paperform/'.$con->conid ) }}" method="post" id="form" enctype = "multipart/form-data">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<table style="width: 100%;">
 				<tbody>

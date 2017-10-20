@@ -5,12 +5,7 @@
     @include('cfs.header')
     <style>
 		.body { 
-			-webkit-filter: grayscale(50%);
-			-moz-filter: grayscale(50%);
-			-ms-filter: grayscale(50%);
-			-o-filter: grayscale(50%);
-			filter: gray;
-			filter: grayscale(50%);
+			
 			/*overflow:scroll;*/
 			background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
 			background: -moz-linear-gradient(top, #FFFFFF, #abdb92);
@@ -43,7 +38,7 @@
 </head>
 <body class="body">
 	@include('cfs.userheader')
-	<div class="ui segment" style="padding: 3%;margin: 4.5%;">
+	<div class="ui segment" style="padding: 3%;margin: 4.5%;margin-top: 1%">
 		<div class="ui tertiary segment"
 			style="margin: 2%;
 			border-bottom: thick solid #358C3E;
@@ -54,15 +49,30 @@
     			<tr>
     				<td style="width: 20%;
     				height:auto;">
-    					<img src="" class="ui small image" style="margin: 0 auto;">
+    					@if($con->name == "การประชุม")
+    					<img src="/images/Conference.jpg" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "หนังสือ")
+    					<img src="/images/book.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "ใช้สำหรับการเรียนการสอน")
+    					<img src="/images/teach.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "วารสารฉบับพิเศษ")
+    					<img src="/images/special journal.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "วารสาร")
+    					<img src="/images/journal.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "การดำเนินงานประชุม")
+    					<img src="/images/conference2.png" class="ui small image" style="margin: 0 auto;">
+    					@elseif($con->name == "การประมวลผลคำขอเงินทุนหรือข้อเสนออื่นๆ")
+    					<img src="/images/money.png" class="ui small image" style="margin: 0 auto;">
+    					@else
+    					<img src="/images/main.png" class="ui small image" style="margin: 0 auto;">
+    					@endif
     				</td>
     				<td style="width: 80%;padding-left: 2%">
 						<h1>
-						Acronym : Conference name
+						Acronym : {{$con->Acronym_N}}
 						</h1>
 						<div class="ui divider" style="max-width: 95%"></div>
-						<p>Organizer</p>
-						<p><b>Location , Date</b></p>
+						<p><b>{{$con->Loca}}</b></p>
 					</td>
 				</tr>
 			</table>
@@ -72,11 +82,19 @@
 				<tbody>
 				    <tr>
 				      <td style="width: 30%">Conference website</td>
-				      <td>None</td>
+				      <td>url</td>
 				    </tr>
 				    <tr>
-				      <td style="width: 30%">Submission deadline</td>
-				      <td>None</td>
+				      <td style="width: 30%">วันสิ้นสุดรับผลงาน</td>
+				      <td>{{$con->D_Line}}</td>
+				    </tr>
+				    <tr>
+				      <td style="width: 30%">วันประกาศผล</td>
+				      <td>{{$con->S_Line}}</td>
+				    </tr>
+				    <tr>
+				      <td style="width: 30%">วันนำเสนอ</td>
+				      <td>{{$con->R_Line}}</td>
 				    </tr>
 				    <tr>
 				      <td style="width: 30%">Other</td>
@@ -86,8 +104,9 @@
 			</table>
 		</div>
 		<div>
-			<div style="float:right;margin: 2%;">
+			<div style="float:left;margin: 2%;">
 				<p><b>Topic : </b></p>
+				{{$con->topic_1}},{{$con->topic_2}}
 			</div>
 		</div>
 		<div>
@@ -96,23 +115,28 @@
 			0px 0px 0px 0px rgba(0, 0, 0, 0);
 			margin-left: : 2%;margin-right:2%;padding: 2%;
 			margin-bottom: 0">
-				<p>Detail</p>
+				
 			</div>
 			<div style="background-color: #16ab39;
 		    text-shadow: none;margin-right: 2%;
 		    margin-top: 0;padding: 1.5%">
 		    	<h1 style="color: #FFFFFF;">Important Topic</h1>
+		    	{{$con->Content}}
 		    </div>
 		    <div style="clear: both;
 			box-shadow: 0px 0px 0px 1px #A3C293 inset, 
 			0px 0px 0px 0px rgba(0, 0, 0, 0);
 			margin-left: : 2%;margin-right:2%;padding: 2%;
 			margin-bottom: 0">
-				<p>Detail</p>
+				<h3><u>Detail:</u></h3>
+				<br>
+				{{$con->Detail}}
 			</div>
 		</div>
 		<div style="text-align: center">
-			<a class="ui primary button" tabindex="0" style="font-size: 170%;margin: 2%" href="/paperform">
+			<a class="ui primary button" tabindex="0" style="font-size: 170%;margin: 2%" href="{{ url('/paperform/'.$id) }}"
+
+			>
         		Send Paper
       		</a>
 		</div>

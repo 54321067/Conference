@@ -12,13 +12,13 @@
 
 @include('adminconference.headeradmin')
 <br>
-<h3 class="ui horizontal divider">Hello!->paperid = {{$id}}</h3>
 
+<h3 class="ui horizontal divider">Hello!->paperid = {{$id}}</h3>
 <div style="margin-left: 10%;margin-right: 10%;margin-bottom: 10%">
 <div class="ui segments">
 <!--Main topic -->
   <div class="ui segment" style="margin-bottom: 1.5%">
-    <h1>MainTopic</h1>
+    <h1>Main</h1>
   </div>
   <div class="ui horizontal list" style="margin-left: 2%;margin-bottom: 2%">
   <div class="item">
@@ -49,57 +49,38 @@
   <div class="ui segment">
     <h3>เลือกกกรรมการ </h3>
   </div>
+  <form class="ui form segment" style="background-color: #99ffce" id="form1" method="post"  action="{{ url('/setreviewer/'.$id) }}">
+<input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="ui horizontal segments">
     <div class="ui segment">
       <p>กรรมการท่านที่1</p>
  		<div class="ui form">
 			  <div class="field">
-			      <label>เลือกคณะ</label>
-			      <div class="ui selection dropdown">
-			          <input type="hidden" name="gender">
-			          <i class="dropdown icon"></i>
-			          <div class="default text">กรุณาเลือกคณะ</div>
-			          <div class="menu">
-			              <div class="item" data-value="1">วิศวกรรมศาสตร์</div>
-			              <div class="item" data-value="0">เศรษฐศาสตร์</div>
-			              <div class="item" data-value="0">วิทยาศาสตร์</div>
-			              <div class="item" data-value="0">พาณิชย์นาวี</div>
-			              <div class="item" data-value="0">วิทยาการจัดการ</div>
-			          </div>
-			      </div>
-			  </div>
-		</div>
-	<br>
-      <div class="ui form">
-		  <div class="field">
-		      <label>เลือกสาขา</label>
-		      <div class="ui selection dropdown">
-		          <input type="hidden" name="gender">
-		          <i class="dropdown icon"></i>
-		          <div class="default text">กรุณาเลือกสาขา</div>
-		          <div class="menu">
-		              <div class="item" data-value="0">หัวข้อ1</div>
-		              <div class="item" data-value="0">หัวข้อ2</div>
-		              <div class="item" data-value="0">หัวข้อ3</div>
-		          </div>
-		      </div>
-		  </div>
-		</div>
-	<br>
-		<div class="ui form">
-		  <div class="field">
-		      <label>เลือกหัวข้อ</label>
-		      <div class="ui selection dropdown">
-		          <input type="hidden" name="gender">
-		          <i class="dropdown icon"></i>
-		          <div class="default text">กรุณาเลือกหัวข้อ</div>
-		          <div class="menu">
-		              <div class="item" data-value="0">หัวข้อ1</div>
-		              <div class="item" data-value="0">หัวข้อ2</div>
-		              <div class="item" data-value="0">หัวข้อ3</div>
-		          </div>
-		      </div>
-		  </div>
+      <label>ชื่อ</label>
+        <input id="A1" name="A1" type="text"  placeholder="ชื่อ">
+   </div>
+
+   <div class="field">
+      <label>นามสกุล</label>
+        <input id="A2" name="A2" type="text"  placeholder="นามสกุล">
+    </div>
+    <div class="field">
+      <label>ตำเเหน่ง</label>
+    <input id="A3" name="A3" type="text" placeholder="ตำเเหน่ง"></input>
+    </div>
+    <div class="field">
+      <label>เลขประจำตัวประชาชน</label>
+    <input id="A4" name="A4" type="text" placeholder="เลขประจำตัวประชาชน"></input>
+    </div>
+    <div class="field">
+      <label>Email</label>
+        <input id="A5" name="A5" type="text"  placeholder="Email">
+   </div>
+
+   <div class="field">
+      <label>เบอร์โทรศัพท์</label>
+        <input id="A6" name="A6" type="text"  placeholder="เบอร์โทรศัพท์">
+    </div>
 		</div>
     </div>
 
@@ -107,108 +88,71 @@
     <div class="ui segment">
       <p>กรรมการท่านที่2</p>
       <div class="ui form">
-  <div class="field">
-      <label>เลือกคณะ</label>
-      <div class="ui selection dropdown">
-          <input type="hidden" name="gender">
-          <i class="dropdown icon"></i>
-          <div class="default text">กรุณาเลือกคณะ</div>
-          <div class="menu">
-              <div class="item" data-value="1">วิศวกรรมศาสตร์</div>
-              <div class="item" data-value="0">เศรษฐศาสตร์</div>
-              <div class="item" data-value="0">วิทยาศาสตร์</div>
-              <div class="item" data-value="0">พาณิชย์นาวี</div>
-              <div class="item" data-value="0">วิทยาการจัดการ</div>
-          </div>
-      </div>
-  </div>
-</div>
-<br>
-      <div class="ui form">
-  <div class="field">
-      <label>เลือกสาขา</label>
-      <div class="ui selection dropdown">
-          <input type="hidden" name="gender">
-          <i class="dropdown icon"></i>
-          <div class="default text">กรุณาเลือกสาขา</div>
-          <div class="menu">
-              <div class="item" data-value="1">หัวข้อ1</div>
-              <div class="item" data-value="0">หัวข้อ2</div>
-              <div class="item" data-value="0">หัวข้อ3</div>
-          </div>
-      </div>
-  </div>
-</div>
-<br>
-		<div class="ui form">
-		  <div class="field">
-		      <label>เลือกหัวข้อ</label>
-		      <div class="ui selection dropdown">
-		          <input type="hidden" name="gender">
-		          <i class="dropdown icon"></i>
-		          <div class="default text">กรุณาเลือกหัวข้อ</div>
-		          <div class="menu">
-		              <div class="item" data-value="0">หัวข้อ1</div>
-		              <div class="item" data-value="0">หัวข้อ2</div>
-		              <div class="item" data-value="0">หัวข้อ3</div>
-		          </div>
-		      </div>
-		  </div>
-		</div>
+        <div class="field">
+      <label>ชื่อ</label>
+        <input id="B1" name="B1" type="text"  placeholder="ชื่อ">
+   </div>
+
+   <div class="field">
+      <label>นามสกุล</label>
+        <input id="B2" name="B2" type="text"  placeholder="นามสกุล">
+    </div>
+    <div class="field">
+      <label>ตำเเหน่ง</label>
+    <input id="B3" name="B3" type="text" placeholder="ตำเเหน่ง"></input>
+    </div>
+    <div class="field">
+      <label>เลขประจำตัวประชาชน</label>
+    <input id="B4" name="B4" type="text" placeholder="เลขประจำตัวประชาชน"></input>
+    </div>
+    <div class="field">
+      <label>Email</label>
+        <input id="B5" name="B5" type="text"  placeholder="Email<">
+   </div>
+
+   <div class="field">
+      <label>เบอร์โทรศัพท์</label>
+        <input id="B6" name="B6" type="text"  placeholder="เบอร์โทรศัพท์">
+    </div>
+    </div>
     </div>
     <div class="ui segment">
       <p>กรรมการท่านที่3</p>
       <div class="ui form">
-  <div class="field">
-      <label>เลือกคณะ</label>
-      <div class="ui selection dropdown">
-          <input type="hidden" name="gender">
-          <i class="dropdown icon"></i>
-          <div class="default text">กรุณาเลือกคณะ</div>
-          <div class="menu">
-              <div class="item" data-value="1">วิศวกรรมศาสตร์</div>
-              <div class="item" data-value="0">เศรษฐศาสตร์</div>
-              <div class="item" data-value="0">วิทยาศาสตร์</div>
-              <div class="item" data-value="0">พาณิชย์นาวี</div>
-              <div class="item" data-value="0">วิทยาการจัดการ</div>
-          </div>
-      </div>
-  </div>
-</div>
-<br>
-      <div class="ui form">
-  <div class="field">
-      <label>เลือกสาขา</label>
-      <div class="ui selection dropdown">
-          <input type="hidden" name="gender">
-          <i class="dropdown icon"></i>
-          <div class="default text">กรุณาเลือกสาขา</div>
-          <div class="menu">
-              <div class="item" data-value="1">หัวข้อ1</div>
-              <div class="item" data-value="0">หัวข้อ2</div>
-              <div class="item" data-value="0">หัวข้อ3</div>
-          </div>
-      </div>
-  </div>
-</div>
-<br>
-		<div class="ui form">
-		  <div class="field">
-		      <label>เลือกหัวข้อ</label>
-		      <div class="ui selection dropdown">
-		          <input type="hidden" name="gender">
-		          <i class="dropdown icon"></i>
-		          <div class="default text">กรุณาเลือกหัวข้อ</div>
-		          <div class="menu">
-		              <div class="item" data-value="0">หัวข้อ1</div>
-		              <div class="item" data-value="0">หัวข้อ2</div>
-		              <div class="item" data-value="0">หัวข้อ3</div>
-		          </div>
-		      </div>
-		  </div>
-		</div>
+        <div class="field">
+      <label>ชื่อ</label>
+        <input id="C1" name="C1" type="text"  placeholder="ชื่อ">
+   </div>
+
+   <div class="field">
+      <label>นามสกุล</label>
+        <input id="C2" name="C2" type="text"  placeholder="นามสกุล">
+    </div>
+    <div class="field">
+      <label>ตำเเหน่ง</label>
+    <input id="C3" name="C3" type="text" placeholder="ตำเเหน่ง"></input>
+    </div>
+    <div class="field">
+      <label>เลขประจำตัวประชาชน</label>
+    <input id="C4" name="C4" type="text" placeholder="เลขประจำตัวประชาชน"></input>
+    </div>
+    <div class="field">
+      <label>Email</label>
+        <input id="C5" name="C5" type="text"  placeholder="Email<">
+   </div>
+
+   <div class="field">
+      <label>เบอร์โทรศัพท์</label>
+        <input id="C6" name="C6" type="text"  placeholder="เบอร์โทรศัพท์">
+    </div>
+    </div>
     </div>
   </div>
+<button type="submit" form="form1" class="ui positive button">
+      <a><font color="black">Submit</font></a>
+    </button>
+    </form>
+
   <div class="ui segment">
     <p></p>
   </div>

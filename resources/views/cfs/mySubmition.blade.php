@@ -2,32 +2,32 @@
 <html>
 	<head>
 		<title>My Submition</title>
-		 @include('cfs.header');
-		<style>.body { 
-				
-				/*overflow:scroll;*/
-				background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
-				 background: -moz-linear-gradient(top, #FFFFFF, #abdb92);
-				 background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#abdb92));
-				 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#abdb92');
-				 background: -ms-linear-gradient(top, #FFFFFF, #abdb92);*/
-				 
-				 background: red; /* For browsers that do not support gradients */
-				  /* For Safari 5.1 to 6.0 */
-				  background: -webkit-linear-gradient(top,#FFFFFF,#abdb92,#FFFFFF);
-				  /* For Opera 11.1 to 12.0 */
-				  background: -o-linear-gradient(top,#FFFFFF,#abdb92,#FFFFFF);
-				  /* For Fx 3.6 to 15 */
-				  background: -moz-linear-gradient(top,#FFFFFF,#abdb92,#FFFFFF);
-				  /* Standard syntax */
-				  background: linear-gradient(to bottom, #FFFFFF,#abdb92,#FFFFFF); 
-				    height: 100%;
-				    width: 100%;
-				    left: 0;
-				    top: 0;
-				    overflow: hidden;
-				    position: fixed;
-			}
+		 @include('cfs.header')
+		<style>
+		.body { 
+			/*overflow:scroll;*/
+			background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
+			background: -moz-linear-gradient(top, #FFFFFF, #abdb92);
+			background-image: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#abdb92));
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#abdb92');
+			background: -ms-linear-gradient(top, #FFFFFF, #abdb92);
+			 
+			background: red; /* For browsers that do not support gradients */
+			 /* For Safari 5.1 to 6.0 */
+			background: -webkit-linear-gradient(top,#FFFFFF,#abdb92,#FFFFFF);
+			 /* For Opera 11.1 to 12.0 */
+			background: -o-linear-gradient(top,#FFFFFF,#abdb92,#FFFFFF);
+			 /* For Fx 3.6 to 15 */
+			background: -moz-linear-gradient(top,#FFFFFF,#abdb92,#FFFFFF);
+			/* Standard syntax */
+			background: linear-gradient(to bottom, #FFFFFF,#abdb92,#FFFFFF); 
+			height: 100%;
+			width: 100%;
+			left: 0;
+			top: 0;
+			background-repeat: no-repeat;
+    		background-attachment: fixed;
+		}
 		</style>
 	</head>
 	<body>
@@ -48,35 +48,37 @@
 					    	รายละเอียดการประชุมในขณะนี้</h3>
 					  	</div>
 					  	<div class="active content">
-					    	<h4><font color="#006600">เลือกหัวข้อการประชุม</font></h4>		   
+					    	<h4><font color="#006600">หัวข้อการประชุมของฉัน</font></h4>		   
 					   	 	<div class="accordion transition">
 					   	 	<?php foreach ($values as $value) {?>
 					      		<div class="title">
 					          		<h4><i class="dropdown icon"></i>
-					          		{{$value->c_name}}</h4>
+					          		{{$value->Acronym_N}}</h4>
 					      		</div>
+					      		
 					      		<div class="content">
-					        		<div class="transition "><h4><font color="#006600">เลือกเอกสารที่จะให้คะแนน</font></h4></div>
+					        		<div class="transition "><h4><font color="#006600">งานวิจัยของฉัน</font></h4></div>
 					        		<div class="accordion transition hidden">
 					        			
 
 					        			<?php foreach ($papers as $paper) {
 
-					        				if ($value->conid == $paper->conid and $paper->userid == 99) {
+					        				if ($value->conid == $paper->con_id and $paper->user_id == $userid) {
 					        					
 					        				
 					        				?>
 						          			<div class="title" style="background-color:#fcf4f4">
 						              			<h5><i class="dropdown icon"></i>
-						              			{{$paper->name}}</h5>
+						              			{{$paper->paper_name}}</h5>
 						          			</div>
 						          			<div class="content" style="background-color:#fcf4f4">	
-						              			<a id="pp1" href="{{ route('cfs.paperDetails',['id'=>$paper->paperid,'pname'=>$paper->name]) }}"><h5>เอกสารลำดับที่ {{$paper->paperid}} : {{$paper->name}}</h5></a>
+						              			<a id="pp1" href="{{ route('cfs.paperDetails',['id'=>$value->conid,'pname'=>$paper->paper_name,'paperid'=>$paper->paper_id]) }}"><h5>เอกสารลำดับที่ {{$paper->paper_id}} : {{$paper->paper_name}}</h5></a>
 						          			</div>
 						          		<?php }
 						          		} ?>
 					          		</div>
 					        	</div>
+					        
 					        <?php } ?>	
 						    </div>							
 					    </div>
