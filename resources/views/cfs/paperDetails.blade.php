@@ -33,10 +33,7 @@
 	<body>
 		<div class="body">
 			@include('cfs.userheader')
-			<?php
-			 $id = 1;
-			 foreach ($papers as $paper) 
-			 {?>
+			
 			<div class="ui grid" style="margin-left:4.5%;margin-top:3%;margin-bottom:3%;margin-right:4.5%;margin-top: 1%">
 				<div class="row">
 			    	<div class="ui inverted segment sixteen wide column" style="background-color:#99ffce">
@@ -59,44 +56,44 @@
 						<br>
 						<label>
 							<h3 align="right" style="margin-right: 10%">
-							@if($paper->status_reviewer == 0)
-								 @if($paper->status_check == 0 and $paper->status_payment == 0)
+							@if($paper[0]->status_reviewer == 0)
+								 @if($paper[0]->status_check == 0 and $paper[0]->status_payment == 0)
 								 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                      			<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                      		 @elseif($paper->status_check == 0 and $paper->status_payment == 1)
+	                      		 @elseif($paper[0]->status_check == 0 and $paper[0]->status_payment == 1)
 	                      		 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินแล้ว</font>
-	                  			 @elseif($paper->status_check == 1 and $paper->status_payment == 0)
+	                  			 @elseif($paper[0]->status_check == 1 and $paper[0]->status_payment == 0)
 	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                  			 @elseif($paper->status_check == 1 and $paper->status_payment == 1)
+	                  			 @elseif($paper[0]->status_check == 1 and $paper[0]->status_payment == 1)
 	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินแล้ว</font>
 	                  			 @endif
-	                  		@elseif($paper->status_reviewer == 1)
-								 @if($paper->status_check == 0 and $paper->status_payment == 0)
+	                  		@elseif($paper[0]->status_reviewer == 1)
+								 @if($paper[0]->status_check == 0 and $paper[0]->status_payment == 0)
 								 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                      			<font color="black">การตรวจ : </font><font color="red">ยังไม่ตรวจ</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                      			<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                      		 @elseif($paper->status_check == 0 and $paper->status_payment == 1)
+	                      		 @elseif($paper[0]->status_check == 0 and $paper[0]->status_payment == 1)
 	                      		 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การตรวจ : </font><font color="red">ยังไม่ตรวจ</font>
 	                  			 	&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินแล้ว</font>
-	                  			 @elseif($paper->status_check == 1 and $paper->status_payment == 0)
+	                  			 @elseif($paper[0]->status_check == 1 and $paper[0]->status_payment == 0)
 	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การตรวจ : </font><font color="green">ผ่านแล้ว</font>
 	                  			 	&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                  			 @elseif($paper->status_check == 1 and $paper->status_payment == 1)
+	                  			 @elseif($paper[0]->status_check == 1 and $paper[0]->status_payment == 1)
 	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การตรวจ : </font><font color="green">ผ่านแล้ว</font>
@@ -279,7 +276,7 @@
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $paper->keyword1 }}</font> 
+								<font color="#12aa1f">{{ $paper[0]->keyword1 }}</font> 
 							</h3>
 						<label>	
 					</div>
@@ -314,7 +311,7 @@
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $paper->add_keyword1 }}  {{ $paper->add_keyword2 }}  {{ $paper->add_keyword3}}</font> 
+								<font color="#12aa1f">{{ $paper[0]->add_keyword1 }}  {{ $paper[0]->add_keyword2 }}  {{ $paper[0]->add_keyword3}}</font> 
 							</h3>
 						<label>	
 					</div>
@@ -349,7 +346,7 @@
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $paper->writer_name }}</font> 
+								<font color="#12aa1f">{{ $paper[0]->writer_name }}</font> 
 							</h3>
 						<label>	
 					</div>
@@ -385,7 +382,7 @@
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">ไฟล์เอกสารเรื่อง : <a href="">{{ $paper->paper_name }}</a></font> 
+								<font color="#12aa1f">ไฟล์เอกสารเรื่อง : <a href="">{{ $paper[0]->paper_name }}</a></font> 
 							</h3>
 						<label>	
 					</div>
@@ -421,13 +418,13 @@
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $paper->created_at }}</font> 
+								<font color="#12aa1f">{{ $paper[0]->created_at }}</font> 
 							</h3>
 						<label>	
 					</div>
 					<div class="ui sixteen wide column form" style="background-color:#fbfffe">
 						<div style="margin-left:10%;margin-right:10%;" align="center">
-							@if($paper->status_reviewer == 1 and $paper->status_payment == 0)
+							@if($paper[0]->status_reviewer == 1 and $paper[0]->status_check == 1)
 								<!-- <form action="{{ url('/Mysubmition/{id}/{pname}/payment') }}" id="toPayment" method="get"> -->
                   			 		<button id="btnGotoPaymentSubmit" form="toPayment" align="center" class="large ui green button" type="submit" onclick="">ไปยังหน้าชำระค่าบริการ</button>
                   			 	<!-- </form> -->
@@ -437,7 +434,7 @@
 					</div>
 				</div>
 			</div>
-			<?php }?>
+			
 		</div>
 	</body>
 <html>

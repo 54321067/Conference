@@ -16,6 +16,7 @@
         <section id="fixed-navbar" class="mobile-hide current">
             <div class="ui borderless main menu large registered icon">
                 <div class="ui container middle aligned">
+                    <img src="/images/a.png" style="width: 100px;height: 100px">
                     <a class="item" style="padding:0" height="50" style="width:auto;">
                     S I G N U P 
                     </a>

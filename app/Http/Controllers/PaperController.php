@@ -26,21 +26,23 @@ class PaperController extends Controller
         //update group table
         
 
-        $conuser = DB::table('conferall')->where('conid', '=', $id)->get();
-        $paper = DB::table('paper')->where('paper_name','=',$pname)->get();
+        $conuser = DB::table('conferall')->where('conid', '=', $id)->distinct('Acronym_N')->get();
+        $papers = DB::table('paper')->where('paper_id','=',$paperid)->get();
         $score = DB::table('group')->where('paper_id', '=',$paperid )->select('score_1','score_2','score_3')->get();
-        /*if ($score[0] != 0 and $score[1] != 0 and  $score[2] != 0) {
+        //check status score result
+        if ($score[0] != 0 and $score[1] != 0 and  $score[2] != 0) {
+            //evaluate score
             if (sum($score)>=9) {
                 DB::table('paper')->where('paper_id',$paper->$paperid)->update(
                 ['status_check'=>1,'updated_at'  => new \dateTime]);
             }else{
                 DB::table('paper')->where('paper_id',$paper->$paperid)->update(
-                ['status_check'=>-1,'updated_at'  => new \dateTime]);
+                ['status_check'=>-1,'status_payment' => 1,'updated_at'  => new \dateTime]);
             }
             
         
-        }*/
-        return view('cfs.paperDetails',['papers' => $paper,'idpaper' => $id, 'namepaper' => $pname,'vb' => $conuser])->with('test',$score);
+        }
+        return view('cfs.paperDetails',['paper' => $papers,'idpaper' => $id, 'namepaper' => $pname,'vb' => $conuser])->with('test',$score);
     }
     
      public function  coninfo($id)

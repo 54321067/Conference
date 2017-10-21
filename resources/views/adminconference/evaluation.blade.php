@@ -56,34 +56,134 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
     </a></h2>
     
  
-
-
-  
-    <h2><i class="large  green write icon"></i><u>Evaluation</u></h2>
+       <h2><i class="large  green write icon"></i>Technical quality</h2>
     <div class="inline fields" style="margin-left: 2.5%">
     <div class="field ">
       <div class="ui radio checkbox" >
         <input type="radio" placeholder="Test Field" name="frequency" id="score1"  value="1">
-        <label><i class="thumbs down icon"></i>Badly</label>
+        <label><i class="thumbs down icon"></i>Reject</label>
         </div>
       <div class="ui radio checkbox">
         <input type="radio" placeholder="Test Field" name="frequency" id="score2" value="2">
-        <label><i class="thumbs outline down icon" ></i>Pretty</label>
+        <label><i class="thumbs outline down icon" ></i>Weak accept</label>
         </div>
+       
         <div class="ui radio checkbox">
-        <input type="radio" placeholder="Test Field" name="frequency" id="score3" value="3">
-        <label><i class="thumbs outline up icon"></i>Posh</label>
-        </div>
-        <div class="ui radio checkbox">
-        <input type="radio" placeholder="Test Field" name="frequency" id="score4" value="4">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score4" value="3">
         <label><i class="smile icon"></i>Accept</label>
         </div>
         <div class="ui radio checkbox">
-        <input type="radio" placeholder="Test Field" name="frequency" id="score5" value="5">
-        <label><i class="heart icon"></i>Strong</label>
+        <input type="radio" placeholder="Test Field" name="frequency" id="score5" value="4">
+        <label><i class="heart icon"></i>Strong accept</label>
       </div>
     </div>
-</div>
+    
+  </div>
+  
+    <h2><i class="large  green write icon"></i>Relevance to Conference</h2>
+    <div class="inline fields" style="margin-left: 2.5%">
+    <div class="field ">
+      <div class="ui radio checkbox" >
+        <input type="radio" placeholder="Test Field" name="frequency" id="score1"  value="1">
+        <label><i class="thumbs down icon"></i>Reject</label>
+        </div>
+      <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score2" value="2">
+        <label><i class="thumbs outline down icon" ></i>Weak accept</label>
+        </div>
+       
+        <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score4" value="3">
+        <label><i class="smile icon"></i>Accept</label>
+        </div>
+        <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score5" value="4">
+        <label><i class="heart icon"></i>Strong accept</label>
+      </div>
+    </div>
+    </div>
+     <h2><i class="large  green write icon"></i>Presentation</h2>
+    <div class="inline fields" style="margin-left: 2.5%">
+    <div class="field ">
+      <div class="ui radio checkbox" >
+        <input type="radio" placeholder="Test Field" name="frequency" id="score1"  value="1">
+        <label><i class="thumbs down icon"></i>Reject</label>
+        </div>
+      <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score2" value="2">
+        <label><i class="thumbs outline down icon" ></i>Weak accept</label>
+        </div>
+       
+        <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score4" value="3">
+        <label><i class="smile icon"></i>Accept</label>
+        </div>
+        <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score5" value="4">
+        <label><i class="heart icon"></i>Strong accept</label>
+      </div>
+    </div>
+    </div>
+     <h2><i class="large  green write icon"></i>Overall rating</h2>
+    <div class="inline fields" style="margin-left: 2.5%">
+    <div class="field ">
+      <div class="ui radio checkbox" >
+        <input type="radio" placeholder="Test Field" name="frequency" id="score1"  value="1">
+        <label><i class="thumbs down icon"></i>Reject</label>
+        </div>
+      <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score2" value="2">
+        <label><i class="thumbs outline down icon" ></i>Weak accept</label>
+        </div>
+       
+        <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score4" value="3">
+        <label><i class="smile icon"></i>Accept</label>
+        </div>
+        <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score5" value="4">
+        <label><i class="heart icon"></i>Strong accept</label>
+      </div>
+    </div>
+    </div>
+    <hr>
+        <h2><i class="large  green write icon"></i>Evaulution</h2>
+    <div class="inline fields" style="margin-left: 2.5%">
+    <div class="field ">
+      <div class="ui radio checkbox" >
+        <input type="radio" placeholder="Test Field" name="frequency" id="score1"  value="-3">
+        <label><i class="thumbs down icon"></i>strong reject</label>
+
+        </div>
+           <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score2" value="-2">
+        <label><i class="thumbs outline down icon" ></i>reject</label>
+        </div>
+           <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score2" value="-1">
+        <label><i class="thumbs outline down icon" ></i>weak reject</label>
+        </div>
+           <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score2" value="0">
+        <label><i class="thumbs outline down icon" ></i>boundary</label>
+        </div>
+      <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score2" value="1">
+        <label><i class="thumbs outline down icon" ></i>Weak accept</label>
+        </div>
+       
+        <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score4" value="2">
+        <label><i class="smile icon"></i>Accept</label>
+        </div>
+        <div class="ui radio checkbox">
+        <input type="radio" placeholder="Test Field" name="frequency" id="score5" value="3">
+        <label><i class="heart icon"></i>Strong accept</label>
+      </div>
+    </div>
+    </div>
+
+  
 
     <h2 style="margin-left: 1.5%"><i class="large  green talk outline icon"></i>Comment</h2>
      <div class="ui Comment" style="margin-left: 1.5%">
