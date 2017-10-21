@@ -9,6 +9,9 @@ $('.ui.dropdown')
 $('.ui.radio.checkbox')
   .checkbox()
 ;
+$('.ui.accordion')
+    .accordion()
+;
 
 $('.test.button').on('click',function(){
             $('#modal-test').modal('show');

@@ -24,10 +24,6 @@ class AdminController extends Controller
     {
         return view('adminconference.home');
     }
-    public function  evaluation()
-    {
-        return view('adminconference.evaluation');
-    }
 
     public function index()
     {
@@ -57,7 +53,9 @@ class AdminController extends Controller
         $unpay = DB::table('paper')->where('paper.status_payment','=','0')->count();
         return view('adminconference.path')->with('unreviews',$unreview)->with('unpays',$unpay)->with('cons',$con)->with('papers',$paper);
     }
-  
+    public function getscore(Request $request){
+        
+    }
  
     public function adminhome()
     {

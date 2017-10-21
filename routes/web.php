@@ -66,7 +66,6 @@ Route::get('/list/submitcreate','AdminController@submitcreate')->middleware('aut
 Route::get('/viewpaper/{id}',['as'=>'adminconference.viewpaper','uses'=>'AdminController@viewpaper'])->middleware('auth','admin');
 Route::get('/list/info/{id}','AdminController@info')->middleware('auth','admin');
 Route::delete('/list/info/{id}','AdminController@dropadmin')->middleware('auth','admin');
-Route::get('/list/evaluation','AdminController@evaluation')->middleware('auth');
 Route::get('/list/create','AdminController@create')->middleware('auth','admin');
 //Route::get('/list/{id}',['as'=>'movies.show','uses'=>'ProjectController@show']);
 Route::get('/list/{id}/edit','AdminController@edit')->middleware('auth','admin');
@@ -83,7 +82,8 @@ Route::delete('/list/{id}','AdminController@destroy')->middleware('auth','admin'
 /////////
 Route::get('/sendemail','mailcontroller@index');
 Route::get('/sendemail/send','mailcontroller@sendemail');
-
+Route::post('/list/evaluation/{id}/{id2}','ReviewerController@evaluation');
+Route::get('/list/evaluation/{id}/{id2}','ReviewerController@view');
 Route::post('/setreviewer/{id}',['as'=>'adminconference.choosereviewer','uses'=>'AdminController@review'])->middleware('auth','admin');
 ////////////////////
 
