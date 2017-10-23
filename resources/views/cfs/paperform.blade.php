@@ -154,9 +154,22 @@
 						        <input class="search" autocomplete="off" tabindex="0"><span class="sizer" style=""></span>
 						        <div class="default text">Keyword</div>
 						        <div class="menu transition hidden" tabindex="-1">
-							        <div class="item" data-value="Keyword 1">Keyword 1</div>
-									<div class="item" data-value="Keyword 2">Keyword 2</div>
-									<div class="item" data-value="Keyword 3">Keyword 3</div>
+							        @if(!empty($con->topic_1) > 0)
+							        	@php
+											$datas = explode(",", $con->topic_1)
+										@endphp
+							        	@foreach($datas as $data)
+								        	<div class="item" data-value="{{ $data }}">{{ $data }}</div>
+										@endforeach
+									@endif
+									@if(!empty($con->topic_2) > 0)
+							        	@php
+											$datas2 = explode(",", $con->topic_2)
+										@endphp
+							        	@foreach($datas2 as $data2)
+								        	<div class="item" data-value="{{ $data2 }}">{{ $data2 }}</div>
+										@endforeach
+									@endif
 								</div>
 							</div>
 						</td>

@@ -33,7 +33,8 @@
 	<body>
 		<div class="body">
 			@include('cfs.userheader')
-			
+			<form action="{{ url('/Mysubmition/'.$paper->paper_id.'/'.$paper->paper_name.'/invoice.pdf') }}" id="toPayment" method="post">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="ui grid" style="margin-left:4.5%;margin-top:3%;margin-bottom:3%;margin-right:4.5%;margin-top: 1%">
 				<div class="row">
 			    	<div class="ui inverted segment sixteen wide column" style="background-color:#99ffce">
@@ -56,44 +57,29 @@
 						<br>
 						<label>
 							<h3 align="right" style="margin-right: 10%">
-							@if($paper[0]->status_reviewer == 0)
-								 @if($paper[0]->status_check == 0 and $paper[0]->status_payment == 0)
+							@if($paper->status_reviewer == 0)
 								 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
-	                      			&nbsp;&nbsp;&nbsp;&nbsp;
-	                      			<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                      		 @elseif($paper[0]->status_check == 0 and $paper[0]->status_payment == 1)
-	                      		 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
-	                      			&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินแล้ว</font>
-	                  			 @elseif($paper[0]->status_check == 1 and $paper[0]->status_payment == 0)
-	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
-	                      			&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                  			 @elseif($paper[0]->status_check == 1 and $paper[0]->status_payment == 1)
-	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
-	                      			&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินแล้ว</font>
-	                  			 @endif
-	                  		@elseif($paper[0]->status_reviewer == 1)
-								 @if($paper[0]->status_check == 0 and $paper[0]->status_payment == 0)
+	                      			&nbsp;&nbsp;&nbsp;&nbsp;       			
+	                  		@elseif($paper->status_reviewer == 1)
+								 @if($paper->status_check == 0 and $paper->status_payment == 0)
 								 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                      			<font color="black">การตรวจ : </font><font color="red">ยังไม่ตรวจ</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                      			<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                      		 @elseif($paper[0]->status_check == 0 and $paper[0]->status_payment == 1)
+	                      		 @elseif($paper->status_check == 0 and $paper->status_payment == 1)
 	                      		 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การตรวจ : </font><font color="red">ยังไม่ตรวจ</font>
 	                  			 	&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินแล้ว</font>
-	                  			 @elseif($paper[0]->status_check == 1 and $paper[0]->status_payment == 0)
+	                  			 @elseif($paper->status_check == 1 and $paper->status_payment == 0)
 	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การตรวจ : </font><font color="green">ผ่านแล้ว</font>
 	                  			 	&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                  			 @elseif($paper[0]->status_check == 1 and $paper[0]->status_payment == 1)
+	                  			 @elseif($paper->status_check == 1 and $paper->status_payment == 1)
 	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                  			 	<font color="black">การตรวจ : </font><font color="green">ผ่านแล้ว</font>
@@ -105,13 +91,12 @@
 						</label>	
 					</div>
 					
-					
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
-							
-						<label>	
+
+						<label>
 					</div>
 					<div class="ui three wide column" style="background-color:#fbfffe">
 						<br>
@@ -120,7 +105,7 @@
 							<h3 align="left">
 								<font color="black">ชื่อเต็มของหัวข้อการประชุม</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
@@ -129,24 +114,24 @@
 							<h3 align="left">
 								<font color="black">:</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui eleven wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $vb[0]->Acronym_N }}</font> 
+								<font color="#12aa1f">{{ $vb[0]->Acronym_N }}</font>
 							</h3>
-						<label>	
-					</div>	
+						<label>
+					</div>
 
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
-							
-						<label>	
+
+						<label>
 					</div>
 					<div class="ui three wide column" style="background-color:#fbfffe">
 						<br>
@@ -155,7 +140,7 @@
 							<h3 align="left">
 								<font color="black">ชื่อย่อของหัวข้อการประชุม</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
@@ -164,24 +149,24 @@
 							<h3 align="left">
 								<font color="black">:</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui eleven wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $vb[0]->Acronym_L }}</font> 
+								<font color="#12aa1f">{{ $vb[0]->Acronym_L }}</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
-							
-						<label>	
+
+						<label>
 					</div>
 					<div class="ui three wide column" style="background-color:#fbfffe">
 						<br>
@@ -190,7 +175,7 @@
 							<h3 align="left">
 								<font color="black">ชื่อหัวการประชุมหลัก</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
@@ -199,24 +184,24 @@
 							<h3 align="left">
 								<font color="black">:</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui eleven wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $vb[0]->topic_1 }}</font> 
+								<font color="#12aa1f">{{ $vb[0]->topic_1 }}</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
-							
-						<label>	
+
+						<label>
 					</div>
 					<div class="ui three wide column" style="background-color:#fbfffe">
 						<br>
@@ -225,7 +210,7 @@
 							<h3 align="left">
 								<font color="black">ชื่อหัวการประชุมย่อย</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
@@ -234,33 +219,33 @@
 							<h3 align="left">
 								<font color="black">:</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui eleven wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $vb[0]->topic_2 }}</font> 
+								<font color="#12aa1f">{{ $vb[0]->topic_2 }}</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
-							
-						<label>	
+
+						<label>
 					</div>
 					<div class="ui three wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="black">สิ่งที่เกี่ยวข้อง</font>
+								<font color="black">ชื่อเอกสารเรื่อง</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
@@ -269,59 +254,24 @@
 							<h3 align="left">
 								<font color="black">:</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui eleven wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $paper[0]->keyword1 }}</font> 
+								<font color="#12aa1f">{{ $paper->paper_name }}</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
-							
-						<label>	
-					</div>
-					<div class="ui three wide column" style="background-color:#fbfffe">
-						<br>
-						<br>
-						<label>
-							<h3 align="left">
-								<font color="black">สิ่งที่เกี่ยวข้องเพิ่มเติม</font>
-							</h3>
-						<label>	
-					</div>
-					<div class="ui one wide column" style="background-color:#fbfffe">
-						<br>
-						<br>
-						<label>
-							<h3 align="left">
-								<font color="black">:</font>
-							</h3>
-						<label>	
-					</div>
-					<div class="ui eleven wide column" style="background-color:#fbfffe">
-						<br>
-						<br>
-						<label>
-							<h3 align="left">
-								<font color="#12aa1f">{{ $paper[0]->add_keyword1 }}  {{ $paper[0]->add_keyword2 }}  {{ $paper[0]->add_keyword3}}</font> 
-							</h3>
-						<label>	
-					</div>
 
-					<div class="ui one wide column" style="background-color:#fbfffe">
-						<br>
-						<br>
 						<label>
-							
-						<label>	
 					</div>
 					<div class="ui three wide column" style="background-color:#fbfffe">
 						<br>
@@ -330,7 +280,7 @@
 							<h3 align="left">
 								<font color="black">ชื่อ-สกุลผู้เขียนเอกสาร</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
@@ -339,25 +289,94 @@
 							<h3 align="left">
 								<font color="black">:</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui eleven wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $paper[0]->writer_name }}</font> 
+								<font color="#12aa1f">{{ $paper->writer_name }}</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
-
 
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
-							
-						<label>	
+
+						<label>
+					</div>
+					<div class="ui three wide column" style="background-color:#fbfffe">
+						<br>
+						<br>
+						<label>
+							<h3 align="left">
+								<font color="black">สิ่งที่เกี่ยวข้อง</font>
+							</h3>
+						<label>
+					</div>
+					<div class="ui one wide column" style="background-color:#fbfffe">
+						<br>
+						<br>
+						<label>
+							<h3 align="left">
+								<font color="black">:</font>
+							</h3>
+						<label>
+					</div>
+					<div class="ui eleven wide column" style="background-color:#fbfffe">
+						<br>
+						<br>
+						<label>
+							<h3 align="left">
+								<font color="#12aa1f">{{ $paper->keyword1 }}</font>
+							</h3>
+						<label>
+					</div>
+
+					<div class="ui one wide column" style="background-color:#fbfffe">
+						<br>
+						<br>
+						<label>
+
+						<label>
+					</div>
+					<div class="ui three wide column" style="background-color:#fbfffe">
+						<br>
+						<br>
+						<label>
+							<h3 align="left">
+								<font color="black">สิ่งที่เกี่ยวข้องเพิ่มเติม</font>
+							</h3>
+						<label>
+					</div>
+					<div class="ui one wide column" style="background-color:#fbfffe">
+						<br>
+						<br>
+						<label>
+							<h3 align="left">
+								<font color="black">:</font>
+							</h3>
+						<label>
+					</div>
+					<div class="ui eleven wide column" style="background-color:#fbfffe">
+						<br>
+						<br>
+						<label>
+							<h3 align="left">
+								<font color="#12aa1f">{{ $paper->add_keyword1 }}  {{ $paper->add_keyword2 }}  {{ $paper->add_keyword3}}</font>
+							</h3>
+						<label>
+					</div>
+
+					<div class="ui one wide column" style="background-color:#fbfffe">
+						<br>
+						<br>
+						<label>
+
+						<label>
 					</div>
 					<div class="ui three wide column" style="background-color:#fbfffe">
 						<br>
@@ -366,7 +385,7 @@
 							<h3 align="left">
 								<font color="black">รายละเอียดไฟล์ของเอกสาร</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
@@ -375,16 +394,16 @@
 							<h3 align="left">
 								<font color="black">:</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui eleven wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">ไฟล์เอกสารเรื่อง : <a href="">{{ $paper[0]->paper_name }}</a></font> 
+								<a id="detailFilePaper" href="">เนื้อหาของเอกสารเรื่อง : {{ $paper->paper_name }}</a>
 							</h3>
-						<label>	
+						<label>
 					</div>
 
 
@@ -392,8 +411,8 @@
 						<br>
 						<br>
 						<label>
-							
-						<label>	
+
+						<label>
 					</div>
 					<div class="ui three wide column" style="background-color:#fbfffe">
 						<br>
@@ -402,7 +421,7 @@
 							<h3 align="left">
 								<font color="black">วันที่ส่งเอกสารฉบับนี้</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui one wide column" style="background-color:#fbfffe">
 						<br>
@@ -411,31 +430,40 @@
 							<h3 align="left">
 								<font color="black">:</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
 					<div class="ui eleven wide column" style="background-color:#fbfffe">
 						<br>
 						<br>
 						<label>
 							<h3 align="left">
-								<font color="#12aa1f">{{ $paper[0]->created_at }}</font> 
+								<font color="#12aa1f">{{ $paper->created_at }}</font>
 							</h3>
-						<label>	
+						<label>
 					</div>
+					
 					<div class="ui sixteen wide column form" style="background-color:#fbfffe">
 						<div style="margin-left:10%;margin-right:10%;" align="center">
-							@if($paper[0]->status_reviewer == 1 and $paper[0]->status_check == 1)
-								<!-- <form action="{{ url('/Mysubmition/{id}/{pname}/payment') }}" id="toPayment" method="get"> -->
+							@if($paper->status_reviewer == 1 and $paper->status_payment == 0)
                   			 		<button id="btnGotoPaymentSubmit" form="toPayment" align="center" class="large ui green button" type="submit" onclick="">ไปยังหน้าชำระค่าบริการ</button>
-                  			 	<!-- </form> -->
-                  			@endif	
+                  			@endif
 						</div>
 						<br>
 					</div>
 				</div>
 			</div>
-			
+			</form>
 		</div>
+		<style>
+			a{
+				color: green;
+				text-decoration: underline;
+			}
+			a:hover {
+				color: red;
+				text-decoration: underline;
+			}
+		</style>
 	</body>
 <html>
 <!-- //route

@@ -75,6 +75,11 @@ class AdminController extends Controller
         $con = confer::find($id);
         return view('adminconference.aboutConference')->with('con',$con);
     }
+    public function preview($name)
+    {
+        $pathToFile = '/file/'.$name;
+        return response()->file(public_path($pathToFile));
+    }
     public function viewpaper($id)
     {
         $value = DB::table('paper')->where('con_id', '=', $id)->get();
@@ -141,6 +146,9 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
+        $old = DB::table('conferall')->where('conid',$id)->first();
+        DB::table('oldconference')->insert(['name'=> $old->name ,'Acronym_N'=> $old->Acronym_N ,'Acronym_L'=>$old->Acronym_L,'Loca'=>$old->Loca,'Content'=>$old->Content,'Detail'=>$old->Detail,'D_Line'=>$old->D_Line,'R_Line'=>$old->R_Line,'S_Line'=>$old->S_Line,'Y_Line'=>$old->Y_Line,'topic_1'=>$old->topic_1,'topic_2'=>$old->topic_2,'created_at'=> new \dateTime,
+        'updated_at'  => new \dateTime]);
         $destroy = confer::where('conid',$id)->delete();
         return redirect()->to('/adminhome');
     }

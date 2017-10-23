@@ -32,9 +32,7 @@
                   <th>StatusPaper</th>
                   <th>StatusPayment</th>
                   <th>Topic</th>
-                  @if(Auth::user()->status == 'superadmin')
-                  <th style="text-align: center;">Edit</th>
-                  @endif
+                 
                 </tr>
 
               </thead>
@@ -48,7 +46,7 @@
                   <td><a>{{$value->paper_id}}</a></td>
                   @endif
                   <td>{{$value->paper_name}}</td>
-                  <td><a href="">{{$value->pdf_name}}</a></td>
+                  <td><a href="{{ route('viewpaper',['name'=>$value->pdf_name]) }}">{{$value->pdf_name}}</a></td>
                   @if($value->status_reviewer == 0)
                       <td class="negative"><i class="icon close"></i>ยังไม่เลือก</td>
                   @else
@@ -75,13 +73,6 @@
                   @endif
                   
                   <td>{{$value->keyword1}}</td>
-                  @if(Auth::user()->status == 'superadmin')
-                  <td>
-                      
-                      <button type="submit" style="float: right;" class="ui google plus button">D E L E T E</button>
-
-                  </td>
-                  @endif
                 </tr>              
 
 

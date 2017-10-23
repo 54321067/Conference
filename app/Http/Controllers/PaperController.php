@@ -7,7 +7,7 @@ use App\paper_form;
 use Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
-
+use PDF;    
 class PaperController extends Controller
 {
      public function gotosubmition()
@@ -27,24 +27,21 @@ class PaperController extends Controller
         
 
         $conuser = DB::table('conferall')->where('conid', '=', $id)->distinct('Acronym_N')->get();
-        $papers = DB::table('paper')->where('paper_id','=',$paperid)->get();
+        $papers = DB::table('paper')->where('paper_id','=',$paperid)->first();
         $score = DB::table('group')->where('paper_id', '=',$paperid )->select('score_1','score_2','score_3')->get();
-        //check status score result
-        if ($score[0] != 0 and $score[1] != 0 and  $score[2] != 0) {
-            //evaluate score
-            if (sum($score)>=9) {
-                DB::table('paper')->where('paper_id',$paper->$paperid)->update(
-                ['status_check'=>1,'updated_at'  => new \dateTime]);
-            }else{
-                DB::table('paper')->where('paper_id',$paper->$paperid)->update(
-                ['status_check'=>-1,'status_payment' => 1,'updated_at'  => new \dateTime]);
-            }
+
+        
             
         
-        }
+        
         return view('cfs.paperDetails',['paper' => $papers,'idpaper' => $id, 'namepaper' => $pname,'vb' => $conuser])->with('test',$score);
     }
-    
+    public function viewPaymentPDF($id,$pname)
+    {
+        $paper = DB::table("paper")->where('paper.paper_id','=',$id)->get();
+        $pdf = PDF::loadView('cfs.payment', compact('paper'));
+        return $pdf->stream('invoice.pdf');
+    }
      public function  coninfo($id)
     {
         $value = DB::table('conferall')->where('conid',$id)->first();

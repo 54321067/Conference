@@ -30,7 +30,7 @@ Route::get('/home',['as'=>'adminconference.home','uses'=>'ProjectController@home
 //user//
 Route::get('/Mysubmition',['as'=>'cfs.Mysubmition','uses'=>'PaperController@gotosubmition'])->middleware('auth');
 Route::get('/Mysubmition/{id}/{pname}/{paperid}',['as'=>'cfs.paperDetails','uses'=>'PaperController@gotopaperdetail'])->middleware('auth');
-
+Route::post('/Mysubmition/{id}/{pname}/invoice.pdf',['as'=>'cfs.payment','uses'=>'PaperController@viewPaymentPDF'])->middleware('auth');
 ////////
 Route::get('/homecon',['as'=>'cfs.homecon','uses'=>'PaperController@conall'])->middleware('auth');
 //NEW//
@@ -71,6 +71,8 @@ Route::get('/list/create','AdminController@create')->middleware('auth','admin');
 Route::get('/list/{id}/edit','AdminController@edit')->middleware('auth','admin');
 Route::put('/list/{id}','AdminController@update')->middleware('auth','admin');
 Route::delete('/list/{id}','AdminController@destroy')->middleware('auth','admin');
+Route::get('/viewpaper/{name}/preview',['as'=>'viewpaper','uses'=>'AdminController@preview'])->middleware('auth','admin');
+
 /////////
 ///end///
 //admin//
@@ -80,7 +82,7 @@ Route::delete('/list/{id}','AdminController@destroy')->middleware('auth','admin'
 /////////
 //reviewer//
 /////////
-Route::get('/sendemail','mailcontroller@index');
+
 Route::get('/sendemail/send','mailcontroller@sendemail');
 Route::post('/list/evaluation/{id}/{id2}','ReviewerController@evaluation');
 Route::get('/list/evaluation/{id}/{id2}','ReviewerController@view');
