@@ -89,7 +89,9 @@ class AdminController extends Controller
     public function choosereviewer($id,$conid)
     {
         $name = DB::table('conferall')->where('conid', '=', $conid)->first();
-        return view('adminconference.choosereviewer')->with('id',$id);
+        $values = DB::table('paper')->where('paper_id',$id)->get();
+        return view('adminconference.choosereviewer')->with('id',$id)
+                                                    ->with('values',$values);
     }
     public function install()
     {
@@ -203,6 +205,7 @@ class AdminController extends Controller
             $check3 = DB::table('reviewer')->where('Name','=',$request->input('C1'))->where('Lname','=',$request->input('C2'))->get();
             $i3 =  $check3[0]->Id;
         }
+
 
         //2.create group
         DB::table('group')->insert(

@@ -39,12 +39,8 @@
               <tbody>
 
                 <?php foreach ($values as $value) {?>
-                  <tr>
-                  @if($value->status_reviewer == 0)
-                  <td><a href="{{ route('gg',['id'=>$value->paper_id,'conid'=>$names->conid ]) }}">{{$value->paper_id}}</a></td>
-                  @else
+                  <tr>   
                   <td><a>{{$value->paper_id}}</a></td>
-                  @endif
                   <td>{{$value->paper_name}}</td>
                   <td><a href="{{ route('viewpaper',['name'=>$value->pdf_name]) }}">{{$value->pdf_name}}</a></td>
                   @if($value->status_reviewer == 0)
@@ -56,7 +52,7 @@
                   @if($value->status_check == 0)
                       <td class="negative"><i class="icon close"></i>ยังไม่ตรวจ</td>
                       <td class="negative"><i class="icon close"></i>ยังไม่ชำระ</td>
-                  @elseif($value->status_check == 1)
+                  @elseif($value->status_check >= 1)
                       <td class="positive"><i class="icon checkmark"></i>ผ่านแล้ว</td>
                       @if($value->status_payment==0)
                       <td class="negative"><i class="icon close"></i>ยังไม่ชำระ</td>

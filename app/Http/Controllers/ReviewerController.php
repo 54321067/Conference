@@ -26,8 +26,19 @@ class ReviewerController extends Controller
     }
     public function view($id,$id2)
     {
-        $R1 = DB::table('paper')->where('group_id',$id)->get();
+        $p = DB::table('paper')->where('group_id',$id)->get();
         $R2 = DB::table('reviewer')->where('Id',$id2)->get();
-        return view('cfs.bank')->with('groupid',$id)->with('id',$id2)->with('paper',$R1)->with('R',$R2);
+        return view('cfs.bank')->with('groupid',$id)->with('id',$id2)->with('paper',$p)->with('R',$R2);
     }
+    public function chair($id,$id2){
+        $p = DB::table('paper')->where('group_id',$id)->get();
+        $G = DB::table('group')->where('group_id',$id)->get();
+        $R4 = DB::table('reviewer')->where('Id',$id2)->get();
+        return view("cfs.myc")->with('groupid',$id)->with('id',$id2)->with('paper',$p)->with('R',$R4)->with('g',$G);
+    }
+    public function getchair($id,$id2){
+        $value = DB::table('conferall')->get();
+        return view('cfs.homecon')->with('values',$value);
+    }
+
 }

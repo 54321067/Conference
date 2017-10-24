@@ -71,10 +71,7 @@ class PaperController extends Controller
        //$data = explode(",", $full);
         $file = Input::file('attachmentName');
         $namefile = Input::file('attachmentName')->getClientOriginalName();
-        $des = 'file';
-        $file->move($des,$namefile);
-
-        $user = DB::table('paper')->max('paper_id');
+        
         DB::table('paper')->insertGetId(
             [
                 'paper_name'    => $request->input('paper-name'), 
@@ -90,6 +87,12 @@ class PaperController extends Controller
                 'updated_at'    => new \dateTime,
             ]
         );
+
+        $idpaper = DB::table('paper')->max('paper_id');
+        $name =  $idpaper.'_'.$namefile;
+        DB::table('paper')->where('paper_id',$idpaper)->update(['pdf_name' => $name]);
+        $file->move('file',$name);
+
 
         $value = DB::table('conferall')->get();
         return view('cfs.homecon')->with('values',$value);

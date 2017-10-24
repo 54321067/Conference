@@ -80,9 +80,10 @@ Route::get('/viewpaper/{name}/preview',['as'=>'viewpaper','uses'=>'AdminControll
 
 
 /////////
-//reviewer//
+//reviewer
 /////////
-
+Route::get('/list/chair/{id}/{id2}',['as'=>'cfs.myc','uses'=>'ReviewerController@chair']);
+Route::post('/list/getchair/{id}/{id2}',['as'=>'cfs.chair','uses'=>'ReviewerController@getchair']);
 Route::get('/sendemail/send','mailcontroller@sendemail');
 Route::post('/list/evaluation/{id}/{id2}','ReviewerController@evaluation');
 Route::get('/list/evaluation/{id}/{id2}','ReviewerController@view');

@@ -13,43 +13,49 @@
 @include('adminconference.headeradmin')
 <br>
 
-<h3 class="ui horizontal divider">Hello!->paperid = {{$id}}</h3>
+
 <div style="margin-left: 10%;margin-right: 10%;margin-bottom: 10%">
 <div class="ui segments">
 <!--Main topic -->
-  <div class="ui segment" style="margin-bottom: 1.5%">
-    <h1>Main</h1>
+  <div class="ui black message" style="margin-bottom: 1.5%">
+    <h1>PAPER ID : {{$id}} <a  style="float: right;">
+    PAPER NAME : {{$values[0]->paper_name}}</a></h1>
   </div>
-  <div class="ui horizontal list" style="margin-left: 2%;margin-bottom: 2%">
+  <div class="ui green message"  >
   <div class="item">
-    <img class="ui mini circular image" src="/images/main.png">
+   
+      <h1><i class="black big handshake icon"> </i> &nbsp;&nbsp;&nbsp;&nbsp;<u>Topics</u></h1>
+      
+    
     <div class="content">
-      <div class="ui sub header">Molly</div>
-      Coordinator
+      
+      
+      <h5 style="color: blue">
+        @if($values[0]->keyword1!=null)
+          {{$values[0]->keyword1}}
+        @endif
+        |
+        @if($values[0]->add_keyword1!=null)
+          ,{{$values[0]->add_keyword1}}
+        @endif
+        @if($values[0]->add_keyword2!=null)
+          ,{{$values[0]->add_keyword2}}
+        @endif
+        @if($values[0]->add_keyword3!=null)
+          ,{{$values[0]->add_keyword3}}
+        @endif
+        </h5>
     </div>
   </div>
-  <div class="item">
-    <img class="ui mini circular image" src="/images/main.png">
-    <div class="content">
-      <div class="ui sub header">Elyse</div>
-      Developer
-    </div>
-  </div>
-  <div class="item">
-    <img src="/images/main.png" class="ui mini circular image">
-    <div class="content">
-      <div class="ui sub header">Eve</div>
-      Project Manager
-    </div>
-  </div>
+  
 </div>
 <!-- End-Main-topic -->
 
 <!--Choose reviewer -->
-  <div class="ui segment">
+  <div class="ui green message">
     <h3>เลือกกกรรมการ </h3>
   </div>
-  <form class="ui form segment" style="background-color: #99ffce" id="form1" method="post"  action="{{ url('/setreviewer/'.$id) }}">
+  <form class="ui green message"  id="form1" method="post"  action="{{ url('/setreviewer/'.$id) }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="ui horizontal segments">
     <div class="ui segment">
@@ -107,7 +113,7 @@
     </div>
     <div class="field">
       <label>Email</label>
-        <input id="B5" name="B5" type="text"  placeholder="Email<">
+        <input id="B5" name="B5" type="text"  placeholder="Email">
    </div>
 
    <div class="field">
@@ -138,7 +144,7 @@
     </div>
     <div class="field">
       <label>Email</label>
-        <input id="C5" name="C5" type="text"  placeholder="Email<">
+        <input id="C5" name="C5" type="text"  placeholder="Email">
    </div>
 
    <div class="field">
@@ -149,14 +155,11 @@
     </div>
   </div>
 <button type="submit" form="form1" class="ui positive button">
-      <a><font color="black">Submit</font></a>
+      <a><font color="black">Save</font></a>
     </button>
     </form>
 
-  <div class="ui segment">
-    <p></p>
   </div>
-</div>
 
 
 </div>
