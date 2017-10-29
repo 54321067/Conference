@@ -3,40 +3,19 @@
         @if(Auth::check())
         <hgroup class ="item">
       		<i class="icon github alternate"></i>
-          <a href="/list/admin">
+          <a href="/list/chair">
       			<font color="white">
-              @if(Auth::user()->status == 'superadmin')
-                  SuperAdmin
-              @else
-                  Admin
-              @endif
+              Chair
             </font>
           </a>
         </hgroup>
-        <a class="ui simple dropdown item">
-            @if(Auth::user()->status == 'superadmin')
-            โคตรเก้าอี้นวม
-            @else
-            เก้าอี้นวม
-            @endif
-            <i class="dropdown icon"></i>
-            <div class="menu">
-                <div onclick="location.href='/list/install'" class="item">
-                  <i class="icon file text outline"></i>
-                  Create Conference
-                </div>
-                <div onclick="location.href='/adminhome'" class="item">
-                  <i class="icon book"></i>
-                  View All Conference
-                </div> 
-                @if(Auth::user()->status == 'superadmin')
-                <div  onclick="location.href='/list'" class="item">
-                    <i class="icon spy"></i>
-                    Admin team
-                </div>  
-                @endif  
-            </div>
-      </a>
+        <hgroup class ="item">
+          <a  href="/chairhome">
+            <font color="white">
+              View All Conference
+            </font>         
+        </a>
+        </hgroup>
       <hgroup class="item ">
                   <font color="green">W E l l C O M E </font> __ {{ Auth::user()->name }} __
       </hgroup>

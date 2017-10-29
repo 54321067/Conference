@@ -36,6 +36,9 @@ class PaperController extends Controller
         
         return view('cfs.paperDetails',['paper' => $papers,'idpaper' => $id, 'namepaper' => $pname,'vb' => $conuser])->with('test',$score);
     }
+    public function myinfo(){
+        return view('cfs.account');
+    }
     public function viewPaymentPDF($id,$pname)
     {
         $paper = DB::table("paper")->where('paper.paper_id','=',$id)->get();

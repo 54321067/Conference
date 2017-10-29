@@ -23,19 +23,21 @@ class UserController extends Controller
 
     public function setLogin(Request $request)
     {
-    	$data = [
-    		'email' => $request->input('email'),
-    		'password' => $request->input('password'),
-    	];
+        $data = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
         $values = User::where('email',$data['email'])->get();
         if(Auth::attempt($data)){
             if($values[0]['status'] =='admin' or $values[0]['status'] == 'superadmin'){
                 //$message = $values["status"];
             //echo "<script type='text/javascript'>alert('$message');</script>";
                 return redirect()->to('/list/admin');
-            }else{
+            }elseif($values[0]['status'] =='chair'){
                 //$message =$values['status'];
             //echo "<script type='text/javascript'>alert('$message');</script>";
+                return redirect()->to('/list/chair');
+            }else{
                 return redirect()->to('homecon');
             }
            
@@ -49,25 +51,25 @@ class UserController extends Controller
     public function getRegister()
     {
 
-    	return view('users.register');
+        return view('users.register');
     }
 
     public function setRegister(Request $request)
     {
-    	$store = New User;
-    	$store->name = $request->input('name');
-    	$store->email = $request->input('email');
+        $store = New User;
+        $store->name = $request->input('name');
+        $store->email = $request->input('email');
         $store->status = 'member';
-    	$store->password = Hash::make($request->input('password'));
-    	$store->save();
+        $store->password = Hash::make($request->input('password'));
+        $store->save();
 
-    	return redirect()->route('adminconference.home')->with('user',$store->name);
-    	
+        return redirect()->route('adminconference.home')->with('user',$store->name);
+        
     }
 
     public function logout()
     {
-    	Auth::logout();
-    	return redirect()->route('adminconference.home');
+        Auth::logout();
+        return redirect()->route('adminconference.home');
     }
 }

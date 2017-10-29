@@ -217,12 +217,6 @@ color:;
 }
 }
 .body {
--webkit-filter: grayscale(20%);
--moz-filter: grayscale(20%);
--ms-filter: grayscale(20%);
--o-filter: grayscale(20%);
-filter: gray;
-filter: grayscale(20%);
 overflow:scroll;
 background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
  background: -moz-linear-gradient(top, #FFFFFF, #abdb92);

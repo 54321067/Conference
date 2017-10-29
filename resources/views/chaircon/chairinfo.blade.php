@@ -3,19 +3,19 @@
     <head>
         <title>Conferrencs</title>
 
-        @include('adminconference.head')
+        @include('chaircon.head')
     </head>
 
 <body class="body">
-@include('adminconference.headeradmin')
+@include('chaircon.headerchair')
 
  <div class="ui segment" style="margin-top: 0%;margin: 4.5%">
       <div class="ui blue segment">
         <h2>Acronym_conference : _ {{$con->Acronym_L}} _
-        		<a style="float: right;" class="ui twitter button" href="{{ route('adminconference.viewpaper',['id'=>$con->conid]) }}" style="display: inline-block;">
+        		<a style="float: right;" class="ui twitter button" href="{{url('/chair/viewpaper/'.$con->conid)}}" 
+        		style="display: inline-block;">
         View paper
         </a>
-
         </h2>
       </div>
       <div class="subcontent">
@@ -81,6 +81,7 @@
     		</div>
     	</div>
     	<br>
+ 
     	<a style="display: inline-block;">
         <form method="POST" action="/list/{{$con->conid}}">
       		<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -88,6 +89,7 @@
       		<button type="submit" class="ui google plus button">D E L E T E</button>
 		</form>
 		</a>
+		
     </div>
 </body>
 </html>

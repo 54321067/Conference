@@ -84,6 +84,15 @@
           </div>
   </div>
   <div class="field">
+        <label>เลือก Chair ของการประชุม</label>
+          <select id="chair" name="chair" class="ui fluid dropdown">
+            <option value="ยังไม่ได้เลือก">เลือกchair*</option>
+            <?php foreach ($chair as $a) {?>
+                <option value="{{$a->id}}">{{$a->name}}</option>
+            <?php }?>
+          </select>
+  </div>
+  <div class="field">
       <label>ชื่อการประชุม</label>
         <input id="name" name="name" type="text"  placeholder="ชื่อการประชุม">
   </div>

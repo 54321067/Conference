@@ -22,9 +22,7 @@
                   </div>
                 </div>
                 <div class="content">
-                      <h2 class="small" align = 'left' style="color: black">สร้างการประชุม : 2</h2>
-                      <h2 class="small" align = 'left' style="color: black">ส่งpaper : 0</h2>
-                      
+                      <h2 class="small" align = 'left' style="color: black">สร้างการประชุม : 2</h2>   
                   </div>
               </div>
         </div>

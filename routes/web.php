@@ -33,6 +33,7 @@ Route::get('/Mysubmition/{id}/{pname}/{paperid}',['as'=>'cfs.paperDetails','uses
 Route::post('/Mysubmition/{id}/{pname}/invoice.pdf',['as'=>'cfs.payment','uses'=>'PaperController@viewPaymentPDF'])->middleware('auth');
 ////////
 Route::get('/homecon',['as'=>'cfs.homecon','uses'=>'PaperController@conall'])->middleware('auth');
+Route::get('/viewinfo',['as'=>'cfs.account','uses'=>'PaperController@myinfo'])->middleware('auth');
 //NEW//
 Route::get('/paperform/{id}',['as'=>'cfs.paperform','uses'=>'PaperController@viewpaper'])->middleware('auth');
 Route::post('/paperform/{id}',['as'=>'cfs.paperform','uses'=>'PaperController@store'])->middleware('auth');
@@ -42,6 +43,16 @@ Route::get('/Reviewer',['as'=>'cfs.Reviewer','uses'=>'PaperController@Reviewer']
 ///end///
 //user///
 ////////
+///chair////
+Route::get('/list/chair',['as'=>'chaircon.path','uses'=>'chairController@chair'])->middleware('auth','chair');
+Route::post('/list/chair',['as'=>'chaircon.path','uses'=>'chairController@chair'])->middleware('auth','chair');
+Route::get('/chairhome',['as'=>'chaircon.adminchair','uses'=>'chairController@chairhome'])->middleware('auth','chair');
+Route::get('/checkreviewer/{id}',['as'=>'chair.checkreviewer','uses'=>'chairController@checkreviewer'])->middleware('auth','chair');
+Route::post('/chair/setreviewer/{id}',['as'=>'chaircon.choosereviewer','uses'=>'chairController@review'])->middleware('auth','chair');
+Route::get('/assessment/{id}',['as'=>'chaircon.assessment','uses'=>'chairController@assessment'])->middleware('auth','chair');
+Route::get('/chair/aboutConference/{id}',['as'=>'chair.chairinfo','uses'=>'chairController@aboutConference'])->middleware('auth','chair');
+Route::get('/chair/viewpaper/{id}',['as'=>'chair.chairview','uses'=>'chairController@viewpaper'])->middleware('auth','chair');
+Route::get('/chair/choose/paper/{id}/{conid}',['as'=>'ff','uses'=>'chairController@choosereviewer'])->middleware('auth','chair');
 
 /////////
 //admin//
@@ -72,7 +83,7 @@ Route::get('/list/{id}/edit','AdminController@edit')->middleware('auth','admin')
 Route::put('/list/{id}','AdminController@update')->middleware('auth','admin');
 Route::delete('/list/{id}','AdminController@destroy')->middleware('auth','admin');
 Route::get('/viewpaper/{name}/preview',['as'=>'viewpaper','uses'=>'AdminController@preview'])->middleware('auth','admin');
-
+Route::post('/viewpaperpayment/{id}/{conid}','AdminController@setpayment')->middleware('auth','admin');
 /////////
 ///end///
 //admin//

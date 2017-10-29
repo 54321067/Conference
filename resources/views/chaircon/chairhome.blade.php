@@ -2,11 +2,11 @@
 <html>
     <head>
         <title>AdminConferrencs</title>
-        @include('adminconference.head')
+        @include('chaircon.head')
     </head>
 <body>
 <div class="body">
-@include('adminconference.headeradmin')
+@include('chaircon.headerchair')
 
 <div class="ui menu" style="margin-left: 4.5%;margin-right: 4.5%;background-color: #99ffce">
     <h3 style="margin-left:1%;margin-bottom: 1%;margin-top: 1%" >Conferrences</h3>
@@ -35,12 +35,13 @@
 
                                     foreach ($conferences as $value)
                                         {
-                                                
+
                                     ?>
 
                                     <tr>
                                     <td>
-                                    <a href="{{ route('adminconference.aboutConference',['id'=>$value->conid ]) }}">
+                                    <a href="{{url('/chair/aboutConference/'.$value->conid)}}">
+                                    
                                     <?php
                                        
                                         
