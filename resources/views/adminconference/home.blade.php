@@ -69,10 +69,10 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
           <button class="huge ui animated
           green basic button " id="test">
           <span class="visible content">Login</span>
-          <span class="hidden content">Login</span></button>
+          <span class="hidden content">Enter</span></button>
 
           <div class="huge ui vertical animated green button" tabindex="0">
-              <div onclick="location.href='/register'" class="hidden content">Register</div>
+              <div onclick="location.href='/register'" class="hidden content">Sign Up</div>
               <div class="visible content">
                Register
               </div>

@@ -22,16 +22,16 @@
             <i class="dropdown icon"></i>
             <div class="menu">
                 <div onclick="location.href='/list/install'" class="item">
-                  <i class="icon file text outline"></i>
+                  <i class="green icon file text outline"></i>
                   Create Conference
                 </div>
                 <div onclick="location.href='/adminhome'" class="item">
-                  <i class="icon book"></i>
+                  <i class="green icon book"></i>
                   View All Conference
                 </div> 
                 @if(Auth::user()->status == 'superadmin')
                 <div  onclick="location.href='/list'" class="item">
-                    <i class="icon spy"></i>
+                    <i class="green icon spy"></i>
                     Admin team
                 </div>  
                 @endif  

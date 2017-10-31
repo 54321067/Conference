@@ -11,9 +11,13 @@
 @include('adminconference.headeradmin')
 <!--forminstall-->
 
-<div class="ui piled segments" style="margin-right: 15%;margin-left: 15%;">
-<h2 class="ui horizontal divider"><u>New conference</u></h2>
-<form class="ui form segment" style="margin:3%;" id="form1" method="post"  action="{{ url('/get') }}">
+<div class="ui piled segments" style="margin-right: 15%;margin-left: 15%;background-color:#ebfcf2">
+<h2 class="ui horizontal divider"><div class="ui center aligned segment" style="background-color:#99ffce">
+              <label>
+              <h3 color="#006600" align="center">Create Conference</h3>
+              </label>  
+            </div>  </h2>
+<form class="ui form" style="margin:3%;" id="form1" method="post"  action="{{ url('/get') }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="field">
     
@@ -164,7 +168,7 @@
   
 
   
-<button type="button" class="ui primary test button" onclick="myFunction()">สร้างหัวข้อ</button>
+<button type="button" class="ui primary test button" style="margin-left: 45%;margin-right: 25%;background-color: #99ffce;color: black" onclick="myFunction()">สร้างหัวข้อ</button>
 
 </form>
 <!--endform-->

@@ -28,6 +28,7 @@ Route::get('/home',['as'=>'adminconference.home','uses'=>'ProjectController@home
 
 ////////
 //user//
+Route::post('/upload/{id}', 'UploadController@upload')->middleware('auth');
 Route::get('/Mysubmition',['as'=>'cfs.Mysubmition','uses'=>'PaperController@gotosubmition'])->middleware('auth');
 Route::get('/Mysubmition/{id}/{pname}/{paperid}',['as'=>'cfs.paperDetails','uses'=>'PaperController@gotopaperdetail'])->middleware('auth');
 Route::post('/Mysubmition/{id}/{pname}/invoice.pdf',['as'=>'cfs.payment','uses'=>'PaperController@viewPaymentPDF'])->middleware('auth');
@@ -62,10 +63,8 @@ Route::get('/view/{id}',['as'=>'adminconference.aboutConference','uses'=>'Projec
 Route::get('/myConference',['as'=>'adminconference.myConference','uses'=>'AdminController@myConference'])->middleware('auth','admin');
 Route::post('/get',['as'=>'adminconference.installcfs','uses'=>'AdminController@store'])->middleware('auth','admin');
 Route::get('/checkreviewer/{id}',['as'=>'adminconference.checkreviewer','uses'=>'AdminController@checkreviewer'])->middleware('auth','admin');
-
 Route::get('/choose/paper/{id}/{conid}',['as'=>'gg','uses'=>'AdminController@choosereviewer'])->middleware('auth','admin');
-
-Route::get('/checkpayment/{id}',['as'=>'adminconference.checkpayment','uses'=>'AdminController@checkpayment'])->middleware('auth','admin')->middleware('auth','admin');
+Route::get('/checkpayment/{id}',['as'=>'adminconference.checkpayment','uses'=>'AdminController@checkpayment'])->middleware('auth','admin');
 Route::get('/adminhome',['as'=>'adminconference.adminhome','uses'=>'AdminController@adminhome'])->middleware('auth','admin');
 Route::get('/aboutConference/{id}',['as'=>'adminconference.aboutConference','uses'=>'AdminController@aboutConference'])->middleware('auth','admin');
 Route::get('/list/news',['as'=>'adminconference.tables','uses'=>'AdminController@table'])->middleware('auth','admin')->middleware('auth','admin');

@@ -33,7 +33,8 @@ class AdminController extends Controller
     public function info($id)
     {
         $admininfo = DB::table('users')->where('id',$id)->get();
-        return view('adminconference.i1')->with('infos',$admininfo);
+        $a = DB::table('conferall')->where('own_id',$id)->count();
+        return view('adminconference.i1')->with('infos',$admininfo)->with('count',$a);
     }
     public function dropadmin($id)
     {
@@ -64,7 +65,8 @@ class AdminController extends Controller
     public function aboutConference($id)
     {
         $con = confer::find($id);
-        return view('adminconference.aboutConference')->with('con',$con);
+        $admin = DB::table('users')->where('id',$con->own_id)->get();
+        return view('adminconference.aboutConference')->with('con',$con)->with('admin',$admin);
     }
     public function preview($name)
     {

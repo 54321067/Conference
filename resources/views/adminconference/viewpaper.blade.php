@@ -19,7 +19,7 @@
 
     <div class="ui segment" style="margin-top: 0%;margin-left: 4.5%;margin-right: 4.5%">
       <div class="ui blue segment">
-      	<div style="display: inline-block;max-width: 49%"><h2>{{$id}}_{{$names->Acronym_N}}</h2></div>
+      	<div style="display: inline-block;max-width: 49%"><h2>{{$names->Acronym_N}}</h2></div>
         <div style="display: inline-block;margin-left: 60%;max-width: 49%"></div>
       </div>
       <div style="margin-bottom: 1%">
@@ -52,34 +52,40 @@
                   <td><a href="{{ route('viewpaper',['name'=>$value->pdf_name]) }}">{{$value->pdf_name}}</a></td>
                   @if($value->status_reviewer == 0)
                       <td class="negative"><i class="icon close"></i>ยังไม่เลือก</td>
-                  @else
+                  @elseif($value->status_reviewer == 1)
 
                       <td class="positive"><i class="icon checkmark"></i>เลือกแล้ว</td>
+                  @else
+                      <td class="negative"><i class="icon close"></i>เลือกผิดพลาด</td>
                   @endif
-                  @if($value->status_check == 0)
+                  @if($value->status_check < 3 or $value->status_score < -3)
                       <td class="negative"><i class="icon close"></i>ยังไม่ตรวจ</td>
                       <td class="negative"><i class="icon close"></i>ยังไม่ชำระ</td>
-                  @elseif($value->status_check >= 1)
+                  @elseif($value->status_score >= 1 and $value->status_check == 3)
                       <td class="positive"><i class="icon checkmark"></i>ผ่านแล้ว</td>
                       @if($value->status_send==0)
                       <td class="negative"><i class="icon close"></i>ยังไม่ชำระ</td>
                       @elseif($value->status_send==1)
                           @if($value->status_payment == 0)
                               <td class="positive">
-                              <form id="ap" method="post" action="{{ url('/viewpaperpayment/'.$value->paper_id.'/'.$value->con_id) }}">
-                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                              </form>
-                              <button id="btn1" class="ui small primary test button" onclick="myFunction('{{$value->image_payment}}');">รออนุมัติ</button> 
+                              <button id="btn1" type="button" class="ui small primary test button" onclick="myFunction('{{$value->image_payment}}','{{$value->paper_id}}','{{$value->con_id}}');">รออนุมัติ</button> 
                               </td>
+                              
                           @elseif($value->status_payment == 1)
                               <td class="positive"><i class="icon checkmark"></i>อนุมัติแล้ว</td>
+                          @else
+                              <td class="negative"><i class="icon close"></i>ตรวจสอบผิดพลาด</td>
                           @endif
+                      @else
+                        <td class="negative"><i class="icon close"></i>ส่งผิดพลาด</td>
                       @endif
-                  @else
+                  @elseif($value->status_score < 1 and $value->status_score >= -3)
                       <td class="negative"><i class="icon close"></i>ไม่ผ่าน</td>
                       <td class="negative" style="text-align: center;">-</td>
+                  @else
+                      <td class="negative"><i class="icon close"></i>คะแนนผิดพลาด</td>
+                      <td class="negative" style="text-align: center;">-</td>
                   @endif
-                  
                   <td>{{$value->keyword1}}</td>
                 </tr>              
 
@@ -94,21 +100,25 @@
 <div class="ui tiny modal" id="modal-test" style="margin-top:0%; position: fixed;top:40px;bottom: 40px">
   <i class="close icon"></i>
   <div class="header" style="background-color: #80ffaa">
-    <h1>#ยืนยันการชำระเงิน{{$value->paper_id}}</h1>
+    <h1>#ยืนยันการชำระเงิน</h1>
+    <h2 id="at"></h2>
     
   </div>
   <div class="content" id="img-wrapper">
-      <img class="ui fluid image" alt="Trolltunga, Norway" src="/images/a.png" id="pic" width="300" height="200" style="max-width: 500px;max-height: 700px;">
+      <img class="ui fluid image" alt="Trolltunga, Norway" src="" id="pic" width="300" height="200" style="max-width: 500px;max-height: 700px;">
   </div>
   <div class="actions">
-    <div class="ui red basic cancel button">
+    <a class="ui red basic cancel button" style="display: inline-block;float: left;">
       <i class="remove icon"></i>
       ไม่อนุมัติ
-    </div>
+    </a>
+    <form id="ap" method="post" action="">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div onclick="document.forms[0].submit();" form="ap" class="ui green ok inverted button" style="display: inline-block;">
       <i class="checkmark icon"></i>
       อนุมัติ
     </div>
+  </form>
     
     
   </div>
@@ -117,9 +127,9 @@
 
 <script>
   var pic = document.getElementById('pic');
-  function myFunction(s) {
-      pic.src = s;
-
+  function myFunction(s,id,conid) {
+      pic.src = "/file/"+s;
+      document.getElementById("ap").action = "/viewpaperpayment/"+id+"/"+conid;
   }
 
 </script>

@@ -22,10 +22,13 @@
 			<div style="clear:right" id="cfp">
 				<div class="ui segment">
 					<span>&bull;</span>
-					<a href="#CFP:1">รายละเอียด</a>
+					<a>รายละเอียด</a>
 					<span>&bull;</span>
-					<a href="#CFP:2">หัวข้อ</a>
-					
+					<a>หัวข้อ</a>
+					@if(Auth::user()->status == 'superadmin')
+						<span>&bull;</span>
+						<a style="float: right;">ผู้สร้างการประชุม_{{$admin[0]->name}}_</a>
+					@endif
 				</div>
 				<table>
 					<tr>
@@ -85,7 +88,7 @@
         <form method="POST" action="/list/{{$con->conid}}">
       		<input type="hidden" name="_token" value="{{ csrf_token() }}">
       		<input type="hidden" name="_method" value="DELETE">
-      		<button type="submit" class="ui google plus button">D E L E T E</button>
+      		<button type="submit" class="ui google plus button">C l o s e</button>
 		</form>
 		</a>
     </div>

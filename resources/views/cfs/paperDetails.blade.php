@@ -34,7 +34,7 @@
 		<div class="body">
 			@include('cfs.userheader')
 			<form action="{{ url('/Mysubmition/'.$paper->paper_id.'/'.$paper->paper_name.'/invoice.pdf') }}" id="toPayment" method="post">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<input type="hidden" name="_token" paper="{{ csrf_token() }}">
 			<div class="ui grid" style="margin-left:4.5%;margin-top:3%;margin-bottom:3%;margin-right:4.5%;margin-top: 1%">
 				<div class="row">
 			    	<div class="ui inverted segment sixteen wide column" style="background-color:#99ffce">
@@ -57,36 +57,70 @@
 						<br>
 						<label>
 							<h3 align="right" style="margin-right: 10%">
-							@if($paper->status_reviewer == 0)
+							<?php if($paper->status_reviewer == 0){ ?>
 								 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;       			
-	                  		@elseif($paper->status_reviewer == 1)
-								 @if($paper->status_check == 0 and $paper->status_payment == 0)
-								 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
+	                  		<?php }elseif($paper->status_reviewer == 1){ ?>
+	                  				<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
+								 <?php if($paper->status_check < 3){?>
 	                      			<font color="black">การตรวจ : </font><font color="red">ยังไม่ตรวจ</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;
 	                      			<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                      		 @elseif($paper->status_check == 0 and $paper->status_payment == 1)
-	                      		 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
-	                      			&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การตรวจ : </font><font color="red">ยังไม่ตรวจ</font>
-	                  			 	&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินแล้ว</font>
-	                  			 @elseif($paper->status_check == 1 and $paper->status_payment == 0)
-	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
-	                      			&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การตรวจ : </font><font color="green">ผ่านแล้ว</font>
-	                  			 	&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การชำระเงิน : </font><font color="red">ไม่ได้ชำระเงิน</font>
-	                  			 @elseif($paper->status_check == 1 and $paper->status_payment == 1)
-	                  			 	<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
-	                      			&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การตรวจ : </font><font color="green">ผ่านแล้ว</font>
-	                  			 	&nbsp;&nbsp;&nbsp;&nbsp;
-	                  			 	<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินแล้ว</font>
-	                  			 @endif
-	                  		@endif
+	                      		 <?php }elseif($paper->status_check == 3){ ?>
+     									<?php if($paper->status_score ==-99){ ?>
+				                          <font color="black">การตรวจ : </font><font color="red">ยังไม่ตรวจ</font>
+				                          &nbsp;&nbsp;&nbsp;&nbsp;
+				                          <font color="black">การชำระเงิน : </font><font color="red">ยังไม่ได้ชำระเงิน</font>
+				                        <?php }elseif($paper->status_score==-3){ ?>
+				                        	<font color="black">การตรวจ : </font><font color="red">strong reject</font>
+				                        <?php }elseif($paper->status_score==-2){ ?>
+				                        	<font color="black">การตรวจ : </font><font color="red">reject</font>
+				                        <?php }elseif($paper->status_score==-1){ ?>
+				                        	<font color="black">การตรวจ : </font><font color="red">weak reject</font>
+				                        <?php }elseif($paper->status_score==0){ ?>
+				                        	<font color="black">การตรวจ : </font><font color="red">boundary</font>
+				                        <?php }elseif($paper->status_score==1){ ?>
+				                        	<font color="black">การตรวจ : </font><font color="green">Weak accept</font>
+				                        	<?php if($paper->status_payment == 0){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+	                  						<?php }elseif($paper->status_payment == 1){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
+	                  						<?php }else{ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
+	                  						<?php } ?>
+				                        <?php }elseif($paper->status_score==2){ ?>
+				                        	<font color="black">การตรวจ : </font><font color="green">Accept</font>
+				                        	<?php if($paper->status_payment == 0){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+	                  						<?php }elseif($paper->status_payment == 1){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
+	                  						<?php }else{ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
+	                  						<?php } ?>
+				                        <?php }elseif($paper->status_score==3){ ?>
+					                        <font color="black">การตรวจ : </font><font color="green">strong accept</font>
+					                        <?php if($paper->status_payment == 0){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+	                  						<?php }elseif($paper->status_payment == 1){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
+	                  						<?php }else{ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
+	                  						<?php } ?>
+					                    <?php }else{ ?>
+					                    	<font color="black">การตรวจ : </font><font color="red">ติดต่อเจ้าหน้าที่</font>
+					                    	<?php if($paper->status_payment == 0){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+	                  						<?php }elseif($paper->status_payment == 1){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
+	                  						<?php }else{ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
+	                  						<?php }?>
+				                        <?php } ?>	
+
+	                  			 <?php }
+	                  			 } ?>
+	                  		
 							</h3>
 						</label>	
 					</div>
@@ -440,19 +474,54 @@
 								<font color="#12aa1f">{{ $paper->created_at }}</font>
 							</h3>
 						<label>
+							
 					</div>
+
 					
 					<div class="ui sixteen wide column form" style="background-color:#fbfffe">
 						<div style="margin-left:10%;margin-right:10%;" align="center">
-							@if($paper->status_reviewer == 1 and $paper->status_payment == 0)
+							<?php if($paper->status_score >= 1 and $paper->status_payment == 0){?>
                   			 		<button id="btnGotoPaymentSubmit" form="toPayment" align="center" class="large ui green button" type="submit" onclick="">ไปยังหน้าชำระค่าบริการ</button>
-                  			@endif
+                  			 		</form>
+                  			 		@if($paper->status_send==0)
+                  			 		<button  type="button" class="ui small primary test button">อัพโหลดหลังฐานการจ่ายเงิน
+                  			 		</button>
+                  			 		@endif
+                  			<?php }?>
+                  			
+                  			<div class="ui tiny modal" id="modal-test" style="margin-top:0%; position: fixed;top:40px;bottom: 40px">
+						  <i class="close icon"></i>
+						  <div class="header" style="background-color: #80ffaa">
+						    <h1>อัพโหลดหลักฐานการจ่ายเงิน</h1>
+						    <h2 id="at"></h2>
+						</div>
+						<div class="content">
+							<form action="{{ URL::to('/upload/'.$paper->paper_id) }}" method="post" enctype="multipart/form-data">
+                  						<label  style="margin-top: 1%">
+										
+
+									    <input type="file" name="file" id="file" >
+									    <button type="submit" value="Upload" name="submit"  class="ui button" style="margin-top: 3%;margin-left: 1%">
+									    	Upload
+									    </button>
+										<input type="hidden" value="{{ csrf_token() }}" name="_token" >
+										</label>
+										
+									</form>
+						</div>
+					</div>
+                  			
+                  					
+
+
+							
+
 						</div>
 						<br>
 					</div>
 				</div>
 			</div>
-			</form>
+			
 		</div>
 		<style>
 			a{
@@ -466,18 +535,3 @@
 		</style>
 	</body>
 <html>
-<!-- //route
-Route::get('/Mysubmition',['as'=>'conferencePaper.Mysubmition','uses'=>'MovieController@gotosubmition']);
-Route::get('/Mysubmition/{id}/{pname}',['as'=>'conferencePaper.paperDetails','uses'=>'MovieController@gotopaperdetail']);
-//
- -->
-<!--//controller
-	 public function gotosubmition()
-    {  
-        return view('conferencePaper.mySubmition');
-    }
-    public function gotopaperdetail($id,$pname)
-    {   
-        return view('conferencePaper.paperDetails')->with('idpaper',$id)->with('namepaper',$pname);
-    }
- -->

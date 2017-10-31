@@ -125,4 +125,15 @@ class PaperController extends Controller
     {
         return view('moviegod.tshome');
     }*/
+    public function upload($id){
+
+        if(Input::hasFile('file')){
+            $file = Input::file('file');
+            $file->move('file', $file->getClientOriginalName()); 
+        }
+        DB::table('paper')->where('paper_id',$id)->update(
+            ['image_payment'=>$file->getClientOriginalName(),'updated_at'  => new \dateTime,'status_send'=>1]);
+
+        return redirect()->to('/Mysubmition');   
+    }
 }

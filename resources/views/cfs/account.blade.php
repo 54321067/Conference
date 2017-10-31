@@ -102,9 +102,7 @@
 	<div class="body" id="body">
 		@include('cfs.userheader')
 		<div class="ui grid" style="margin-left:4.5%;margin-top:3%;margin-bottom:3%;margin-right:4.5%;">
-			<div class="row">
-				<form class="ui two wide column" >
-				</form>
+			<div class="row">	
 		  		<form class="ui segment twelve wide column" style="background-color:#ebfcf2">
 		  			<div class="ui center aligned segment" style="background-color:#99ffce">
 					  	<label>
