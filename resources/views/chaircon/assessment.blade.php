@@ -56,7 +56,7 @@ tr:nth-child(even){background-color: #E6E6FA}
 <body class="body">
 <div class="ui green  segment" style="margin: 0%;margin-left: 4.5%;margin-right: 4.5%;">
 
- <form class="ui  form" action="{{url('/get4')}}" method="get" >
+ <form class="ui  form" action="{{url('/getscore/'.$paper[0]->paper_id)}}" method="post" >
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
   <h2 class="ui icon" style="margin-left: 40% "><i class=" big green user icon" ></i>Chair<label></h2>
@@ -116,45 +116,45 @@ tr:nth-child(even){background-color: #E6E6FA}
   <div class="grouped fields">
      <h2 class="ui icon"  "><i class=" big green write square icon" ></i>assessment<label></h2>
     
-    <div class="field">
+    <div class="field required">
       <div class="ui slider checkbox">
-        <input type="radio" name="throughput" value="-3">
+        <input type="radio" name="throughput" value="-3" required>
         <label>strong reject</label>
       </div>
     </div>
-    <div class="field">
+    <div class="field required">
       <div class="ui slider checkbox">
-        <input type="radio" name="throughput" value="-2">
+        <input type="radio" name="throughput" value="-2" required>
         <label>reject</label>
       </div>
     </div>
-    <div class="field">
+    <div class="field required">
       <div class="ui slider checkbox checked">
-        <input type="radio" name="throughput" value="-1">
+        <input type="radio" name="throughput" value="-1" required>
         <label>weak reject</label>
       </div>
     </div>
-      <div class="field">
+      <div class="field required">
       <div class="ui slider checkbox checked">
-        <input type="radio" name="throughput" value="0">
+        <input type="radio" name="throughput" value="0" required>
         <label>boundary</label>
       </div>
     </div>
-      <div class="field">
+      <div class="field required">
       <div class="ui slider checkbox checked">
-        <input type="radio" name="throughput" value="1">
+        <input type="radio" name="throughput" value="1" required>
         <label>Weak accept</label>
       </div>
     </div>
-      <div class="field">
+      <div class="field required">
       <div class="ui slider checkbox checked">
-        <input type="radio" name="throughput" value="2">
+        <input type="radio" name="throughput" value="2" required>
         <label>Accept</label>
       </div>
     </div>
-    <div class="field">
+    <div class="field required">
       <div class="ui slider checkbox">
-        <input type="radio" name="throughput" checked="checked" value="3">
+        <input type="radio" name="throughput"  value="3" required>
         <label>Strong accept</label>
       </div>
     </div>

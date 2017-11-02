@@ -34,14 +34,15 @@ class PaperController extends Controller
             
         
         
-        return view('cfs.paperDetails',['paper' => $papers,'idpaper' => $id, 'namepaper' => $pname,'vb' => $conuser])->with('test',$score);
+        return view('cfs.paperDetails',['paper' => $papers,'idpaper' => $paperid, 'namepaper' => $pname,'vb' => $conuser])->with('test',$score);
     }
     public function myinfo(){
-        return view('cfs.account');
+        $user = DB::table("users")->where('id',Auth::user()->id)->get();
+        return view('cfs.account')->with('user',$user);
     }
     public function viewPaymentPDF($id,$pname)
     {
-        $paper = DB::table("paper")->where('paper.paper_id','=',$id)->get();
+        $paper = DB::table("users")->join('paper','paper.user_id','=','users.id')->where('id',Auth::user()->id)->where('paper.paper_id',$id)->get();
         $pdf = PDF::loadView('cfs.payment', compact('paper'));
         return $pdf->stream('invoice.pdf');
     }

@@ -3,11 +3,9 @@
         @if(Auth::check())
         <hgroup class ="item">
       		<i class="icon github alternate"></i>
-          <a href="/list/chair">
       			<font color="white">
               Chair
             </font>
-          </a>
         </hgroup>
         <hgroup class ="item">
           <a  href="/chairhome">

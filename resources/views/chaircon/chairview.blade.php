@@ -38,7 +38,7 @@
                   <tr>   
                   <td><a>{{$value->paper_id}}</a></td>
                   <td>{{$value->paper_name}}</td>
-                  <td><a href="{{ route('chair.chairview',['name'=>$value->pdf_name]) }}">{{$value->pdf_name}}</a></td>
+                  <td><a href="{{ url('/viewpaper/preview/'.$value->pdf_name) }}">{{$value->pdf_name}}</a></td>
                   @if($value->status_reviewer == 0)
                       <td class="negative" ><i class="icon close" ></i><a href="{{url('/chair/choose/paper/'.$value->paper_id.'/'.$id)}}" style="color: darkred">   ยังไม่เลือก    </a></td>
                       <td class="negative"><i class="icon close"></i>ยังไม่ตรวจ</td>

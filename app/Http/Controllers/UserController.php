@@ -36,7 +36,7 @@ class UserController extends Controller
             }elseif($values[0]['status'] =='chair'){
                 //$message =$values['status'];
             //echo "<script type='text/javascript'>alert('$message');</script>";
-                return redirect()->to('/list/chair');
+                return redirect()->to('/chairhome');
             }else{
                 return redirect()->to('homecon');
             }
@@ -59,6 +59,8 @@ class UserController extends Controller
         $store = New User;
         $store->name = $request->input('name');
         $store->email = $request->input('email');
+        $store->nation_id = $request->input('nation');
+        $store->phone = $request->input('phone');
         $store->status = 'member';
         $store->password = Hash::make($request->input('password'));
         $store->save();
@@ -71,5 +73,9 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('adminconference.home');
+    }
+    public function  home()
+    {
+        return view('adminconference.home');
     }
 }

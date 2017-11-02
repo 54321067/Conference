@@ -115,8 +115,8 @@
 						</td>
 						<td>
 							<div class="ui form">
-								<div class="field" style="width: 40%">
-									<input id="paper1" type="text" name="paper-name" placeholder="Paper name">
+								<div class="field required" style="width: 40%">
+									<input id="paper1" type="text" name="paper-name" placeholder="Paper name" required>
 								</div>
 							</div>
 						</td>
@@ -127,8 +127,8 @@
 						</td>
 						<td>
 							<div class="ui form">
-								<div class="field" style="width: 40%">
-									<input id="paper2" type="text" name="writer-name" placeholder="Writer name">
+								<div class="field required" style="width: 40%">
+									<input id="paper2" type="text" name="writer-name" placeholder="Writer name" required>
 								</div>
 							</div>
 						</td>
@@ -199,12 +199,12 @@
 							<p>PDF file</p>
 						</td>
 						<td>
-							<div class="field">
+							<div class="field required">
 							    <div class="ui action input">
-							        <input type="text" id="_attachmentName" name="PDF">
+							        <input type="text" id="_attachmentName" name="PDF" required>
 							        <label for="attachmentName" class="ui icon button btn-file">
 							             <i class="upload icon"></i>
-							             <input type="file" id="attachmentName" name="attachmentName" style="display: none" >
+							             <input type="file" id="attachmentName" name="attachmentName" style="display: none">
 							             
 							        </label>
 							    </div>

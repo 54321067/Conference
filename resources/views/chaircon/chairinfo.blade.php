@@ -81,14 +81,6 @@
     		</div>
     	</div>
     	<br>
- 
-    	<a style="display: inline-block;">
-        <form method="POST" action="/list/{{$con->conid}}">
-      		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-      		<input type="hidden" name="_method" value="DELETE">
-      		<button type="submit" class="ui google plus button">D E L E T E</button>
-		</form>
-		</a>
 		
     </div>
 </body>

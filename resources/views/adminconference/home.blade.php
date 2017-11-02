@@ -7,12 +7,7 @@
 <style type="text/css">
 
   .body { 
-    -webkit-filter: grayscale(50%);
--moz-filter: grayscale(50%);
--ms-filter: grayscale(50%);
--o-filter: grayscale(50%);
-filter: gray;
-filter: grayscale(50%);
+ 
 overflow:scroll;
 background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
  background: -moz-linear-gradient(top, #FFFFFF, #abdb92);
@@ -66,12 +61,11 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
       <footer>
         <ul class="nospace inline pushright" style="margin-left: 20%">
           
-          <button class="huge ui animated
-          green basic button " id="test">
+          <button class="huge ui inversed animated basic button " id="test">
           <span class="visible content">Login</span>
           <span class="hidden content">Enter</span></button>
 
-          <div class="huge ui vertical animated green button" tabindex="0">
+          <div class="huge ui vertical animated button" style="background-color: #4dffa6" tabindex="0">
               <div onclick="location.href='/register'" class="hidden content">Sign Up</div>
               <div class="visible content">
                Register
@@ -79,13 +73,13 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
 
           </div>
      </div>
-<div class="ui tiny modal test" >
+<div class="ui tiny modal test">
   <i class="close icon"></i>
-  <h2 class="ui icon" align="center"><i class=" big green users icon" ></i>Login System
+  <h2 class="ui icon" align="center"><i style="color: #79aace" class=" big users icon" ></i>Login System
   </h2>
     <form action="{{ route('users.setLogin') }}" method="post" class="ui form">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-      <div class="ui stacked segment" style="background-color: #99ff99">
+      <div class="ui stacked segment" style="background-color: #4dffa6">
         <div class="field" >
           <div class="ui left icon input" >
             <i class="user icon"></i>

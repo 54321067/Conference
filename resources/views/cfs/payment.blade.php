@@ -35,16 +35,17 @@
         table, td, th {
             border: 1px solid black;
         }
-
     </style>
   </head>
   <body>
+      <?php foreach ($paper as $papers) {
+        ?>
       <div id="paymentPDF">
          <div class="row" id="branch&date" style="margin-top: 0%;margin-bottom: 3%">
             <p style="text-align: right;line-height: 80%">สาขาผู้รับฝาก.....................................................................วันที่.....................................</p>
          </div>
          <div class="row" id="detail&logo">
-           <div class="col" style="width: 420px;display: inline-block;">
+           <div class="col" style="width: 420px;display: inline-block">
              <br> 
              <p style="line-height: 60%"> 
                <img src="{{ public_path('images/ku.jpg') }}" height="60" width="60"/ align="left"><br>
@@ -66,10 +67,11 @@
               </thead>
               <tbody> 
                 <tr>
-                  <td>&nbsp;&nbsp;ชื่อ-นามสกุล (Name)..........................................................................<br>
-                  &nbsp;&nbsp;เลขที่บัตรประชาชน (Ref.1)................................................................<br>
-                  &nbsp;&nbsp;Paper ID (Ref.2)................................................................................<br>
-                  &nbsp;&nbsp;เบอร์โทรศัพท์มือถือ (Ref.3)................................................................<br>
+                  <td>&nbsp;&nbsp;ชื่อ-นามสกุล (Name)<a style="width:190px;border-bottom: 1px dotted black;display: inline-block;text-align: center">
+                  {{$paper[0]->name}}</a><br>
+                  &nbsp;&nbsp;เลขที่บัตรประชาชน (Ref.1)<a style="width:166px;border-bottom: 1px dotted black;display: inline-block;text-align: center">{{$paper[0]->nation_id}}</a><br>
+                  &nbsp;&nbsp;Paper ID (Ref.2)<a style="width:210px;border-bottom: 1px dotted black;display: inline-block;text-align: center">{{$paper[0]->paper_id}}</a><br>
+                  &nbsp;&nbsp;เบอร์โทรศัพท์มือถือ (Ref.3)<a style="width:166px;border-bottom: 1px dotted black;display: inline-block;text-align: center">{{$paper[0]->phone}}</a><br>
                   </td>
                 </tr>
               </tbody>
@@ -118,7 +120,7 @@
                 </tbody>
                </table> 
              </div>
-              <a style=";width: 715px"> 
+              <a style=";width: 715px" style=""> 
               ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------<img src="{{ public_path('images/cuthere.jpg') }}" width="20" style="float: right;">
             </a>
             
@@ -151,10 +153,10 @@
               </thead>
               <tbody> 
                 <tr>
-                  <td>&nbsp;&nbsp;ชื่อ-นามสกุล (Name)..........................................................................<br>
-                  &nbsp;&nbsp;เลขที่บัตรประชาชน (Ref.1)................................................................<br>
-                  &nbsp;&nbsp;Paper ID (Ref.2)................................................................................<br>
-                  &nbsp;&nbsp;เบอร์โทรศัพท์มือถือ (Ref.3)................................................................<br>
+                  <td>&nbsp;&nbsp;ชื่อ-นามสกุล (Name)<a style="width:190px;border-bottom: 1px dotted black;display: inline-block;text-align: center">{{$paper[0]->name}}</a><br>
+                  &nbsp;&nbsp;เลขที่บัตรประชาชน (Ref.1)<a style="width:166px;border-bottom: 1px dotted black;display: inline-block;text-align: center">{{$paper[0]->nation_id}}</a><br>
+                  &nbsp;&nbsp;Paper ID (Ref.2)<a style="width:210px;border-bottom: 1px dotted black;display: inline-block;text-align: center">{{$paper[0]->paper_id}}</a><br>
+                  &nbsp;&nbsp;เบอร์โทรศัพท์มือถือ (Ref.3)<a style="width:166px;border-bottom: 1px dotted black;display: inline-block;text-align: center">{{$paper[0]->phone}}</a><br>
                   </td>
                 </tr>
               </tbody>
@@ -189,7 +191,7 @@
           </div>
           <div class="row" id="gap&collector" style="margin: 0%">
             <div id="gapCollector" style="width: 512px;display: inline-block;" >
-              <br><br><br>(สำหรับผู้เจ้าหน้าที่ธนาคาร)
+              <br><br><br>(สำหรับเจ้าหน้าที่ธนาคาร)
             </div>
              <div id="gapCollector" style="display: inline-block;">
               <table style="border-collapse: collapse;border:1px solid;width: 207px">
@@ -207,33 +209,6 @@
             
           </div>
       </div>
+      <?php }?>
   </body>
 </html>
-
-<!-- ไม่ต้องใส่ หัวเรื่องทุกอย่าง เพราะมันจะทับแบบฟอร์มของ PDF -->
-
-<!-- cmd -->
-<!-- composer require barryvdh/laravel-dompdf
- -->
-
-<!-- controller -->
-<!-- use PDF; -->
-<!-- public function viewPaymentPDF($id,$pname){
-    $paper = DB::table("paper")->where('paper.paper_id','=',$id)->get();
-    $pdf = PDF::loadView('conferencePaper.paperPaymentPDF', compact('paper'));
-    return $pdf->stream('invoice.pdf');
-} -->
-
-
-<!-- route -->
-<!-- Route::get('/Mysubmition/{id}/{pname}/invoice.pdf',['as'=>'conferencePaper.paperPayment','uses'=>'MovieController@viewPaymentPDF']); -->
-
-
-<!-- app.php 'providers' => [ -->
-<!-- Barryvdh\DomPDF\ServiceProvider::class, -->
-
-<!-- app.php 'aliases' => [ -->
-<!-- 'PDF' => Barryvdh\DomPDF\Facade::class, -->
-
-
-

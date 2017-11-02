@@ -56,7 +56,7 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
        _ {{$paper[0]->paper_id}} _
     </h2>
 
-    <h2><i class="large green bookmark icon"></i>File: <a   href="{{ route('viewpaper',['name'=>$paper[0]->pdf_name]) }}"><i class="cloud  download icon"></i>
+    <h2><i class="large green bookmark icon"></i>File: <a  target ="_blank"  href="{{ route('viewpaper',['name'=>$paper[0]->pdf_name]) }}"><i class="cloud  download icon"></i>
   {{$paper[0]->pdf_name}}
     </a></h2>
   </div>
@@ -248,7 +248,7 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
 
     <h2 style="margin-left: 1.5%"><i class="large  green talk outline icon"></i>Comment</h2>
      <div class="ui Comment" style="margin-left: 1.5%">
-      <textarea rows="10" cols="150" ></textarea>
+      <textarea rows="10" cols="150" name="comment"></textarea>
     </div>
 <button type="button" class="ui primary test button" onclick="myFunction()" style="margin-left: 2.5%;margin-bottom: 1%;margin-top: 2%"><i class="icon edit" ></i>OK</button>
 </form>
@@ -347,17 +347,7 @@ $('.item #r5').text(rates4[c].value);
     Id : {{$id}}
     
   </a>
-  <a class="item">
-    <i class="window maximize icon "></i> 
-    Writer : {{$paper[0]->paper_name}}
-    
-  </a>
-   <a class="item">
-    <i class="book icon "></i> 
-   Paper ID : {{$paper[0]->paper_id}}
-    
-  </a>
-
+  
 </div>
   </div>
   <div class="image content" style="background-color: #99ff99">

@@ -19,41 +19,13 @@ class chairController extends Controller
     public function __construct(){
         $this->middleware('chair');
     }
-
-    public function  home()
-    {
-        return view('chaircon.home');
-    }
-
-    public function index()
-    {
-        $Professor = DB::table('users')->where('status','admin')->get();
-        return view('chaircon.index')->with('admins',$Professor);
-    }
-    public function info($id)
-    {
-        $admininfo = DB::table('users')->where('id',$id)->get();
-        return view('chaircon.i1')->with('infos',$admininfo);
-    }
-    public function droppaper($id)
-    {
-        
-    }
-    public function dropadmin($id)
-    {
-        $destroy = DB::table('users')->where('id',$id)->delete(); 
-        $Professor = DB::table('users')->where('status','admin')->get();
-        return view('chaircon.index')->with('admins',$Professor);
-    }
-     public function chair()
-    {
-        $con = DB::table('conferall')->where('chair_id',Auth::user()->id)->count(); 
-        $paper = DB::table('paper')->count();
-        $unreview = DB::table('paper')->where('paper.status_reviewer','=','0')->count();
-        $unpay = DB::table('paper')->where('paper.status_payment','=','0')->count();
-        return view('chaircon.path')->with('unreviews',$unreview)->with('unpays',$unpay)->with('cons',$con)->with('papers',$paper);
-    }
-    public function getscore(Request $request){
+         
+    public function getscore(Request $request,$id){
+        $check = DB::table('paper')->where('paper_id',$id)->get();
+        if ($check[0]->status_score == -99) {
+                   DB::table('paper')->where('paper_id',$id)->update(['status_score'=>$request->input('throughput'),'updated_at'  => new \dateTime]);
+        }
+        return redirect()->to('/chairhome');
         
     }
  
@@ -85,80 +57,18 @@ class chairController extends Controller
     }
     public function choosereviewer($id,$conid)
     {
+
         $name = DB::table('conferall')->where('conid', '=', $conid)->first();
         $values = DB::table('paper')->where('paper_id',$id)->get();
+        if ($values[0]->status_reviewer == 1) {
+            return redirect()->to('/chairhome');
+        }
         return view('chaircon.choosereviewer')->with('id',$id)
                                                     ->with('values',$values);
     }
-    public function install()
-    {
     
-        return view('chaircon.installcfs');
-    }
-    public function storechair(Request $request)
-    {
-        $store = new confer;
-        $main  = $request->input('main');
-        $sub  = $request->input('subcon');
-        $topics1 = explode(",",$main);
-        $topics2 = explode(",", $sub);
-        $store->name = $request->input('type');
-        $store->Acronym_N = $request->input('name');
-        $store->Acronym_L = $request->input('subname');
-        $store->Loca = $request->input('locate');
-        $store->Content = $request->input('maincontent');
-        $store->Detail = $request->input('detail');
-        $store->D_Line = $request->input('deadlinetime');
-        $store->R_Line = $request->input('completetime');
-        $store->S_Line = $request->input('showtime');
-        $store->Y_Line = $request->input('i9');
-        $store->topic_1    = $main;
-        $store->topic_2    = $sub;
-        
-        $store->save();
-
-        
-        return redirect()->to('/chairhome');
-    }
-    public function table()
-    {
-        $Teachs = Teach::get();
-        return view('chaircon.tables')->with('Teach',$Teachs);
-    }
-    public function edit($id)
-    {
-        $Projects = Project::find($id);
-        return view('moviegod.edit')->with('Project',$Projects);
-    }
-
-    public function update($id, Request $request)
-    {
-        $update = Movie::find($id);
-        $update->MovieName = $request->input('MovieName');
-        $update->MovieDescription = $request->input('MovieDescription');
-        $update->MovieAddress= $request->input('MovieAddress');
-        $update->MovieImage = $request->input('MovieImage');
-        $update->save();
-
-        return redirect()->to('/list/admin');
-    }
-
-    public function destroy($id)
-    {
-        $old = DB::table('conferall')->where('conid',$id)->first();
-        DB::table('oldconference')->insert(['name'=> $old->name ,'Acronym_N'=> $old->Acronym_N ,'Acronym_L'=>$old->Acronym_L,'Loca'=>$old->Loca,'Content'=>$old->Content,'Detail'=>$old->Detail,'D_Line'=>$old->D_Line,'R_Line'=>$old->R_Line,'S_Line'=>$old->S_Line,'Y_Line'=>$old->Y_Line,'topic_1'=>$old->topic_1,'topic_2'=>$old->topic_2,'created_at'=> new \dateTime,
-        'updated_at'  => new \dateTime]);
-        $destroy = confer::where('conid',$id)->delete();
-        return redirect()->to('/adminhome');
-    }
     public function review(Request $request,$id)
     {
-        
-       
-    
-        
-        
-
         //1.before insert reviewer
         $C1=DB::table('reviewer')->where('Name','=',$request->input('A1'))->where('Lname','=',$request->input('A2'))->count();
         $C2=DB::table('reviewer')->where('Name','=',$request->input('B1'))->where('Lname','=',$request->input('B2'))->count();
@@ -214,9 +124,9 @@ class chairController extends Controller
         $email2 = $request->input('B5');
         $email3 = $request->input('C5');
         $data = array('0'=> '','1' => '', '2' => '');
-        $data['0'] = 'http://127.0.0.1:8000/get/'.$groupid.'/'.$i1;
-        $data['1'] = 'http://127.0.0.1:8000/get/'.$groupid.'/'.$i2;
-        $data['2'] = 'http://127.0.0.1:8000/get/'.$groupid.'/'.$i3;
+        $data['0'] = 'http://localhost:8000/list/evaluation/'.$groupid.'/'.$i1;
+        $data['1'] = 'http://localhost:8000/list/evaluation/'.$groupid.'/'.$i2;
+        $data['2'] = 'http://localhost:8000/list/evaluation/'.$groupid.'/'.$i3;
         $data = array( 'email' => $email, 'link' => $data['0'],
                         'email2' => $email2, 'link2' => $data['1'],
                         'email3' => $email3, 'link3' => $data['2']);
@@ -239,20 +149,24 @@ class chairController extends Controller
                 $message->setBody('your link : '.$data['link3'] );
                 $message->subject('แจ้งเตือน:ถึงเวลาใช้งาน');
         });
-        return redirect()->to('/adminhome');
+        return redirect()->to('/chairhome');
     }
     public function assessment($id)
     {   
-        $paper=DB::table('paper')->where('paper_id',$id)->get();
-        $group=DB::table('group')->where('paper_id',$id)->get();
-        $reviewer1=DB::table('reviewer')->where('Id',$group[0]->Reviewer_id1)->get();
-        $reviewer2=DB::table('reviewer')->where('Id',$group[0]->Reviewer_id2)->get();
-        $reviewer3=DB::table('reviewer')->where('Id',$group[0]->Reviewer_id3)->get();
-        return view('chaircon.assessment')  ->with('paper',$paper)
-                                            ->with('group',$group)
-                                            ->with('reviewer1',$reviewer1)
-                                            ->with('reviewer2',$reviewer2)
-                                            ->with('reviewer3',$reviewer3);
+        $check = DB::table('paper')->where('paper_id',$id)->get();
+        if ($check[0]->status_score == -99) {
+            $paper=DB::table('paper')->where('paper_id',$id)->get();
+            $group=DB::table('group')->where('paper_id',$id)->get();
+            $reviewer1=DB::table('reviewer')->where('Id',$group[0]->Reviewer_id1)->get();
+            $reviewer2=DB::table('reviewer')->where('Id',$group[0]->Reviewer_id2)->get();
+            $reviewer3=DB::table('reviewer')->where('Id',$group[0]->Reviewer_id3)->get();
+            return view('chaircon.assessment')  ->with('paper',$paper)
+                                                ->with('group',$group)
+                                                ->with('reviewer1',$reviewer1)
+                                                ->with('reviewer2',$reviewer2)
+                                                ->with('reviewer3',$reviewer3);
+        }
+        return redirect()->to('/chairhome');
     }
    
 }

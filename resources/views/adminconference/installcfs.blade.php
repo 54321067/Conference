@@ -19,11 +19,11 @@
             </div>  </h2>
 <form class="ui form" style="margin:3%;" id="form1" method="post"  action="{{ url('/get') }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  <div class="field">
+  <div class="field required">
     
-        <div class="field">
+        <div class="field required">
             <label>ประเภทการประชุม</label>
-            <select id="type" name="type" class="ui fluid dropdown">
+            <select id="type" name="type" class="ui fluid dropdown" required>
             <option value="ยังไม่ได้เลือก">เลือกการประชุม*</option>
             <option value="การประชุม">การประชุม</option>
             <option value="หนังสือ">หนังสือ</option>
@@ -40,10 +40,10 @@
     
  
 
-  <div class="field">
+  <div class="field required">
         <label>หัวข้อหลัก</label>
           <div class="ui fluid multiple search selection dropdown">
-            <input name="main" id="main" type="hidden" name="country">
+            <input name="main" id="main" type="hidden" name="country" required>
             <i class="dropdown icon"></i>
               <div class="default text">เลือกหัวข้อหลัก*</div>
                 <div class="menu">
@@ -73,10 +73,10 @@
             </div>
           </div>
   </div>
-  <div class="field">
+  <div class="field required">
         <label>หัวข้อรอง</label>
           <div class="ui fluid multiple search selection dropdown">
-            <input name="subcon" id="subcon" type="hidden" name="country">
+            <input name="subcon" id="subcon" type="hidden" name="country" required>
             <i class="dropdown icon"></i>
               <div class="default text">เลือกหัวข้อรอง*</div>
                 <div class="menu">
@@ -87,80 +87,80 @@
             </div>
           </div>
   </div>
-  <div class="field">
+  <div class="field required">
         <label>เลือก Chair ของการประชุม</label>
-          <select id="chair" name="chair" class="ui fluid dropdown">
+          <select id="chair" name="chair" class="ui fluid dropdown" required> 
             <option value="ยังไม่ได้เลือก">เลือกchair*</option>
             <?php foreach ($chair as $a) {?>
                 <option value="{{$a->id}}">{{$a->name}}</option>
             <?php }?>
           </select>
   </div>
-  <div class="field">
+  <div class="field required">
       <label>ชื่อการประชุม</label>
-        <input id="name" name="name" type="text"  placeholder="ชื่อการประชุม">
+        <input id="name" name="name" type="text"  placeholder="ชื่อการประชุม" required>
   </div>
 
-  <div class="field">
+  <div class="field required">
       <label>ชื่อย่อการประชุม</label>
-        <input id="subname"  name="subname" type="text"  placeholder="ชื่อย่อการประชุม">
+        <input id="subname"  name="subname" type="text"  placeholder="ชื่อย่อการประชุม" required>
   </div>
 
-  <div class="field">
+  <div class="field required">
     <div class="two fields">
       <div class="field">
       <label>วันสิ้นสุดส่งบทความ</label>
       <div class="ui calendar" id="example1">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input id="deadlinetime" name="deadlinetime" type="text" placeholder="Date/Time">
+          <input id="deadlinetime" name="deadlinetime" type="text" placeholder="Date/Time" required>
         </div>
       </div>
       </div>
-      <div class="field">
+      <div class="field required">
       <label>วันแจ้งผลการคัดเลือกบทความวิจัย</label>
         <div class="ui calendar" id="example2">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input id="completetime" name="completetime" type="text" placeholder="Date/Time">
+          <input id="completetime" name="completetime" type="text" placeholder="Date/Time" required>
         </div>
       </div>
       </div>
     </div>
   </div>
-  <div class="field">
+  <div class="field required">
     <div class="two fields">
       <div class="field">
       <label>วันนำเสนอผลงาน</label>
         <div class="ui calendar" id="example3">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input id="showtime" name="showtime" type="text" placeholder="Date/Time">
+          <input id="showtime" name="showtime" type="text" placeholder="Date/Time" required>
         </div>
       </div>
       </div>
-    <div class="field">
+    <div class="field required">
       <label>วันอื่นๆ</label>
         <div class="ui calendar" id="example4">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input id="i9" name="i9" type="text" placeholder="Date/Time">
+          <input id="i9" name="i9" type="text" placeholder="Date/Time" required>
         </div>
       </div>
       </div>
     </div>
   </div>
 
-   <div class="field">
+   <div class="field required">
       <label>ตำแหน่งการประชุม</label>
-        <input id="locate" name="locate" type="text"  placeholder="สถานที่">
+        <input id="locate" name="locate" type="text"  placeholder="สถานที่" required>
    </div>
 
-   <div class="field">
+   <div class="field required">
       <label>แนวคิดหลักการประชุม</label>
-        <input id="maincontent" name="maincontent" type="text"  placeholder="ชื่อการประชุม">
+        <input id="maincontent" name="maincontent" type="text"  placeholder="ชื่อการประชุม" required>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>รายละเอียดการประชุม</label>
     <textarea id="detail" name="detail" rows="2" placeholder="กรอกรายละเอียด"></textarea>
     </div>

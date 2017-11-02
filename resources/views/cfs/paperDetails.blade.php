@@ -33,8 +33,8 @@
 	<body>
 		<div class="body">
 			@include('cfs.userheader')
-			<form action="{{ url('/Mysubmition/'.$paper->paper_id.'/'.$paper->paper_name.'/invoice.pdf') }}" id="toPayment" method="post">
-			<input type="hidden" name="_token" paper="{{ csrf_token() }}">
+			<form target ="_blank"  action="{{ url('/Mysubmition/'.$paper->paper_id.'/'.$paper->paper_name.'/invoice.pdf') }}" id="toPayment" method="post">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="ui grid" style="margin-left:4.5%;margin-top:3%;margin-bottom:3%;margin-right:4.5%;margin-top: 1%">
 				<div class="row">
 			    	<div class="ui inverted segment sixteen wide column" style="background-color:#99ffce">
@@ -83,37 +83,69 @@
 				                        <?php }elseif($paper->status_score==1){ ?>
 				                        	<font color="black">การตรวจ : </font><font color="green">Weak accept</font>
 				                        	<?php if($paper->status_payment == 0){ ?>
-	                  							<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+				                        	&nbsp;&nbsp;&nbsp;&nbsp;
+				                        		<?php if($paper->status_send == 0){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">ยังไม่ชำระเงิน</font>
+	                  							<?php }else{ ?>
+	                  								<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+
+	                  							<?php } ?>
 	                  						<?php }elseif($paper->status_payment == 1){ ?>
+	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
 	                  						<?php }else{ ?>
+	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
 	                  						<?php } ?>
 				                        <?php }elseif($paper->status_score==2){ ?>
 				                        	<font color="black">การตรวจ : </font><font color="green">Accept</font>
 				                        	<?php if($paper->status_payment == 0){ ?>
-	                  							<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+				                        	&nbsp;&nbsp;&nbsp;&nbsp;
+	                  							<?php if($paper->status_send == 0){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">ยังไม่ชำระเงิน</font>
+	                  							<?php }else{ ?>
+	                  								<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+
+	                  							<?php } ?>
 	                  						<?php }elseif($paper->status_payment == 1){ ?>
+	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
 	                  						<?php }else{ ?>
+	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
 	                  						<?php } ?>
 				                        <?php }elseif($paper->status_score==3){ ?>
 					                        <font color="black">การตรวจ : </font><font color="green">strong accept</font>
 					                        <?php if($paper->status_payment == 0){ ?>
-	                  							<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+					                        &nbsp;&nbsp;&nbsp;&nbsp;
+	                  							<?php if($paper->status_send == 0){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">ยังไม่ชำระเงิน</font>
+	                  							<?php }else{ ?>
+	                  								<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+
+	                  							<?php } ?>
 	                  						<?php }elseif($paper->status_payment == 1){ ?>
+	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
 	                  						<?php }else{ ?>
+	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
 	                  						<?php } ?>
 					                    <?php }else{ ?>
 					                    	<font color="black">การตรวจ : </font><font color="red">ติดต่อเจ้าหน้าที่</font>
 					                    	<?php if($paper->status_payment == 0){ ?>
-	                  							<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+					                    	&nbsp;&nbsp;&nbsp;&nbsp;
+	                  							<?php if($paper->status_send == 0){ ?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">ยังไม่ชำระเงิน</font>
+	                  							<?php }else{ ?>
+	                  								<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
+
+	                  							<?php } ?>
 	                  						<?php }elseif($paper->status_payment == 1){ ?>
+	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
 	                  						<?php }else{ ?>
+	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
 	                  						<?php }?>
 				                        <?php } ?>	
@@ -435,7 +467,8 @@
 						<br>
 						<label>
 							<h3 align="left">
-								<a id="detailFilePaper" href="">เนื้อหาของเอกสารเรื่อง : {{ $paper->paper_name }}</a>
+								เนื้อหาของเอกสารเรื่อง : 
+								<a id="detailFilePaper"  target ="_blank"  href="{{ route('viewpaper',['name'=>$paper->pdf_name]) }}">{{ $paper->pdf_name }}</a>
 							</h3>
 						<label>
 					</div>
@@ -478,34 +511,36 @@
 					</div>
 
 					
-					<div class="ui sixteen wide column form" style="background-color:#fbfffe">
+					<div class="ui sixteen wide column form" style="background-color:#fbfffe;">
 						<div style="margin-left:10%;margin-right:10%;" align="center">
-							<?php if($paper->status_score >= 1 and $paper->status_payment == 0){?>
-                  			 		<button id="btnGotoPaymentSubmit" form="toPayment" align="center" class="large ui green button" type="submit" onclick="">ไปยังหน้าชำระค่าบริการ</button>
+							<?php if($paper->status_score >= 1 and $paper->status_payment == 0 and $paper->status_check==3){?>
+                  			 		<button id="btnGotoPaymentSubmit" form="toPayment" align="center" class="large ui green button" type="submit"  onclick="">ไปยังหน้าชำระค่าบริการ</button>
                   			 		</form>
-                  			 		@if($paper->status_send==0)
-                  			 		<button  type="button" class="ui small primary test button">อัพโหลดหลังฐานการจ่ายเงิน
-                  			 		</button>
+                  			 		@if($paper->status_send==0  )
+                  			 		<button  type="button" class="ui primary test button"><h4>อัพโหลดหลักหฐานการจ่ายเงิน
+                  			 		</h4></button>
                   			 		@endif
                   			<?php }?>
                   			
+
                   			<div class="ui tiny modal" id="modal-test" style="margin-top:0%; position: fixed;top:40px;bottom: 40px">
 						  <i class="close icon"></i>
-						  <div class="header" style="background-color: #80ffaa">
-						    <h1>อัพโหลดหลักฐานการจ่ายเงิน</h1>
-						    <h2 id="at"></h2>
-						</div>
+							<div class="header" style="background-color: #80ffaa">
+							    <h1>อัพโหลดหลักฐานการจ่ายเงิน</h1>
+							    <h2 id="at"></h2>
+							</div>
 						<div class="content">
 							<form action="{{ URL::to('/upload/'.$paper->paper_id) }}" method="post" enctype="multipart/form-data">
                   						<label  style="margin-top: 1%">
-										
-
-									    <input type="file" name="file" id="file" >
-									    <button type="submit" value="Upload" name="submit"  class="ui button" style="margin-top: 3%;margin-left: 1%">
-									    	Upload
-									    </button>
+									    <input type="file" name="file" id="file"  style="margin-top: 3%;margin-left: 1%">
+									    
 										<input type="hidden" value="{{ csrf_token() }}" name="_token" >
 										</label>
+										<div>
+											<button type="submit" value="Upload" name="submit"  class="ui green button" style="margin-top: 3%;margin-left: 1%">
+									    	Upload
+									    </button>
+										</div>
 										
 									</form>
 						</div>

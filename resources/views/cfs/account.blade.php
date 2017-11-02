@@ -6,21 +6,17 @@
 	@include('cfs.header')
 	<script>
 	function getEdit() {
-        $("#txtName").prop('disabled', false);
-        $("#txtSurName").prop('disabled', false);
-        $("#txtNickName").prop('disabled', false);
-        $("#txtOrganization").prop('disabled', false);
+        $("#txtNameSurname").prop('disabled', false);
         $("#txtPhone").prop('disabled', false);
+        $("#txtOrganization").prop('disabled', false);    
         $("#txtAddress").prop('disabled', false);
-        $("#txtNation").prop('disabled', false);
+        $("#txtNationid").prop('disabled', false);
         $("#txtEmail").prop('disabled', false);
-        txtName.style.backgroundColor='#fff';
-        txtSurName.style.backgroundColor='#fff';
-        txtNickName.style.backgroundColor='#fff';
-        txtOrganization.style.backgroundColor='#fff';
+        txtNameSurname.style.backgroundColor='#fff';
         txtPhone.style.backgroundColor='#fff';
+        txtOrganization.style.backgroundColor='#fff';
         txtAddress.style.backgroundColor='#fff';
-        txtNation.style.backgroundColor='#fff';
+        txtNationid.style.backgroundColor='#fff';
         txtEmail.style.backgroundColor='#fff';
         $('#btnSaveEdit').show();
 		$('#btnCancelEdit').show();
@@ -29,44 +25,38 @@
    
     function getSaveEdit() {
     	
-        $("#txtName").prop('disabled', true);
-        $("#txtSurName").prop('disabled', true);
-        $("#txtNickName").prop('disabled', true);
-        $("#txtOrganization").prop('disabled', true);
+        $("#txtNameSurname").prop('disabled', true);
         $("#txtPhone").prop('disabled', true);
+        $("#txtOrganization").prop('disabled', true);
         $("#txtAddress").prop('disabled', true);
-        $("#txtNation").prop('disabled', true);
+        $("#txtNationid").prop('disabled', true);
         $("#txtEmail").prop('disabled', true);
-		txtName.style.backgroundColor='#fcf4f4';
-		txtSurName.style.backgroundColor='#fcf4f4';
-		txtNickName.style.backgroundColor='#fcf4f4';
-        txtOrganization.style.backgroundColor='#fcf4f4';
+        txtNameSurname.style.backgroundColor='#fcf4f4';
         txtPhone.style.backgroundColor='#fcf4f4';
+        txtOrganization.style.backgroundColor='#fcf4f4';
         txtAddress.style.backgroundColor='#fcf4f4';
-        txtNation.style.backgroundColor='#fcf4f4';
+        txtNationid.style.backgroundColor='#fcf4f4';
         txtEmail.style.backgroundColor='#fcf4f4';
+
         $('#btnSaveEdit').hide();
 		$('#btnCancelEdit').hide();
 		$('#btnEdit').show();
     }
 
     function getCancelEdit() {
-        $("#txtName").prop('disabled', true);
-        $("#txtSurName").prop('disabled', true);
-        $("#txtNickName").prop('disabled', true);
-        $("#txtOrganization").prop('disabled', true);
+        $("#txtNameSurname").prop('disabled', true);
         $("#txtPhone").prop('disabled', true);
+        $("#txtOrganization").prop('disabled', true);
         $("#txtAddress").prop('disabled', true);
-        $("#txtNation").prop('disabled', true);
+        $("#txtNationid").prop('disabled', true);
         $("#txtEmail").prop('disabled', true);
-		txtName.style.backgroundColor='#fcf4f4';
-		txtSurName.style.backgroundColor='#fcf4f4';
-		txtNickName.style.backgroundColor='#fcf4f4';
-        txtOrganization.style.backgroundColor='#fcf4f4';
+        txtNameSurname.style.backgroundColor='#fcf4f4';
         txtPhone.style.backgroundColor='#fcf4f4';
+        txtOrganization.style.backgroundColor='#fcf4f4';
         txtAddress.style.backgroundColor='#fcf4f4';
-        txtNation.style.backgroundColor='#fcf4f4';
+        txtNationid.style.backgroundColor='#fcf4f4';
         txtEmail.style.backgroundColor='#fcf4f4';
+
         $('#btnSaveEdit').hide();
 		$('#btnCancelEdit').hide();
 		$('#btnEdit').show();
@@ -101,7 +91,7 @@
 <body>
 	<div class="body" id="body">
 		@include('cfs.userheader')
-		<div class="ui grid" style="margin-left:4.5%;margin-top:3%;margin-bottom:3%;margin-right:4.5%;">
+		<div class="ui grid" style="margin-left:4.5%;margin-bottom:3%;margin-right:4.5%;">
 			<div class="row">	
 		  		<form class="ui segment twelve wide column" style="background-color:#ebfcf2">
 		  			<div class="ui center aligned segment" style="background-color:#99ffce">
@@ -115,48 +105,15 @@
 					    	<div class="three wide column">	
 					    		<label>
 									<h4 align="center">
-										<font color="#006600">ชื่อจริง</font>
+										<font color="#006600">ชื่อ-สกุล</font>
 									</h4>
 								</label>
 					    	</div>
-					    	<div class="four wide column" align="center">			    			
-					  			<input id="txtName" value="" type="text" placeholder="ชื่อ" style="background-color:#fcf4f4">
-					  			<script>$("#txtName").prop('disabled', true);</script>
+					    	<div class="six wide column" align="center">			    			
+					  			<input id="txtNameSurname" value="{{ $user[0]->name }}" type="text" placeholder="ชือ-นามสกุล" style="background-color:#fcf4f4">
+					  			<script>$("#txtNameSurname").prop('disabled', true);</script>
 				  			</div>
-				  			<div class="one wide column">	
-				  			</div>
-				  			<div class="three wide column">	
-					    		<label>
-									<h4 align="center">
-										<font color="#006600">นามสกุล</font>
-									</h4>
-								</label>
-					    	</div>
-					    	<div class="four wide column" align="left">			    			
-					  			<input id="txtSurName" value="" type="text" placeholder="นามสกุล" style="background-color:#fcf4f4">
-			    				<script>$("#txtSurName").prop('disabled', true);</script>
-				  			</div>
-				  			<div class="one wide column">	
-				  			</div>
-					  	</div>
-					</div>
-			  		<br>
-			    	<div class="row">
-			    		<div class="ui two column grid form">
-			    			<div class="three wide column">	
-					    		<label>
-									<h4 align="center">
-										<font color="#006600">ชื่อเล่น</font>
-									</h4>
-								</label>
-					    	</div>
-					    	<div class="four wide column" align="center">			    			
-					  			<input id="txtNickName" value="" type="text" placeholder="ชื่อเล่น" style="background-color:#fcf4f4">
-			    				<script>$("#txtNickName").prop('disabled', true);</script>
-				  			</div>
-				  			<div class="one wide column">	
-				  			</div>
-				  			<div class="three wide column">	
+				  			<div class="two wide column">	
 					    		<label>
 									<h4 align="center">
 										<font color="#006600">เบอร์โทรศัพท์</font>
@@ -164,13 +121,13 @@
 								</label>
 					    	</div>
 					    	<div class="four wide column" align="left">			    			
-					  			<input id="txtPhone" value="" type="text" placeholder="เบอร์โทรศัทพ์" style="background-color:#fcf4f4">	    			
+					  			<input id="txtPhone" value="{{ $user[0]->phone }}" type="text" placeholder="เบอร์โทรศัทพ์" style="background-color:#fcf4f4">	    			
 			    				<script>$("#txtPhone").prop('disabled', true);</script>
 				  			</div>
 				  			<div class="one wide column">	
 				  			</div>	
 				  		</div>
-			    	</div>
+					</div>
 			    	<br>
 			    	<div class="row">
 			    		<div class="ui two column grid form">
@@ -209,25 +166,23 @@
 			    			<div class="three wide column">	
 					    		<label>
 									<h4 align="center">
-										<font color="#006600">สัญชาติ</font>
+										<font color="#006600">เลขบัตรประชาชน</font>
 									</h4>
 								</label>
 					    	</div>
 					    	<div class="four wide column" align="center">			    			
-					  			<input id="txtNation" value="" type="text" placeholder="ชื่อประเทศ" style="background-color:#fcf4f4">
-			    				<script>$("#txtNation").prop('disabled', true);</script>
+					  			<input id="txtNationid" value="{{ $user[0]->nation_id }}" type="text" placeholder="เลขบัตรประชาชน" style="background-color:#fcf4f4">
+			    				<script>$("#txtNationid").prop('disabled', true);</script>
 				  			</div>
-				  			<div class="one wide column">	
-				  			</div>
-				  			<div class="three wide column">	
+				  			<div class="two wide column">	
 					    		<label>
 									<h4 align="center">
 										<font color="#006600">อีเมลล์</font>
 									</h4>
 								</label>
 					    	</div>
-					    	<div class="four wide column" align="center">			    			
-					  			<input id="txtEmail" value="" type="text" placeholder="อีเมลล์" style="background-color:#fcf4f4">
+					    	<div class="six wide column" align="center">			    			
+					  			<input id="txtEmail" value="{{ $user[0]->email }}" type="text" placeholder="อีเมลล์" style="background-color:#fcf4f4">
 			    				<script>$("#txtEmail").prop('disabled', true);</script>
 				  			</div>
 				  			<div class="one wide column">	
@@ -258,8 +213,7 @@
 				  	</div>
 			    	<br>	
 				</form>
-				<form class="ui two wide column" >
-				</form>
+				
 			</div>
 	  	</div>
 	  	

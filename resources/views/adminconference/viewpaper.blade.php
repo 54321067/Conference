@@ -49,7 +49,7 @@
                   <tr>   
                   <td><a>{{$value->paper_id}}</a></td>
                   <td>{{$value->paper_name}}</td>
-                  <td><a href="{{ route('viewpaper',['name'=>$value->pdf_name]) }}">{{$value->pdf_name}}</a></td>
+                  <td><a target ="_blank" href="{{ route('viewpaper',['name'=>$value->pdf_name]) }}">{{$value->pdf_name}}</a></td>
                   @if($value->status_reviewer == 0)
                       <td class="negative"><i class="icon close"></i>ยังไม่เลือก</td>
                   @elseif($value->status_reviewer == 1)

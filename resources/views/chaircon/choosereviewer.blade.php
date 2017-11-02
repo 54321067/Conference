@@ -10,7 +10,7 @@
 <div class="body">
 
 
-@include('chaircon.headeradmin')
+@include('chaircon.headerchair')
 <br>
 
 
@@ -61,31 +61,31 @@
     <div class="ui segment">
       <p>กรรมการท่านที่1</p>
  		<div class="ui form">
-			  <div class="field">
+			  <div class="field required">
       <label>ชื่อ</label>
-        <input id="A1" name="A1" type="text"  placeholder="ชื่อ">
+        <input id="A1" name="A1" type="text"  placeholder="ชื่อ" required>
    </div>
 
-   <div class="field">
+   <div class="field required">
       <label>นามสกุล</label>
-        <input id="A2" name="A2" type="text"  placeholder="นามสกุล">
+        <input id="A2" name="A2" type="text"  placeholder="นามสกุล" required>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>ตำเเหน่ง</label>
-    <input id="A3" name="A3" type="text" placeholder="ตำเเหน่ง"></input>
+    <input id="A3" name="A3" type="text" placeholder="ตำเเหน่ง" required></input>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>เลขประจำตัวประชาชน</label>
-    <input id="A4" name="A4" type="text" placeholder="เลขประจำตัวประชาชน"></input>
+    <input id="A4" name="A4" type="text" placeholder="เลขประจำตัวประชาชน" required></input>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>Email</label>
         <input id="A5" name="A5" type="text"  placeholder="Email">
    </div>
 
-   <div class="field">
+   <div class="field required">
       <label>เบอร์โทรศัพท์</label>
-        <input id="A6" name="A6" type="text"  placeholder="เบอร์โทรศัพท์">
+        <input id="A6" name="A6" type="text"  placeholder="เบอร์โทรศัพท์" required>
     </div>
 		</div>
     </div>
@@ -94,62 +94,62 @@
     <div class="ui segment">
       <p>กรรมการท่านที่2</p>
       <div class="ui form">
-        <div class="field">
+        <div class="field required">
       <label>ชื่อ</label>
-        <input id="B1" name="B1" type="text"  placeholder="ชื่อ">
+        <input id="B1" name="B1" type="text"  placeholder="ชื่อ" required>
    </div>
 
-   <div class="field">
+   <div class="field required">
       <label>นามสกุล</label>
-        <input id="B2" name="B2" type="text"  placeholder="นามสกุล">
+        <input id="B2" name="B2" type="text"  placeholder="นามสกุล" required>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>ตำเเหน่ง</label>
-    <input id="B3" name="B3" type="text" placeholder="ตำเเหน่ง"></input>
+    <input id="B3" name="B3" type="text" placeholder="ตำเเหน่ง" required></input>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>เลขประจำตัวประชาชน</label>
-    <input id="B4" name="B4" type="text" placeholder="เลขประจำตัวประชาชน"></input>
+    <input id="B4" name="B4" type="text" placeholder="เลขประจำตัวประชาชน" required></input>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>Email</label>
-        <input id="B5" name="B5" type="text"  placeholder="Email">
+        <input id="B5" name="B5" type="text"  placeholder="Email" required>
    </div>
 
-   <div class="field">
+   <div class="field required" >
       <label>เบอร์โทรศัพท์</label>
-        <input id="B6" name="B6" type="text"  placeholder="เบอร์โทรศัพท์">
+        <input id="B6" name="B6" type="text"  placeholder="เบอร์โทรศัพท์" required>
     </div>
     </div>
     </div>
     <div class="ui segment">
       <p>กรรมการท่านที่3</p>
       <div class="ui form">
-        <div class="field">
+        <div class="field required">
       <label>ชื่อ</label>
-        <input id="C1" name="C1" type="text"  placeholder="ชื่อ">
+        <input id="C1" name="C1" type="text"  placeholder="ชื่อ" required>
    </div>
 
-   <div class="field">
+   <div class="field required">
       <label>นามสกุล</label>
-        <input id="C2" name="C2" type="text"  placeholder="นามสกุล">
+        <input id="C2" name="C2" type="text"  placeholder="นามสกุล" required>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>ตำเเหน่ง</label>
-    <input id="C3" name="C3" type="text" placeholder="ตำเเหน่ง"></input>
+    <input id="C3" name="C3" type="text" placeholder="ตำเเหน่ง" required></input>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>เลขประจำตัวประชาชน</label>
-    <input id="C4" name="C4" type="text" placeholder="เลขประจำตัวประชาชน"></input>
+    <input id="C4" name="C4" type="text" placeholder="เลขประจำตัวประชาชน" required></input>
     </div>
-    <div class="field">
+    <div class="field required">
       <label>Email</label>
-        <input id="C5" name="C5" type="text"  placeholder="Email">
+        <input id="C5" name="C5" type="text"  placeholder="Email" required>
    </div>
 
-   <div class="field">
+   <div class="field required">
       <label>เบอร์โทรศัพท์</label>
-        <input id="C6" name="C6" type="text"  placeholder="เบอร์โทรศัพท์">
+        <input id="C6" name="C6" type="text"  placeholder="เบอร์โทรศัพท์" required>
     </div>
     </div>
     </div>
