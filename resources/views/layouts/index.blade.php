@@ -6,7 +6,6 @@
  
         <!-- Cascade Style Sheets -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
  
         <!-- JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>

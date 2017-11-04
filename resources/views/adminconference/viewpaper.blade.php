@@ -35,8 +35,6 @@
                   <th>รหัสpaper</th>
                   <th>ชื่อPaper</th>
                   <th>Preview Paper</th>
-                  <th>Reviewer</th>
-                  <th>StatusPaper</th>
                   <th>StatusPayment</th>
                   <th>Topic</th>
                  
@@ -44,47 +42,25 @@
 
               </thead>
               <tbody>
-
+                <?php $i=1; ?>
                 <?php foreach ($values as $value) {?>
                   <tr>   
-                  <td><a>{{$value->paper_id}}</a></td>
+                  <td>{{$i}}</td>
                   <td>{{$value->paper_name}}</td>
                   <td><a target ="_blank" href="{{ route('viewpaper',['name'=>$value->pdf_name]) }}">{{$value->pdf_name}}</a></td>
-                  @if($value->status_reviewer == 0)
-                      <td class="negative"><i class="icon close"></i>ยังไม่เลือก</td>
-                  @elseif($value->status_reviewer == 1)
-
-                      <td class="positive"><i class="icon checkmark"></i>เลือกแล้ว</td>
-                  @else
-                      <td class="negative"><i class="icon close"></i>เลือกผิดพลาด</td>
-                  @endif
-                  @if($value->status_check < 3 or $value->status_score < -3)
-                      <td class="negative"><i class="icon close"></i>ยังไม่ตรวจ</td>
+                   @if($value->status_send==0)
                       <td class="negative"><i class="icon close"></i>ยังไม่ชำระ</td>
-                  @elseif($value->status_score >= 1 and $value->status_check == 3)
-                      <td class="positive"><i class="icon checkmark"></i>ผ่านแล้ว</td>
-                      @if($value->status_send==0)
-                      <td class="negative"><i class="icon close"></i>ยังไม่ชำระ</td>
-                      @elseif($value->status_send==1)
-                          @if($value->status_payment == 0)
-                              <td class="positive">
-                              <button id="btn1" type="button" class="ui small primary test button" onclick="myFunction('{{$value->image_payment}}','{{$value->paper_id}}','{{$value->con_id}}');">รออนุมัติ</button> 
+                   @elseif($value->status_send==1)
+                      @if($value->status_payment == 0)
+                          <td class="positive">
+                          <button id="btn1" type="button" class="ui small primary test button" onclick="myFunction('{{$value->image_payment}}','{{$value->paper_id}}','{{$value->con_id}}');">รออนุมัติ</button> 
                               </td>
                               
-                          @elseif($value->status_payment == 1)
-                              <td class="positive"><i class="icon checkmark"></i>อนุมัติแล้ว</td>
-                          @else
-                              <td class="negative"><i class="icon close"></i>ตรวจสอบผิดพลาด</td>
-                          @endif
+                      @elseif($value->status_payment == 1)
+                          <td class="positive"><i class="icon checkmark"></i>ชำระเงินเรียบร้อยแล้ว</td>
                       @else
-                        <td class="negative"><i class="icon close"></i>ส่งผิดพลาด</td>
+                          <td class="negative"><i class="icon close"></i>ตรวจสอบผิดพลาด</td>
                       @endif
-                  @elseif($value->status_score < 1 and $value->status_score >= -3)
-                      <td class="negative"><i class="icon close"></i>ไม่ผ่าน</td>
-                      <td class="negative" style="text-align: center;">-</td>
-                  @else
-                      <td class="negative"><i class="icon close"></i>คะแนนผิดพลาด</td>
-                      <td class="negative" style="text-align: center;">-</td>
                   @endif
                   <td>{{$value->keyword1}}</td>
                 </tr>              
@@ -92,7 +68,7 @@
 
 
 
-                <?php } ?>
+                <?php $i++;} ?>
               </tbody>
             </table>
        </div> 
@@ -108,16 +84,19 @@
       <img class="ui fluid image" alt="Trolltunga, Norway" src="" id="pic" width="300" height="200" style="max-width: 500px;max-height: 700px;">
   </div>
   <div class="actions">
-    <a class="ui red basic cancel button" style="display: inline-block;float: left;">
+    <form id="np" method="post" action="">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <button type="submit" form="np" class="ui red basic cancel button" style="display: inline-block;float: left;">
       <i class="remove icon"></i>
       ไม่อนุมัติ
-    </a>
+    </button>
+    </form>
     <form id="ap" method="post" action="">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <div onclick="document.forms[0].submit();" form="ap" class="ui green ok inverted button" style="display: inline-block;">
+    <button type="submit" form="ap" class="ui green ok inverted button" style="display: inline-block;">
       <i class="checkmark icon"></i>
       อนุมัติ
-    </div>
+    </button>
   </form>
     
     
@@ -130,6 +109,7 @@
   function myFunction(s,id,conid) {
       pic.src = "/file/"+s;
       document.getElementById("ap").action = "/viewpaperpayment/"+id+"/"+conid;
+      document.getElementById("np").action = "/resetpayment/"+id+"/"+conid;
   }
 
 </script>

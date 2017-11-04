@@ -57,13 +57,11 @@ class PaperController extends Controller
         return view('cfs.Reviewer');
     }
 
-    // public function show($id)
-    // {
-    // 	$Teachs = Teach::find($id);
-    //     $Movies = Movie::get();
-    // 	return view('moviegod.i1')->with('Teach',$Teachs)->with('Movies',$Movies);
-    // }
-
+    public function preview($name)
+    {
+        $pathToFile = '/file/'.$name;
+        return response()->file(public_path($pathToFile));
+    }
 
     public function viewpaper($id)
     {
@@ -93,13 +91,13 @@ class PaperController extends Controller
         );
 
         $idpaper = DB::table('paper')->max('paper_id');
+        DB::table('group')->insert(
+            ['paper_id'=>$idpaper  ,'created_at'=> new \dateTime]
+        );
         $name =  $idpaper.'_'.$namefile;
         DB::table('paper')->where('paper_id',$idpaper)->update(['pdf_name' => $name]);
         $file->move('file',$name);
-
-
-        $value = DB::table('conferall')->get();
-        return view('cfs.homecon')->with('values',$value);
+        return redirect()->route('cfs.Mysubmition');
     
     }
 

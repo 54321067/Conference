@@ -41,6 +41,7 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
 table {
     border-collapse: collapse;
     width: 100%;
+    
 }
 
 th, td {
@@ -65,8 +66,8 @@ tr:nth-child(even){background-color: #E6E6FA}
     <h2 "><i class="large green address book outline icon"></i>Paper ID :  
         &nbsp;{{$paper[0]->paper_id}}
     </h2>
-    <h2 "><i class="large green users icon"></i>Group_Reviewer ID :  
-       &nbsp; {{$paper[0]->group_id}}
+    <h2 "><i class="large green users icon"></i>File paper :  
+       &nbsp;<a target="_blank" href="{{ url('/chair/preview/'.$paper[0]->pdf_name) }}">{{$paper[0]->pdf_name}}</a>
     </h2>
     <h2><i class="large green newspaper icon"></i>Paper name :  
       {{$paper[0]->paper_name}}
@@ -74,40 +75,100 @@ tr:nth-child(even){background-color: #E6E6FA}
   <div class="ui green segment">
 <table>
   <tr>
-    <th></th>
-    <th style="color: green ">{{$reviewer1[0]->Name}}</th>
-    <th style="color: green ;">{{$reviewer2[0]->Name}}</th>
-    <th  style="color: green ;">{{$reviewer3[0]->Name}}</th>
+    <th style="width: 400px"></th>
+    <th ><label class="ui header" style="color: green; ">{{$reviewer1[0]->Name}}</label></th>
+    <th ><label class="ui header" style="color: green; ">{{$reviewer2[0]->Name}}</label></th>
+    <th  ><label class="ui header" style="color: green; ">{{$reviewer3[0]->Name}}</label></th>
   </tr>
   <tr>
-    <td ><b>Technical quality</td>
+    <td ><b><label  class="ui header">Technical quality</label></td>
+    @if($group[0]->Technical_1 != -99)
     <td>{{$group[0]->Technical_1}}</td>
+    @else
+    <td>-</td>
+    @endif
+    @if($group[0]->Technical_2 != -99)
     <td>{{$group[0]->Technical_2}}</td>
+    @else
+    <td>-</td>
+    @endif
+    @if($group[0]->Technical_3 != -99)
     <td>{{$group[0]->Technical_3}}</td>
+    @else
+    <td>-</td>
+    @endif
   </tr>
   <tr>
-    <td style="color: green; "><b>Relevance to Conference</td>
+    <td ><label class="ui header" style="color: green; "><b>Relevance to Conference</label></td>
+    @if($group[0]->Relevance_1 != -99) 
     <td>{{$group[0]->Relevance_1}}</td>
+    @else
+    <td>-</td>
+     @endif
+    @if($group[0]->Relevance_2 != -99)
     <td>{{$group[0]->Relevance_2}}</td>
+    @else
+    <td>-</td>
+     @endif
+      @if($group[0]->Relevance_3 != -99)
     <td>{{$group[0]->Relevance_3}}</td>
+    @else
+    <td>-</td>
+     @endif
   </tr>
   <tr>
-    <td ><b>Presentation</td>
+    <td ><label class="ui header"  "><b>Presentation</label></td>
+    @if($group[0]->Presentation_1 != -99)
     <td>{{$group[0]->Presentation_1}}</td>
+    @else
+    <td>-</td>
+     @endif
+     @if($group[0]->Presentation_2 != -99)
     <td>{{$group[0]->Presentation_2}}</td>
+    @else
+    <td>-</td>
+     @endif
+     @if($group[0]->Presentation_3 != -99)
     <td>{{$group[0]->Presentation_3}}</td>
+    @else
+    <td>-</td>
+     @endif
   </tr>
   <tr>
-    <td style="color: green; "><b>Overall rating</td>
+    <td ><label class="ui header" style="color: green; "><b>Overall rating</label></td>
+    @if($group[0]->rating_1 != -99)
     <td>{{$group[0]->rating_1}}</td>
+    @else
+    <td>-</td>
+     @endif
+      @if($group[0]->rating_2 != -99)
     <td>{{$group[0]->rating_2}}</td>
+    @else
+    <td>-</td>
+     @endif
+      @if($group[0]->rating_3 != -99)
     <td>{{$group[0]->rating_3}}</td>
+    @else
+    <td>-</td>
+     @endif
   </tr>
    <tr>
-    <td ><b>Evaluation results</td>
+    <td ><label class="ui header"  "><b>Evaluation results</label></td>
+    @if($group[0]->score_1 != -99)
     <td>{{$group[0]->score_1}}</td>
+    @else
+    <td>-</td>
+     @endif
+      @if($group[0]->score_2 != -99)
     <td>{{$group[0]->score_2}}</td>
+    @else
+    <td>-</td>
+     @endif
+      @if($group[0]->score_3 != -99)
     <td>{{$group[0]->score_3}}</td>
+    @else
+    <td>-</td>
+     @endif
   </tr>
 </table>
   </div>
@@ -117,43 +178,43 @@ tr:nth-child(even){background-color: #E6E6FA}
      <h2 class="ui icon"  "><i class=" big green write square icon" ></i>assessment<label></h2>
     
     <div class="field required">
-      <div class="ui slider checkbox">
+      <div class="ui radio checkbox">
         <input type="radio" name="throughput" value="-3" required>
         <label>strong reject</label>
       </div>
     </div>
     <div class="field required">
-      <div class="ui slider checkbox">
+      <div class="ui radio checkbox">
         <input type="radio" name="throughput" value="-2" required>
         <label>reject</label>
       </div>
     </div>
     <div class="field required">
-      <div class="ui slider checkbox checked">
+      <div class="ui radio checkbox checked">
         <input type="radio" name="throughput" value="-1" required>
         <label>weak reject</label>
       </div>
     </div>
       <div class="field required">
-      <div class="ui slider checkbox checked">
+      <div class="ui radio checkbox checked">
         <input type="radio" name="throughput" value="0" required>
         <label>boundary</label>
       </div>
     </div>
       <div class="field required">
-      <div class="ui slider checkbox checked">
+      <div class="ui radio checkbox checked">
         <input type="radio" name="throughput" value="1" required>
         <label>Weak accept</label>
       </div>
     </div>
       <div class="field required">
-      <div class="ui slider checkbox checked">
+      <div class="ui radio checkbox checked">
         <input type="radio" name="throughput" value="2" required>
         <label>Accept</label>
       </div>
     </div>
     <div class="field required">
-      <div class="ui slider checkbox">
+      <div class="ui radio checkbox">
         <input type="radio" name="throughput"  value="3" required>
         <label>Strong accept</label>
       </div>

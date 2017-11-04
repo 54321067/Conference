@@ -11,7 +11,7 @@
 
  <div class="ui segment" style="margin-top: 0%;margin: 4.5%">
       <div class="ui blue segment">
-        <h2>Acronym_conference : _ {{$con->Acronym_L}} _
+        <h2>Conference : _ {{$con->Acronym_L}} _
         		<a style="float: right;" class="ui twitter button" href="{{url('/chair/viewpaper/'.$con->conid)}}" 
         		style="display: inline-block;">
         View paper

@@ -53,6 +53,7 @@ Route::get('/chair/aboutConference/{id}',['as'=>'chair.chairinfo','uses'=>'chair
 Route::get('/chair/viewpaper/{id}',['as'=>'chair.chairview','uses'=>'chairController@viewpaper'])->middleware('auth','chair');
 Route::get('/chair/choose/paper/{id}/{conid}',['as'=>'ff','uses'=>'chairController@choosereviewer'])->middleware('auth','chair');
 Route::post('/getscore/{paperid}','chairController@getscore')->middleware('auth','chair');
+Route::get('/chair/preview/{name}',['as'=> 'chairpreview','uses'=>'chairController@preview']);
 
 /////////
 //admin//
@@ -80,8 +81,10 @@ Route::get('/list/create','AdminController@create')->middleware('auth','admin');
 Route::get('/list/{id}/edit','AdminController@edit')->middleware('auth','admin');
 Route::put('/list/{id}','AdminController@update')->middleware('auth','admin');
 Route::delete('/list/{id}','AdminController@destroy')->middleware('auth','admin');
+Route::get('/user/{name}/preview',['as'=> 'userpreview','uses'=>'PaperController@preview']);
 Route::get('/viewpaper/{name}/preview',['as'=>'viewpaper','uses'=>'AdminController@preview']);
 Route::post('/viewpaperpayment/{id}/{conid}','AdminController@setpayment')->middleware('auth','admin');
+Route::post('/resetpayment/{id}/{conid}','AdminController@resetpayment')->middleware('auth','admin');
 /////////
 ///end///
 //admin//
@@ -93,7 +96,7 @@ Route::post('/viewpaperpayment/{id}/{conid}','AdminController@setpayment')->midd
 /////////
 
 
-
+Route::get('/reviewer/{name}/preview',['as'=> 'reviewerpreview','uses'=>'PaperController@preview']);
 Route::post('/list/getchair/{id}/{id2}',['as'=>'cfs.chair','uses'=>'ReviewerController@getchair']);
 Route::get('/sendemail/send','mailcontroller@sendemail');
 Route::post('/list/evaluation/{id}/{id2}','ReviewerController@evaluation');

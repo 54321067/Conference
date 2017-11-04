@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Form;
@@ -49,9 +49,42 @@ class chairController extends Controller
     public function viewpaper($id)
     {
         $values = DB::table('paper')->where('con_id',$id)->get();
-        $name  = DB::table('conferall')->where('conid', '=', $id)->first();
+        $name   = DB::table('conferall')->where('conid', '=', $id)->first();
+        $ids    = DB::table('paper')->join('group','group.paper_id','paper.paper_id')->join('conferall','conferall.conid','paper.con_id')->where('conferall.conid',$id)->get();
+        //score and name
+        $infos=[];
+        $paper=array();
+        foreach ($values as $value) {
+            $paper[] = $value->status_reviewer;
+        }
+        $items = array();
+        foreach ($ids as $i) {
+            if (is_null($i->Reviewer_id1) and is_null($i->Reviewer_id2) and is_null($i->Reviewer_id3)){
+                $items[] = $i->paper_name;
+                $items[] = $i->pdf_name;
+                array_push($infos ,array('s1' => -99, 's2' => -99 , 's3' => -99 , 'n1' => '-', 'n2' => '' , 'n3' => '' ,'score' => -99,'paper_id'=>  $i->paper_id , 'topic' => $i->keyword1  , 'status_rv' => $i->status_reviewer ,'rank1' => '' ,'rank2' => '','rank3' => ''));
+            
 
-        return view('chaircon.chairview',['names'=>$name,'id'=>$id,'values'=>$values]);
+
+            }else{
+                $name1 = DB::table('reviewer')->where('Id',$i->Reviewer_id1)->first();
+                $name2 = DB::table('reviewer')->where('Id',$i->Reviewer_id2)->first();
+                $name3 = DB::table('reviewer')->where('Id',$i->Reviewer_id3)->first();
+                $items[] = $i->paper_name;
+                $items[] = $i->pdf_name;
+                array_push($infos ,array('s1' => $i->score_1, 's2' => $i->score_2 , 's3' => $i->score_3 , 'n1' => $name1, 'n2' => $name2 , 'n3' => $name3 ,'score' => $i->status_score,'paper_id'=>  $i->paper_id , 'topic' => $i->keyword1  , 'status_rv' => $i->status_reviewer ,'rank1' => $name1->Rank ,'rank2' => $name2->Rank,'rank3' => $name3->Rank));
+            }
+            
+        }
+        //return response()->json($infos);
+        //foreach ($infos as $in) {
+        //    echo(response()->json($in['n1']));
+        //}
+        //return response()->json($items);
+        //return response()->json($nrv);
+        //'rv1' => $id->score_1, 'rv2' => $id->score_2 , 'rv3' => $id->score_3]
+        
+        return view('chaircon.chairview',compact('infos'))->with('names',$name)->with('id',$id)->with('values',$values)->with('items',$items)->with('paper',$paper);
         
         
     }
@@ -69,55 +102,33 @@ class chairController extends Controller
     
     public function review(Request $request,$id)
     {
-        //1.before insert reviewer
-        $C1=DB::table('reviewer')->where('Name','=',$request->input('A1'))->where('Lname','=',$request->input('A2'))->count();
-        $C2=DB::table('reviewer')->where('Name','=',$request->input('B1'))->where('Lname','=',$request->input('B2'))->count();
-        $C3=DB::table('reviewer')->where('Name','=',$request->input('C1'))->where('Lname','=',$request->input('C2'))->count();  
+        /*//1.insert reviewer
         $i1=0;$i2=0;$i3=0;
-        if($C1 <= 0  ){
-            $add1 = DB::table('reviewer')->insert([
+        $add1 = DB::table('reviewer')->insert([
         'Name'=>$request->input('A1'),'Lname'=>$request->input('A2'),'Email'=>$request->input('A5'),'Number_people'=>$request->input('A4'),'Rank'=>$request->input('A3'),'Cellphone'=>$request->input('A6'),'created_at'=> new \dateTime,
         'updated_at'  => new \dateTime]
          );
-            $i1 = $add1[0]->Id;
+        $i1 = $add1[0]->Id;
 
-        }else{
-            $check = DB::table('reviewer')->where('Name','=',$request->input('A1'))->where('Lname','=',$request->input('A2'))->get();
-            $i1 = $check[0]->Id;
-        }
-        if($C2 <=0 ){
-            $add2 = DB::table('reviewer')->insert(['Name'=>$request->input('B1'),'Lname'=>$request->input('B2'),'Email'=>$request->input('B5'),'Number_people'=>$request->input('B4'),'Rank'=>$request->input('B3'),'Cellphone'=>$request->input('B6'),'created_at'=> new \dateTime,
+        $add2 = DB::table('reviewer')->insert(['Name'=>$request->input('B1'),'Lname'=>$request->input('B2'),'Email'=>$request->input('B5'),'Number_people'=>$request->input('B4'),'Rank'=>$request->input('B3'),'Cellphone'=>$request->input('B6'),'created_at'=> new \dateTime,
         'updated_at'  => new \dateTime]
 
         );
-            $i2 = $add2[0]->Id;
-        }else{
-            $check2 = DB::table('reviewer')->where('Name','=',$request->input('B1'))->where('Lname','=',$request->input('B2'))->get();
-            $i2 = $check2[0]->Id;
-        }
+        $i2 = $add2[0]->Id;
 
-        if($C3 <=0 ){
-            $add3 = DB::table('reviewer')->insert(['Name'=>$request->input('C1'),'Lname'=>$request->input('C2'),'Email'=>$request->input('C5'),'Number_people'=>$request->input('C4'),'Rank'=>$request->input('C3'),'Cellphone'=>$request->input('C6'),'created_at'=> new \dateTime,
+        $add3 = DB::table('reviewer')->insert(['Name'=>$request->input('C1'),'Lname'=>$request->input('C2'),'Email'=>$request->input('C5'),'Number_people'=>$request->input('C4'),'Rank'=>$request->input('C3'),'Cellphone'=>$request->input('C6'),'created_at'=> new \dateTime,
         'updated_at'  => new \dateTime]      
         );     
-            $i3 = $add3[0]->Id;
-        }else{
-            $check3 = DB::table('reviewer')->where('Name','=',$request->input('C1'))->where('Lname','=',$request->input('C2'))->get();
-            $i3 =  $check3[0]->Id;
-        }
+        $i3 = $add3[0]->Id;
+        
         //2.create group
         DB::table('group')->insert(
-            ['paper_id'=>$id,'Reviewer_id1' => $i1 ,'Reviewer_id2' => $i2 ,'Reviewer_id3' => $i3 ,'created_at'=> new \dateTime,
-        'updated_at'  => new \dateTime]
+            ['paper_id'=>$id,'Reviewer_id1' => $i1 ,'Reviewer_id2' => $i2 ,'Reviewer_id3' => $i3 ,'created_at'=> new \dateTime]
         );
-         //3.update group_id of paper table
+         //3.update group_id and status_reviewer of paper table
         $groupid = DB::table('group')->max('Group_id');
         DB::table('paper')->where('paper_id',$id)->update(
-            ['Group_id'=>$groupid,'updated_at'  => new \dateTime]
-        );
-        //4.update status_reviewer of paper
-        DB::table('paper')->where('paper_id',$id)->update(
-            ['status_reviewer'=>1,'updated_at'  => new \dateTime]
+            ['Group_id'=>$groupid,'status_reviewer'=>1,'updated_at'  => new \dateTime]
         );
         //5.send email to reviewers
         $email = $request->input('A5');
@@ -148,8 +159,8 @@ class chairController extends Controller
                 $message->from('somratza35677@gmail.com', 'Conference');
                 $message->setBody('your link : '.$data['link3'] );
                 $message->subject('แจ้งเตือน:ถึงเวลาใช้งาน');
-        });
-        return redirect()->to('/chairhome');
+        });*/
+        return redirect()->route('chaircon.adminchair');
     }
     public function assessment($id)
     {   

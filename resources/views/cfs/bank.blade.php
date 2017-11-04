@@ -56,7 +56,7 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
        _ {{$paper[0]->paper_id}} _
     </h2>
 
-    <h2><i class="large green bookmark icon"></i>File: <a  target ="_blank"  href="{{ route('viewpaper',['name'=>$paper[0]->pdf_name]) }}"><i class="cloud  download icon"></i>
+    <h2><i class="large green bookmark icon"></i>File: <a  target ="_blank"  href="{{ route('reviewerpreview',['name'=>$paper[0]->pdf_name]) }}"><i class="cloud  download icon"></i>
   {{$paper[0]->pdf_name}}
     </a></h2>
   </div>
@@ -340,12 +340,7 @@ $('.item #r5').text(rates4[c].value);
 
   <a class="item">
     <i class=" icon users"></i>
-     Id-group : {{$groupid}}
-  </a>
-  <a class="item">
-    <i class="user icon "></i> 
-    Id : {{$id}}
-    
+     #ตรวจสอบการประเมิน
   </a>
   
 </div>

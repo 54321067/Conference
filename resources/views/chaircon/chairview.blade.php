@@ -19,7 +19,7 @@
          
       </div>
       <div>
-        <table class="ui sortable celled table">
+<table class="ui sortable celled table">
               <thead>
                 <tr style="background-color: #99ffce"">
                   <th>รหัสpaper</th>
@@ -29,60 +29,90 @@
                   <th>StatusPaper</th>
                   <th>StatusAssessment</th>
                   <th>Topic</th>
-                 
+                </tr>
                  
               </thead>
               <tbody>
-              
-                <?php foreach ($values as $value) {?>
+                <?php $i=0;$g=$i;?>
+                <?php foreach ($infos as $info){?>
                   <tr>   
-                  <td><a>{{$value->paper_id}}</a></td>
-                  <td>{{$value->paper_name}}</td>
-                  <td><a href="{{ url('/viewpaper/preview/'.$value->pdf_name) }}">{{$value->pdf_name}}</a></td>
-                  @if($value->status_reviewer == 0)
-                      <td class="negative" ><i class="icon close" ></i><a href="{{url('/chair/choose/paper/'.$value->paper_id.'/'.$id)}}" style="color: darkred">   ยังไม่เลือก    </a></td>
+                  <td>{{$g+1}},{{$i}}</td>
+                  <td>{{$items[$i]}}</td>
+                  <td><a target="_blank" href="{{ url('/chair/preview/'.$items[$i+1]) }}">{{$items[$i+1]}}</a></td>
+                  @if($paper[$g] == 0)
+                      <td class="negative" ><a href="{{url('/chair/choose/paper/'.json_encode($info['paper_id']).'/'.$id)}}">กดเพื่อเลือกผู้ประเมิน</a></td>
                       <td class="negative"><i class="icon close"></i>ยังไม่ตรวจ</td>
-                      <td class="negative"></i><a style="color: darkred">ยังไม่ได้ประเมิน</a></td> 
+                      <td class="negative"><a style="color: darkred">ยังไม่ได้ประเมิน</a></td> 
                   @else
-                      <td class="positive"><i class="icon checkmark"></i>เลือกแล้ว</td>
-
-                      @if($value->status_check == 3)
-                        <td class="positive"><i class="icon checkmark"></i>ตรวจเเล้ว</td>
-                        @if($value->status_score==-99)
-                          <td ><a  href="{{url('/assessment/'.$value->paper_id)}}">ยังไม่ได้ประเมิน</a></td>
-                        @elseif($value->status_score==-3)
-                        <td class="negative"><i class="icon close"></i>strong reject</a></td>
-                         @elseif($value->status_score==-2)
-                        <td class="negative"><i class="icon close"></i> reject</a></td>
-                         @elseif($value->status_score==-1)
-                        <td class="negative"><i class="icon close"></i>weak reject</a></td>
-                         @elseif($value->status_score==0)
-                        <td class="negative"><i class="icon close"></i>boundary</a></td>
-                         @elseif($value->status_score==1)
-                        <td class="positive"><i class="icon checkmark"></i>Weak accept</a></td>
-                         @elseif($value->status_score==2)
-                        <td class="positive"><i class="icon checkmark"></i>Accept</a></td>
-                         @elseif($value->status_score==3)
-                        <td class="positive"><i class="icon checkmark"></i>strong accept</a></td>
-                         
-                        @endif
-                      @else
-                        <td class="negative"><i class="icon close"></i>ยังไม่ตรวจ</td>
-                        <td class="negative"></i><a style="color: darkred">ยังไม่ได้ประเมิน</a></td>
+                      <td class="positive"><i class="icon checkmark"></i>เลือกผู้ประเมินเสร็จสมบูรณ์</td>
+                      <?php $check1=1;$check2=1;$check3=1; ?> 
+                      @if(json_encode($info['s1']) == "-99")
+                          <?php $check1 = 0 ; ?>
                       @endif
+
+                      @if(json_encode($info['s2']) == "-99")
+                          <?php $check2 = 0; ?>
+                      @endif
+
+                      @if(json_encode($info['s3']) == "-99")
+                          <?php $check3 = 0; ?>
+                      @endif
+                     
+
+                      @if($check1==1 and $check2 ==0 and $check3==0)
+                        <td class="positive" title="Choosed(1)&#013;1.{{json_encode($info['rank1'])}} {{json_encode($info['n1']->Name)}}{{json_encode($info['n1']->Lname)}}&#013;Not Choosed(2)&#013;1.{{json_encode($info['rank2'])}} {{json_encode($info['n2']->Name)}}{{json_encode($info['n2']->Lname)}}&#013;2.{{json_encode($info['rank3'])}} {{json_encode($info['n3']->Name)}}{{json_encode($info['n3']->Lname)}}"><i class="icon checkmark"></i>ตรวจเเล้ว(1)</td>
+                      @elseif($check1==0 and $check2 ==1 and $check3==0)
+                        <td class="positive" title="Choosed(1)&#013;1.{{json_encode($info['rank2'])}} {{json_encode($info['n2']->Name)}}{{json_encode($info['n2']->Lname)}}&#013;Not Choosed(2)&#013;1.{{json_encode($info['rank1'])}} {{json_encode($info['n1']->Name)}}{{json_encode($info['n1']->Lname)}}&#013;2.{{json_encode($info['rank3'])}} {{json_encode($info['n3']->Name)}}{{json_encode($info['n3']->Lname)}}"><i class="icon checkmark"></i>ตรวจเเล้ว(1)</td>
+                      @elseif($check1==0 and $check2 ==0 and $check3==1)
+                        <td class="positive" title="Choosed(1)&#013;1.{{json_encode($info['rank3'])}} {{json_encode($info['n3']->Name)}}{{json_encode($info['n3']->Lname)}}&#013;Not Choosed(2)&#013;1.{{json_encode($info['rank1'])}} {{json_encode($info['n1']->Name)}}{{json_encode($info['n1']->Lname)}}&#013;2.{{json_encode($info['rank2'])}} {{json_encode($info['n2']->Name)}}{{json_encode($info['n2']->Lname)}}"><i class="icon checkmark"></i>ตรวจเเล้ว(2)</td>
+                      @elseif($check1==1 and $check2 ==1 and $check3==0)
+                        <td class="positive" title="Choosed(2)&#013;1.{{json_encode($info['rank1'])}} {{json_encode($info['n1']->Name)}}{{json_encode($info['n1']->Lname)}}&#013;2.{{json_encode($info['rank2'])}} {{json_encode($info['n2']->Name)}}{{json_encode($info['n2']->Lname)}}&#013;Not Choosed(1)&#013;1.{{json_encode($info['rank3'])}} {{json_encode($info['n3']->Name)}}{{json_encode($info['n3']->Lname)}}"><i class="icon checkmark"></i>ตรวจเเล้ว(2)</td>
+                      @elseif($check1==1 and $check2 ==0 and $check3==1)
+                        <td class="positive" title="Choosed(2)&#013;1.{{json_encode($info['rank1'])}} {{json_encode($info['n1']->Name)}}{{json_encode($info['n1']->Lname)}}&#013;2.{{json_encode($info['rank3'])}} {{json_encode($info['n3']->Name)}}{{json_encode($info['n3']->Lname)}}&#013;Not Choosed(1)&#013;1.{{json_encode($info['rank2'])}} {{json_encode($info['n2']->Name)}}{{json_encode($info['n2']->Lname)}}"><i class="icon checkmark"></i>ตรวจเเล้ว(2)</td>
+                      @elseif($check1==0 and $check2 == 1 and $check3 == 1)
+                        <td class="positive" title="Choosed(2)&#013;1.{{json_encode($info['rank2'])}} {{json_encode($info['n2']->Name)}}{{json_encode($info['n2']->Lname)}}&#013;2.{{json_encode($info['rank3'])}} {{json_encode($info['n3']->Name)}}{{json_encode($info['n3']->Lname)}}&#013;Not Choosed(1)&#013;1.{{json_encode($info['rank1'])}} {{json_encode($info['n1']->Name)}}{{json_encode($info['n1']->Lname)}}"><i class="icon checkmark"></i>ตรวจเเล้ว(2)</td>
+                      @elseif($check1==1 and $check2 == 1 and $check3 == 1)
+                        <td class="positive" title="Choosed finish(3)&#013;1.{{json_encode($info['rank1'])}} {{json_encode($info['n1']->Name)}}{{json_encode($info['n1']->Lname)}}&#013;2.{{json_encode($info['rank2'])}} {{json_encode($info['n2']->Name)}}{{json_encode($info['n2']->Lname)}}&#013;3.{{json_encode($info['rank3'])}} {{json_encode($info['n3']->Name)}}{{json_encode($info['n3']->Lname)}}"><i class="icon checkmark"></i>ตรวจครบเรียบร้อยแล้ว</td>
+
+                      @else
+                        <td class="negative" title="Not Choosed(3)"><i class="icon close"></i>ยังไม่ได้ตรวจ</td>
+
+                      @endif
+
+                      @if(json_encode($info['score'])==-99)
+                          <td><a href="{{url('/assessment/'.json_encode($info['paper_id']))}}">ยังไม่ได้ประเมิน</a></td>
+                        @elseif(json_encode($info['score']) == -3)
+                          <td class="negative"><i class="icon close"></i>strong reject</td>
+                        @elseif(json_encode($info['score'])==-2)
+                          <td class="negative"><i class="icon close"></i>reject</td>
+                        @elseif(json_encode($info['score'])==-1)
+                          <td class="negative"><i class="icon close"></i>weak reject</td>
+                        @elseif(json_encode($info['score'])==0)
+                          <td class="negative"><i class="icon close"></i>boundary</td>
+                        @elseif(json_encode($info['score'])==1)
+                          <td class="positive"><i class="icon checkmark"></i>Weak accept</td>
+                        @elseif(json_encode($info['score'])==2)
+                          <td class="positive"><i class="icon checkmark"></i>Accept</td>
+                        @elseif(json_encode($info['score'])==3)
+                          <td class="positive"><i class="icon checkmark"></i>strong accept</td>
+                        @endif
 
                   @endif
                   
-                  <td>{{$value->keyword1}}</td>
-                </tr>              
+                  <td>{{json_encode($info['topic'])}}</td>
+                  </tr>              
 
 
 
-                <?php } ?>
+                <?php  $i+=2;$g++;} ?>
               </tbody>
             </table>
        </div>
 </div>                
-	
+	<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
 </body>
 </html>

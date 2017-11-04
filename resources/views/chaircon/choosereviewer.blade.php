@@ -25,11 +25,9 @@
   <div class="item">
    
       <h1><i class="black big handshake icon"> </i> &nbsp;&nbsp;&nbsp;&nbsp;<u>Topics</u></h1>
-      
-    
+
     <div class="content">
-      
-      
+
       <h5 style="color: blue">
         @if($values[0]->keyword1!=null)
           {{$values[0]->keyword1}}
@@ -53,7 +51,7 @@
 
 <!--Choose reviewer -->
   <div class="ui green message">
-    <h3>เลือกกกรรมการ </h3>
+    <h3>เลือกกรรมการ </h3>
   </div>
   <form class="ui green message"  id="form1" method="post"  action="{{ url('/chair/setreviewer/'.$id) }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -76,11 +74,11 @@
     </div>
     <div class="field required">
       <label>เลขประจำตัวประชาชน</label>
-    <input id="A4" name="A4" type="text" placeholder="เลขประจำตัวประชาชน" required></input>
+    <input id="A4" name="A4" type="text" maxlength="13" minlength="13" placeholder="เลขประจำตัวประชาชน" required></input>
     </div>
     <div class="field required">
       <label>Email</label>
-        <input id="A5" name="A5" type="text"  placeholder="Email">
+        <input id="A5" name="A5" type="Email"  placeholder="Email" >
    </div>
 
    <div class="field required">
@@ -109,11 +107,11 @@
     </div>
     <div class="field required">
       <label>เลขประจำตัวประชาชน</label>
-    <input id="B4" name="B4" type="text" placeholder="เลขประจำตัวประชาชน" required></input>
+    <input id="B4" name="B4" type="text" maxlength="13" minlength="13" placeholder="เลขประจำตัวประชาชน" required></input>
     </div>
     <div class="field required">
       <label>Email</label>
-        <input id="B5" name="B5" type="text"  placeholder="Email" required>
+        <input id="B5" name="B5" type="Email"  placeholder="Email" required>
    </div>
 
    <div class="field required" >
@@ -140,11 +138,11 @@
     </div>
     <div class="field required">
       <label>เลขประจำตัวประชาชน</label>
-    <input id="C4" name="C4" type="text" placeholder="เลขประจำตัวประชาชน" required></input>
+    <input id="C4" name="C4" type="text" maxlength="13" minlength="13" placeholder="เลขประจำตัวประชาชน" required></input>
     </div>
     <div class="field required">
       <label>Email</label>
-        <input id="C5" name="C5" type="text"  placeholder="Email" required>
+        <input id="C5" name="C5" type="Email"  placeholder="Email" required>
    </div>
 
    <div class="field required">

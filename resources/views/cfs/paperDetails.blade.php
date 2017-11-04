@@ -468,7 +468,7 @@
 						<label>
 							<h3 align="left">
 								เนื้อหาของเอกสารเรื่อง : 
-								<a id="detailFilePaper"  target ="_blank"  href="{{ route('viewpaper',['name'=>$paper->pdf_name]) }}">{{ $paper->pdf_name }}</a>
+								<a id="detailFilePaper"  target ="_blank"  href="{{ route('userpreview',['name'=>$paper->pdf_name]) }}">{{ $paper->pdf_name }}</a>
 							</h3>
 						<label>
 					</div>

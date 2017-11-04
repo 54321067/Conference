@@ -46,7 +46,7 @@ class AdminController extends Controller
     {
         $con = DB::table('conferall')->count(); 
         $paper = DB::table('paper')->count();
-        $unreview = DB::table('paper')->where('paper.status_reviewer','=','0')->count();
+        $unreview = DB::table('paper')->where('paper.status_send','=','1')->count();
         $unpay = DB::table('paper')->where('paper.status_payment','=','0')->count();
         return view('adminconference.path')->with('unreviews',$unreview)->with('unpays',$unpay)->with('cons',$con)->with('papers',$paper);
     }
@@ -113,6 +113,10 @@ class AdminController extends Controller
     }
     public function setpayment($id,$conid){
         DB::table('paper')->where('paper_id',$id)->update(['status_payment'=>1]);
+        return redirect()->route('adminconference.viewpaper', ['id' => $conid]);
+    }
+    public function resetpayment($id,$conid){
+        DB::table('paper')->where('paper_id',$id)->update(['status_send'=>0]);
         return redirect()->route('adminconference.viewpaper', ['id' => $conid]);
     }
     public function table()

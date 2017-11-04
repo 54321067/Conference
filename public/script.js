@@ -20,7 +20,9 @@ $('.test.button').on('click',function(){
 $('.btn-modal').on('click',function(){
             $('#modal-login').modal('show');
 
-        });
+});
+
+
 $('#example1').calendar();
 $('#example2').calendar();
 $('#example3').calendar();
