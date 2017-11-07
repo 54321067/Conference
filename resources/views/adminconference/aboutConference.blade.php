@@ -22,12 +22,12 @@
 			<div style="clear:right" id="cfp">
 				<div class="ui segment">
 					<span>&bull;</span>
-					<a>รายละเอียด</a>
+					<a class="ui green tag label">รายละเอียด</a>
 					<span>&bull;</span>
-					<a>หัวข้อ</a>
+					<a class="ui gray tag label">หัวข้อ</a>
 					@if(Auth::user()->status == 'superadmin')
 						<span>&bull;</span>
-						<a style="float: right;">ผู้สร้างการประชุม_{{$admin[0]->name}}_</a>
+						<a class="ui brown tag label" style="float: right;">ผู้สร้างการประชุม_{{$admin[0]->name}}_</a>
 					@endif
 				</div>
 				<table>
@@ -52,7 +52,7 @@
 					<tr>
 						<td>Conference website</td>
 						<td>
-							<a target="_blank" href="">url</a>
+							<a target="_blank" href="{{$con->Y_Line}}">{{$con->Y_Line}}</a>
 						</td>
 					</tr>
 					<tr>
@@ -69,13 +69,43 @@
 					</tr>
 				</table>
 				<div class="topics">หัวข้อ: 
-					<a href="">technology</a>
-					,
-					<a href="">{{$con->topic_1}}</a>
-					,
-					<a href="">{{$con->topic_2}}</a>
+					<?php
+                        $tag1s = explode(",", $con->topic_1);
+                        foreach ($tag1s as $tag) { $i=rand(1,10); ?>
+                            @if($i<= 2)
+                                <a class="ui blue label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @elseif($i >= 2 and $i < 4)
+                                <a class="ui red label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @elseif($i >= 4  and $i < 6)
+                                <a class="ui brown label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @elseif($i >= 6 and $i < 8)
+                                <a class="ui purple label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @else
+                                <a class="ui green label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @endif
+                    <?php $i++; } ?>
+                    <?php $j=0; ?>
+                    <?php
+                        $tag2s = explode(",", $con->topic_2);
+                        foreach ($tag2s as $tag) {  $j=rand(1,10);?>
+                            @if($j<= 2)
+                                <a class="ui violet label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @elseif($j >= 2 and $j < 4)
+                                <a class="ui yellow label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @elseif($j >= 4  and $j < 6)
+                                <a class="ui teal label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @elseif($j >= 6 and $j < 8)
+                                <a class="ui grey label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @else
+                                <a class="ui brown label" style="margin-top: 0.5%">{{$tag}}</a>
+                            @endif
+
+                    <?php $j++; }?> 
+                        
+                                    
+                                           
 				</div>
-					<h2><a name="CFP:1">รายละเอียดการประชุม</a></h2>
+					<h2><a >รายละเอียดการประชุม</a></h2>
 					<hr>
 				<div class="ui ignored message">
 					<p style="text-align:justify">{{$con->Detail}}</p>

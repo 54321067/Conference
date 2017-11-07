@@ -15,7 +15,7 @@
 
 @if(Auth()->check())
 
-<div class="ui  four statistics">
+<div class="ui  three statistics">
   <div class="statistic">
     <div class="value">
     <i class="red bookmark icon"></i>
@@ -32,14 +32,6 @@
     </div>
     <div class="label">
       Papers
-    </div>
-  </div>
-  <div class="statistic">
-    <div class="value">
-      <i class="green add user icon"></i> {{$unreviews }}
-    </div>
-    <div class="label">
-      ยังไม่ได้เลือกreviewer
     </div>
   </div>
   <div class="statistic">

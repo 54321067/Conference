@@ -30,7 +30,7 @@ Route::get('/home',['as'=>'adminconference.home','uses'=>'UserController@home'])
 //user//
 Route::post('/upload/{id}', 'UploadController@upload')->middleware('auth');
 Route::get('/Mysubmition',['as'=>'cfs.Mysubmition','uses'=>'PaperController@gotosubmition'])->middleware('auth');
-Route::get('/Mysubmition/{id}/{pname}/{paperid}',['as'=>'cfs.paperDetails','uses'=>'PaperController@gotopaperdetail'])->middleware('auth');
+Route::get('/Mysubmition/{id}/{pname}/{paperid}_{i}',['as'=>'cfs.paperDetails','uses'=>'PaperController@gotopaperdetail'])->middleware('auth');
 Route::post('/Mysubmition/{id}/{pname}/invoice.pdf',['as'=>'cfs.payment','uses'=>'PaperController@viewPaymentPDF'])->middleware('auth');
 ////////
 Route::get('/homecon',['as'=>'cfs.homecon','uses'=>'PaperController@conall'])->middleware('auth');

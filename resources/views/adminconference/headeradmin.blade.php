@@ -26,12 +26,12 @@
                   Create Conference
                 </div>
                 <div onclick="location.href='/adminhome'" class="item">
-                  <i class="green icon book"></i>
+                  <i class="blue icon book"></i>
                   View All Conference
                 </div> 
                 @if(Auth::user()->status == 'superadmin')
                 <div  onclick="location.href='/list'" class="item">
-                    <i class="green icon spy"></i>
+                    <i class="brown icon spy"></i>
                     Admin team
                 </div>  
                 @endif  

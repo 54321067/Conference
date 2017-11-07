@@ -55,6 +55,7 @@ tr:nth-child(even){background-color: #E6E6FA}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="body">
+  @include('chaircon.headerchair')
 <div class="ui green  segment" style="margin: 0%;margin-left: 4.5%;margin-right: 4.5%;">
 
  <form class="ui  form" action="{{url('/getscore/'.$paper[0]->paper_id)}}" method="post" >
@@ -63,9 +64,6 @@ tr:nth-child(even){background-color: #E6E6FA}
   <h2 class="ui icon" style="margin-left: 40% "><i class=" big green user icon" ></i>Chair<label></h2>
   
    <div class="ui segment">
-    <h2 "><i class="large green address book outline icon"></i>Paper ID :  
-        &nbsp;{{$paper[0]->paper_id}}
-    </h2>
     <h2 "><i class="large green users icon"></i>File paper :  
        &nbsp;<a target="_blank" href="{{ url('/chair/preview/'.$paper[0]->pdf_name) }}">{{$paper[0]->pdf_name}}</a>
     </h2>
@@ -173,10 +171,32 @@ tr:nth-child(even){background-color: #E6E6FA}
 </table>
   </div>
   <div class="ui green segment">
-  
   <div class="grouped fields">
-     <h2 class="ui icon"  "><i class=" big green write square icon" ></i>assessment<label></h2>
-    
+     <h2 class="ui icon"  "><i class=" big green write square icon" ></i>Comments</h2>
+    <hr>
+    <div class="field required">
+      <h2>Comment_reviewer[{{$reviewer1[0]->Name}}]</h2>
+      <div class="ui Comment" style="margin-left: 1.5%">
+      <textarea rows="7"  name="comment" disabled="true"  placeholder="{{$group[0]->comment_1}}"></textarea>
+    </div>
+    </div>
+    <div class="field required">
+      <h2>Comment_reviewer[{{$reviewer2[0]->Name}}]</h2>
+      <div class="ui Comment" style="margin-left: 1.5%">
+      <textarea rows="7"  disabled="true" name="comment" placeholder="{{$group[0]->comment_2}}"></textarea>
+    </div>
+    </div>
+    <div class="field required">
+      <h2>Comment_reviewer[{{$reviewer3[0]->Name}}]</h2>
+      <div class="ui Comment" style="margin-left: 1.5%">
+      <textarea rows="7"  disabled="true" name="comment" placeholder="{{$group[0]->comment_3}}"></textarea>
+    </div>
+    </div>
+
+  </div>
+  <div class="grouped fields">
+     <h2 class="ui icon"  "><i class=" big green write square icon" ></i>Assessment<label></h2>
+    <hr>
     <div class="field required">
       <div class="ui radio checkbox">
         <input type="radio" name="throughput" value="-3" required>

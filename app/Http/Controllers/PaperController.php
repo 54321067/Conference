@@ -21,7 +21,7 @@ class PaperController extends Controller
         $paper = DB::table('paper')->get();
         return view('cfs.mySubmition',['values' => $value,'papers' => $paper,'userid'=>$userid]);
     }
-    public function gotopaperdetail($id,$pname,$paperid)
+    public function gotopaperdetail($id,$pname,$paperid,$i)
     {   
         //update group table
         
@@ -34,7 +34,7 @@ class PaperController extends Controller
             
         
         
-        return view('cfs.paperDetails',['paper' => $papers,'idpaper' => $paperid, 'namepaper' => $pname,'vb' => $conuser])->with('test',$score);
+        return view('cfs.paperDetails',['paper' => $papers,'idpaper' => $paperid, 'namepaper' => $pname,'vb' => $conuser])->with('test',$score)->with('i',$i);
     }
     public function myinfo(){
         $user = DB::table("users")->where('id',Auth::user()->id)->get();

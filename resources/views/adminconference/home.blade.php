@@ -80,16 +80,16 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
     <form action="{{ route('users.setLogin') }}" method="post" class="ui form">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       <div class="ui stacked segment" style="background-color: #4dffa6">
-        <div class="field" >
+        <div class="field required" >
           <div class="ui left icon input" >
             <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail address or user id">
+            <input type="text" name="email" placeholder="E-mail address or user id" required>
           </div>
         </div>
-        <div class="field">
+        <div class="field required">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="password" placeholder="Password" required>
           </div>
         </div>
         <button type="submit" class="ui button google plus">Login</button>

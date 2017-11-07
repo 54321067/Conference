@@ -19,7 +19,7 @@
 
     <div class="ui segment" style="margin-top: 0%;margin-left: 4.5%;margin-right: 4.5%">
       <div class="ui blue segment">
-      	<div style="display: inline-block;max-width: 49%"><h2>{{$names->Acronym_N}}</h2></div>
+      	<div style="display: inline-block;max-width: 49%"><a class="ui huge black label">{{$names->Acronym_N}}</a></div>
         <div style="display: inline-block;margin-left: 60%;max-width: 49%"></div>
       </div>
       <div style="margin-bottom: 1%">
@@ -62,7 +62,24 @@
                           <td class="negative"><i class="icon close"></i>ตรวจสอบผิดพลาด</td>
                       @endif
                   @endif
-                  <td>{{$value->keyword1}}</td>
+                  <td>
+                                     
+                  <?php
+                    $tag1s = explode(",", $value->keyword1);
+                    foreach ($tag1s as $tag) { $i=rand(1,10); ?>
+                        @if($i<= 2)
+                            <a class="ui blue label" style="margin-bottom: 0.5%">{{$tag}}</a>
+                        @elseif($i >= 2 and $i < 4)
+                            <a class="ui red label" style="margin-bottom: 0.5%">{{$tag}}</a>
+                        @elseif($i >= 4  and $i < 6)
+                            <a class="ui brown label" style="margin-bottom: 0.5%">{{$tag}}</a>
+                        @elseif($i >= 6 and $i < 8)
+                            <a class="ui purple label" style="margin-bottom: 0.5%">{{$tag}}</a>
+                        @else
+                            <a class="ui green label" style="margin-bottom: 0.5%">{{$tag}}</a>
+                        @endif
+                <?php $i++; } ?>
+                 </td>     
                 </tr>              
 
 

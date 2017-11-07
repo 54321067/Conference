@@ -18,8 +18,8 @@
 <div class="ui segments">
 <!--Main topic -->
   <div class="ui black message" style="margin-bottom: 1.5%">
-    <h1>PAPER ID : {{$id}} <a  style="float: right;">
-    PAPER NAME : {{$values[0]->paper_name}}</a></h1>
+    <h1>Paper id : {{$id}} <a  style="float: right;">
+    Paper name : {{$values[0]->paper_name}}</a></h1>
   </div>
   <div class="ui green message"  >
   <div class="item">
@@ -83,7 +83,7 @@
 
    <div class="field required">
       <label>เบอร์โทรศัพท์</label>
-        <input id="A6" name="A6" type="text"  placeholder="เบอร์โทรศัพท์" required>
+        <input id="A6" name="A6" type="text" maxlength="11" minlength="10"  placeholder="เบอร์โทรศัพท์" required>
     </div>
 		</div>
     </div>
@@ -116,7 +116,7 @@
 
    <div class="field required" >
       <label>เบอร์โทรศัพท์</label>
-        <input id="B6" name="B6" type="text"  placeholder="เบอร์โทรศัพท์" required>
+        <input id="B6" name="B6" type="text" maxlength="11" minlength="10"  placeholder="เบอร์โทรศัพท์" required>
     </div>
     </div>
     </div>
@@ -147,7 +147,7 @@
 
    <div class="field required">
       <label>เบอร์โทรศัพท์</label>
-        <input id="C6" name="C6" type="text"  placeholder="เบอร์โทรศัพท์" required>
+        <input id="C6" name="C6" type="text" maxlength="11" minlength="10"  placeholder="เบอร์โทรศัพท์" required>
     </div>
     </div>
     </div>

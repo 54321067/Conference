@@ -48,7 +48,7 @@
 						<br>
 						<label>
 							<h3 align="left" style="margin-left:10%;">
-								<font color="black">เอกสารลำดับที่ : </font><font color="red" style="font-size:90%">{{ $idpaper }}</font>
+								<font color="black">เอกสารลำดับที่ : </font><font color="red" style="font-size:90%">{{ $i }}</font>
 							</h3>
 						</label>
 						<br>
@@ -58,7 +58,7 @@
 						<label>
 							<h3 align="right" style="margin-right: 10%">
 							<?php if($paper->status_reviewer == 0){ ?>
-								 	<font color="black">การเลือกกรรมการ : </font><font color="red">ยังไม่เลือก</font>
+								 	<font color="black">การเลือกกรรมการ : </font><font color="red">รอคัดเลือกกรรมการ</font>
 	                      			&nbsp;&nbsp;&nbsp;&nbsp;       			
 	                  		<?php }elseif($paper->status_reviewer == 1){ ?>
 	                  				<font color="black">การเลือกกรรมการ : </font><font color="green">เลือกแล้ว</font>
@@ -92,7 +92,7 @@
 	                  							<?php } ?>
 	                  						<?php }elseif($paper->status_payment == 1){ ?>
 	                  						&nbsp;&nbsp;&nbsp;&nbsp;
-	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
+	                  							<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินเรียบร้อย</font>
 	                  						<?php }else{ ?>
 	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
@@ -109,7 +109,7 @@
 	                  							<?php } ?>
 	                  						<?php }elseif($paper->status_payment == 1){ ?>
 	                  						&nbsp;&nbsp;&nbsp;&nbsp;
-	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
+	                  							<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินเรียบร้อย</font>
 	                  						<?php }else{ ?>
 	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
@@ -126,7 +126,7 @@
 	                  							<?php } ?>
 	                  						<?php }elseif($paper->status_payment == 1){ ?>
 	                  						&nbsp;&nbsp;&nbsp;&nbsp;
-	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
+	                  							<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินเรียบร้อย</font>
 	                  						<?php }else{ ?>
 	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
@@ -143,7 +143,7 @@
 	                  							<?php } ?>
 	                  						<?php }elseif($paper->status_payment == 1){ ?>
 	                  						&nbsp;&nbsp;&nbsp;&nbsp;
-	                  							<font color="black">การชำระเงิน : </font><font color="green">อนุมัติแล้ว</font>
+	                  							<font color="black">การชำระเงิน : </font><font color="green">ชำระเงินเรียบร้อย</font>
 	                  						<?php }else{ ?>
 	                  						&nbsp;&nbsp;&nbsp;&nbsp;
 	                  							<font color="black">การชำระเงิน : </font><font color="red">เกิดข้อผิดพลาด</font>
@@ -517,7 +517,7 @@
                   			 		<button id="btnGotoPaymentSubmit" form="toPayment" align="center" class="large ui green button" type="submit"  onclick="">ไปยังหน้าชำระค่าบริการ</button>
                   			 		</form>
                   			 		@if($paper->status_send==0  )
-                  			 		<button  type="button" class="ui primary test button"><h4>อัพโหลดหลักหฐานการจ่ายเงิน
+                  			 		<button  type="button" class="ui primary test button"><h4>อัพโหลดหลักฐานการจ่ายเงิน
                   			 		</h4></button>
                   			 		@endif
                   			<?php }?>

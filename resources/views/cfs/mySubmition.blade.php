@@ -50,6 +50,7 @@
 					  	<div class="active content">
 					    	<h4><font color="#006600">หัวข้อการประชุมของฉัน</font></h4>		   
 					   	 	<div class="accordion transition">
+					
 					   	 	<?php foreach ($values as $value) {?>
 					      		<div class="title">
 					          		<h4><i class="dropdown icon"></i>
@@ -59,7 +60,7 @@
 					      		<div class="content">
 					        		<div class="transition "><h4><font color="#006600">งานวิจัยของฉัน</font></h4></div>
 					        		<div class="accordion transition hidden">
-					        			
+					        			<?php $i=1;?>
 
 					        			<?php foreach ($papers as $paper) {
 
@@ -72,9 +73,9 @@
 						              			{{$paper->paper_name}}</h5>
 						          			</div>
 						          			<div class="content" style="background-color:#fcf4f4">	
-						              			<a id="pp1" href="{{ route('cfs.paperDetails',['id'=>$value->conid,'pname'=>$paper->paper_name,'paperid'=>$paper->paper_id]) }}"><h5>เอกสารลำดับที่ {{$paper->paper_id}} : {{$paper->paper_name}}</h5></a>
+						              			<a id="pp1" href="{{ route('cfs.paperDetails',['id'=>$value->conid,'pname'=>$paper->paper_name,'paperid'=>$paper->paper_id,'i'=> $i]) }}"><h5>เอกสารลำดับที่ {{$i}} : {{$paper->paper_name}}</h5></a>
 						          			</div>
-						          		<?php }
+						          		<?php $i++;}
 						          		} ?>
 					          		</div>
 					        	</div>

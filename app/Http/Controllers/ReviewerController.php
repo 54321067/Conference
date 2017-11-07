@@ -36,13 +36,21 @@ class ReviewerController extends Controller
     public function view($id,$id2)
     {
         //select paper 
-      //  $check = DB::table('paper')->where('group_id',$id)->where('Reviewer_id1',$id2)->orWhere('Reviewer_id2',$id2)->orWhere('Reviewer_id3',$id2)->where('score_1','!=',-99)->o;
-      //  $if (condition) {
-            
-      //  }
+      $check1 = DB::table('group')->where('group_id',$id)->where('Reviewer_id1',$id2)->get();
+      $check2 = DB::table('group')->where('group_id',$id)->where('Reviewer_id2',$id2)->get();
+      $check3 = DB::table('group')->where('group_id',$id)->where('Reviewer_id3',$id2)->get();
+      if(!empty($check1[0]) and $check1[0]->score_1 != -99){
+        return redirect()->to('/home');
+      }elseif(!empty($check2[0]) and $check2[0]->score_2 != -99){
+        return redirect()->to('/home');
+      }elseif(!empty($check3[0]) and $check3[0]->score_3 != -99) {
+        return redirect()->to('/home');
+      }else{
+
         $p = DB::table('paper')->where('group_id',$id)->get();
         $R2 = DB::table('reviewer')->where('Id',$id2)->get();
         return view('cfs.bank')->with('groupid',$id)->with('id',$id2)->with('paper',$p)->with('R',$R2);
+      }
     }
     
     public function getchair($id,$id2){

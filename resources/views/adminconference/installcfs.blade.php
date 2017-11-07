@@ -140,11 +140,11 @@
       </div>
       </div>
     <div class="field required">
-      <label>วันอื่นๆ</label>
+      <label>url website</label>
         <div class="ui calendar" id="example4">
         <div class="ui input left icon">
-          <i class="calendar icon"></i>
-          <input id="i9" name="i9" type="text" placeholder="Date/Time" required>
+          <i class="flag icon"></i>
+          <input id="i9" name="i9" type="website"  placeholder="your websit( - )required"
         </div>
       </div>
       </div>

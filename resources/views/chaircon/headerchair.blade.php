@@ -1,7 +1,7 @@
 <section id ="mainbox">
-		<div class="ui inverted menu fixed">
+		<div class="ui menu fixed">
         @if(Auth::check())
-        <hgroup class ="item">
+        <hgroup class ="item" style="background-color: gray">
       		<i class="icon github alternate"></i>
       			<font color="white">
               Chair
@@ -9,7 +9,7 @@
         </hgroup>
         <hgroup class ="item">
           <a  href="/chairhome">
-            <font color="white">
+            <font color="black">
               View All Conference
             </font>         
         </a>

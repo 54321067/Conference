@@ -78,7 +78,7 @@
     					@elseif($con->name == "ใช้สำหรับการเรียนการสอน")
     					<img src="/images/teach.png" class="ui small image" style="margin: 0 auto;">
     					@elseif($con->name == "วารสารฉบับพิเศษ")
-    					<img src="/images/special journal.png" class="ui small image" style="margin: 0 auto;">
+    					<img src="/images/special_journal.png" class="ui small image" style="margin: 0 auto;">
     					@elseif($con->name == "วารสาร")
     					<img src="/images/journal.png" class="ui small image" style="margin: 0 auto;">
     					@elseif($con->name == "การดำเนินงานประชุม")
@@ -95,7 +95,7 @@
 						</h1>
 						<div class="ui divider" style="max-width: 95%"></div>
 						
-						<p><b>{{$con->Loca}}</b></p>
+						<p><b>{{ $con->Loca }} , {{ $con->R_Line }}</b></p>
 						
 					</td>
 				</tr>
@@ -105,7 +105,7 @@
 			<h1 class="ui header">Install Paper</h1>
 		</div>
 		<div style="margin-top: 3%">
-		<form action="{{ url('/paperform/'.$con->conid ) }}" method="post" id="form" enctype = "multipart/form-data">
+		<form action="{{ url('/paperform/'.$con->conid ) }}" method="post" name="form" id="form" enctype = "multipart/form-data">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<table style="width: 100%;">
 				<tbody>
@@ -151,7 +151,7 @@
 					      	<div class="ui fluid multiple search selection dropdown" id="keyword" style="width: 50%">
 						        <input name="tags" type="hidden" value="" id="paper3">
 						        <i class="dropdown icon"></i>
-						        <input class="search" autocomplete="off" tabindex="0"><span class="sizer" style=""></span>
+						        <input class="search" autocomplete="off" tabindex="0"><span class="sizer" style="" required></span>
 						        <div class="default text">Keyword</div>
 						        <div class="menu transition hidden" tabindex="-1">
 							        @if(!empty($con->topic_1) > 0)
@@ -188,8 +188,8 @@
 							<div class="ui form">
 								<div class="field">
 									<input  id="paper4" type="text" name="add-keyword1" placeholder="Add keyword 1" style="width: 30%">
-									<input  id="" type="text" name="add-keyword2" placeholder="Add keyword 2" style="width: 30%">
-									<input  id="" type="text" name="add-keyword3" placeholder="Add keyword 3" style="width: 30%">
+									<input  id="paper5" type="text" name="add-keyword2" placeholder="Add keyword 2" style="width: 30%">
+									<input  id="paper6" type="text" name="add-keyword3" placeholder="Add keyword 3" style="width: 30%">
 								</div>
 							</div>
 						</td>
@@ -204,7 +204,7 @@
 							        <input type="text" id="_attachmentName" name="PDF" required>
 							        <label for="attachmentName" class="ui icon button btn-file">
 							             <i class="upload icon"></i>
-							             <input type="file" id="attachmentName" name="attachmentName" style="display: none">
+							             <input type="file" id="attachmentName" name="attachmentName" style="display: none" required>
 							             
 							        </label>
 							    </div>
@@ -214,7 +214,7 @@
 					<tr>
 						<td colspan=100%>
 							<div style="text-align: center">
-								<button type="button" onclick="myFunction()" class="ui primary test button" tabindex="0" style="font-size: 170%;margin: 2%">
+								<button type="button" onclick="pdfEmpty()" class="ui primary test button" tabindex="0" style="font-size: 170%;margin: 2%">
 					        		Send Paper
 					      		</button>
 							</div>
@@ -265,7 +265,10 @@
 		    		<h2 style="color: black;">Add keyword</h2>
 		    	</td>
 		    	<td>
-		    		<h3 id="c4" style="color: black;"></h3>
+		    		<!--<h3 id="c4" style="color: black;"></h3>-->
+		    		<h3 id="c4"></h3>
+		    		<h3 id="c5"></h3>
+		    		<h3 id="c6"></h3>
 		    	</td>
 		    </tr>
 		    <tr>
@@ -273,7 +276,7 @@
 		    		<h2 style="color: black;">PDF</h2>
 		    	</td>
 		    	<td>
-		    		<h3 id="c5" style="color: black;"></h3>
+		    		<h3 id="c7" style="color: black;"></h3>
 		    	</td>
 		    </tr>
 		</table>
@@ -290,23 +293,32 @@
 
 <!--end Modal-->
 <script type="text/javascript">
-function myFunction() {
-	var paper1 = document.getElementById("paper1");
-    document.getElementById("c1").innerHTML = paper1.value;
-    var paper2 = document.getElementById("paper2");
-    document.getElementById("c2").innerHTML = paper2.value;
-    var paper3 = document.getElementById("paper3");
-    document.getElementById("c3").innerHTML = paper3.value;
-    var paper4 = document.getElementById("paper4");
-    document.getElementById("c4").innerHTML = paper4.value;
-    var _attachmentName = document.getElementById("_attachmentName");
-    document.getElementById("c5").innerHTML = _attachmentName.value;
-}
-</script>
-<script type="text/javascript">
+	function myFunction() {
+		
+	}
+	function pdfEmpty(){ 
+       
+		 	var paper1 = document.getElementById("paper1");
+		    document.getElementById("c1").innerHTML = paper1.value;
+		    var paper2 = document.getElementById("paper2");
+		    document.getElementById("c2").innerHTML = paper2.value;
+		    var paper3 = document.getElementById("paper3");
+		    document.getElementById("c3").innerHTML = paper3.value;
+		    var paper4 = document.getElementById("paper4");
+		    document.getElementById("c4").innerHTML = paper4.value;
+		    var paper5 = document.getElementById("paper5");
+		    document.getElementById("c5").innerHTML = paper5.value;
+		    var paper6 = document.getElementById("paper6");
+		    document.getElementById("c6").innerHTML = paper6.value;
+		    var _attachmentName = document.getElementById("_attachmentName");
+		    document.getElementById("c7").innerHTML = _attachmentName.value;
+			$('#modal-test').modal('show');
+		
+	
+    }
 	var fileExtentionRange = '.pdf';
-	var MAX_SIZE = 20; // MB
-
+	var MAX_SIZE = 30; // MB
+	
 	$(document).on('change', '.btn-file :file', function() {
 	    var input = $(this);
 
@@ -322,7 +334,7 @@ function myFunction() {
 	        input.trigger('fileselect', [ numFiles, label, size ]);
 	    }
 	});
-
+    
 	$('.btn-file :file').on('fileselect', function(event, numFiles, label, size) {
 	    $('#attachmentName').attr('name', 'attachmentName'); // allow upload.
 
