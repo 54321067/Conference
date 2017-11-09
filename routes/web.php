@@ -59,7 +59,6 @@ Route::get('/chair/preview/{name}',['as'=> 'chairpreview','uses'=>'chairControll
 //admin//
 ////////
 
-Route::get('/view/{id}',['as'=>'adminconference.aboutConference','uses'=>'ProjectController@show'])->middleware('auth');
 Route::get('/myConference',['as'=>'adminconference.myConference','uses'=>'AdminController@myConference'])->middleware('auth','admin');
 Route::post('/get',['as'=>'adminconference.installcfs','uses'=>'AdminController@store'])->middleware('auth','admin');
 Route::get('/checkreviewer/{id}',['as'=>'adminconference.checkreviewer','uses'=>'AdminController@checkreviewer'])->middleware('auth','admin');

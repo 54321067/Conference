@@ -58,7 +58,7 @@ tr:nth-child(even){background-color: #E6E6FA}
   @include('chaircon.headerchair')
 <div class="ui green  segment" style="margin: 0%;margin-left: 4.5%;margin-right: 4.5%;">
 
- <form class="ui  form" action="{{url('/getscore/'.$paper[0]->paper_id)}}" method="post" >
+ <form class="ui  form" action="{{url('/getscore/'.$paper[0]->paper_id)}}" method="post" id="form">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
   <h2 class="ui icon" style="margin-left: 40% "><i class=" big green user icon" ></i>Chair<label></h2>
@@ -174,24 +174,21 @@ tr:nth-child(even){background-color: #E6E6FA}
   <div class="grouped fields">
      <h2 class="ui icon"  "><i class=" big green write square icon" ></i>Comments</h2>
     <hr>
-    <div class="field required">
-      <h2>Comment_reviewer[{{$reviewer1[0]->Name}}]</h2>
-      <div class="ui Comment" style="margin-left: 1.5%">
-      <textarea rows="7"  name="comment" disabled="true"  placeholder="{{$group[0]->comment_1}}"></textarea>
-    </div>
-    </div>
-    <div class="field required">
-      <h2>Comment_reviewer[{{$reviewer2[0]->Name}}]</h2>
-      <div class="ui Comment" style="margin-left: 1.5%">
-      <textarea rows="7"  disabled="true" name="comment" placeholder="{{$group[0]->comment_2}}"></textarea>
-    </div>
-    </div>
-    <div class="field required">
-      <h2>Comment_reviewer[{{$reviewer3[0]->Name}}]</h2>
-      <div class="ui Comment" style="margin-left: 1.5%">
-      <textarea rows="7"  disabled="true" name="comment" placeholder="{{$group[0]->comment_3}}"></textarea>
-    </div>
-    </div>
+    <div class="ui divided selection list">
+  <a class="item">
+    <div class="ui red horizontal label">{{$reviewer1[0]->Name}}</div>
+    {{$group[0]->comment_1}}
+  </a>
+  <a class="item">
+    <div class="ui purple horizontal label">{{$reviewer2[0]->Name}}</div>
+    {{$group[0]->comment_2}}
+  </a>
+  <a class="item">
+    <div class="ui red horizontal label">{{$reviewer3[0]->Name}}</div>
+    {{$group[0]->comment_3}}
+  </a>
+  
+</div>
 
   </div>
   <div class="grouped fields">
@@ -199,43 +196,43 @@ tr:nth-child(even){background-color: #E6E6FA}
     <hr>
     <div class="field required">
       <div class="ui radio checkbox">
-        <input type="radio" name="throughput" value="-3" required>
+        <input type="radio" name="throughput" id="throughput" value="-3" required>
         <label>strong reject</label>
       </div>
     </div>
     <div class="field required">
       <div class="ui radio checkbox">
-        <input type="radio" name="throughput" value="-2" required>
+        <input type="radio" name="throughput" id="throughput" value="-2" required>
         <label>reject</label>
       </div>
     </div>
     <div class="field required">
       <div class="ui radio checkbox checked">
-        <input type="radio" name="throughput" value="-1" required>
+        <input type="radio" name="throughput" id="throughput" value="-1" required>
         <label>weak reject</label>
       </div>
     </div>
       <div class="field required">
       <div class="ui radio checkbox checked">
-        <input type="radio" name="throughput" value="0" required>
+        <input type="radio" name="throughput" checked="" id="throughput" value="0" required>
         <label>boundary</label>
       </div>
     </div>
       <div class="field required">
       <div class="ui radio checkbox checked">
-        <input type="radio" name="throughput" value="1" required>
+        <input type="radio" name="throughput" id="throughput" value="1" required>
         <label>Weak accept</label>
       </div>
     </div>
       <div class="field required">
       <div class="ui radio checkbox checked">
-        <input type="radio" name="throughput" value="2" required>
+        <input type="radio" name="throughput" id="throughput" value="2" required>
         <label>Accept</label>
       </div>
     </div>
     <div class="field required">
       <div class="ui radio checkbox">
-        <input type="radio" name="throughput"  value="3" required>
+        <input type="radio" name="throughput" id="throughput"  value="3" required>
         <label>Strong accept</label>
       </div>
     </div>
@@ -243,19 +240,73 @@ tr:nth-child(even){background-color: #E6E6FA}
 
   </div>
   <div align="center">
-  <button class="positive ui button" id="alert" >อนุมัติ</button>
+    <button type="button" class="ui primary test button" onclick="myFunction()">Submit</button>
+  
+  <div class="ui small modal" id="modal-test">
+  <i class="close icon"></i>
+  <div class="header" style="background-color: #80ffaa">
+    <h1>#ยืนยันการประเมิน</h1>
+  </div>
+  <div class="scrolling content">
+    <div class="left" style="margin-left: 2%">
+      <h1 class="ui horizontal divider" style="color: black;">ผลการประเมิน</h1>
+      <br>
+      <h3 id="A" style="color: black;text-align: center;"></h3>
+      
+      
+    </div>
+  </div>
+  <div class="actions">
+      <div class="ui black deny button">
+        ยกเลิก
+      </div>
+      <button type="submit" form="form" class="ui positive button">
+      <a><font color="black">ยืนยัน</font></a>
+    </button>
+    </div>
+</div>
    <script type="text/javascript">
-     $("#alert").click(function() {
-        swal({
-       
-       text: "Thank you :)",
-       
-        });
-        });
+     
+     function myFunction() {
+
+ var rates = document.getElementsByName('throughput');
+var rate_value;
+
+for(var i = 0; i < rates.length; i++){
+    if(rates[i].checked){
+        rate_value = rates[i].value;
+        break;
+    }
+    
+}
+if(rate_value==-3){
+    $('#A').text('strong reject');
+}
+else if(rate_value==-2){
+    $('#A').text('reject');
+}
+else if(rate_value==-1){
+    $('#A').text('weak reject');
+}
+else if(rate_value==0){
+    $('#A').text('boundary');
+}
+else if(rate_value==1){
+    $('#A').text('Weak accept');
+}
+else if(rate_value==2){
+    $('#A').text('accept');
+}
+else if(rate_value==3){
+    $('#A').text('Strong accept');
+}
+
+
+}
 
      </script>
 
-  </form>
+  
   </div>
   </div>
   

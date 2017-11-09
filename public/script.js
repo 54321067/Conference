@@ -4197,7 +4197,7 @@ var datetime = moment().format('MM-DD-YYYY');
               , rowsContainer = table.find('tbody').length > 0 ? table.find('tbody') : table
               , rows = rowsContainer.find('tr').has('td, th')
               , cells = rows.find(':nth-child(' + (th.index() + 1) + ')').filter('td, th')
-              , sortBy = th.data().sortBy
+              , sortBy = true
               , sortedMap = [];
 
             var unsortedValues = cells.map(function(idx, cell) {

@@ -532,7 +532,7 @@
 						<div class="content">
 							<form action="{{ URL::to('/upload/'.$paper->paper_id) }}" method="post" enctype="multipart/form-data">
                   						<label  style="margin-top: 1%">
-									    <input type="file" name="file" id="file"  style="margin-top: 3%;margin-left: 1%">
+									    <input type="file" name="file" id="file"  style="margin-top: 3%;margin-left: 1%" required>
 									    
 										<input type="hidden" value="{{ csrf_token() }}" name="_token" >
 										</label>

@@ -66,19 +66,19 @@
                                      
                   <?php
                     $tag1s = explode(",", $value->keyword1);
-                    foreach ($tag1s as $tag) { $i=rand(1,10); ?>
-                        @if($i<= 2)
+                    foreach ($tag1s as $tag) { $t1=rand(1,10); ?>
+                        @if($t1<= 2)
                             <a class="ui blue label" style="margin-bottom: 0.5%">{{$tag}}</a>
-                        @elseif($i >= 2 and $i < 4)
+                        @elseif($t1 >= 2 and $t1 < 4)
                             <a class="ui red label" style="margin-bottom: 0.5%">{{$tag}}</a>
-                        @elseif($i >= 4  and $i < 6)
+                        @elseif($t1 >= 4  and $t1 < 6)
                             <a class="ui brown label" style="margin-bottom: 0.5%">{{$tag}}</a>
-                        @elseif($i >= 6 and $i < 8)
+                        @elseif($t1 >= 6 and $t1 < 8)
                             <a class="ui purple label" style="margin-bottom: 0.5%">{{$tag}}</a>
                         @else
                             <a class="ui green label" style="margin-bottom: 0.5%">{{$tag}}</a>
                         @endif
-                <?php $i++; } ?>
+                <?php $t1++; } ?>
                  </td>     
                 </tr>              
 

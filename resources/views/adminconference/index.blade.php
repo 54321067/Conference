@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
   <head>
-    <title>ระบบสนับสนุนงานวิจัย</title>
+    <title>ระบบสนับสนุนงานวิจัย1</title>
     @include('adminconference.head')
 </head>
 <body style="overflow-y: hidden;">
@@ -10,27 +10,31 @@
 <div class="body">
 @include('adminconference.headeradmin')
 @if(Auth::check())
-<div class="ui four cards" style="margin-left: 4%;margin-bottom: 5%">
-        <!--   start 2  -->
-          @foreach($admins as $admin)
+    @if($i==1)
+    <div class="ui four cards" style="margin-left: 4%;margin-bottom: 5%">
+            <!--   start 2  -->
+              @foreach($admins as $admin)
 
-            <div class="ui card" style="width: 300px;height: 408px;margin-left: 2%;margin-right: 2%;">
-              <div class="image" style="height: 300px">
-                <img src="{{$admin->image}}">
-              </div>
-            <div class="content" style="max-height: 70px">
-              <a class="header" align = 'center'>{{$admin->name}}</a>
-            </div>
-            <div class="black ui button">
-              <i class="icon search"></i>
-              <a href="{{ url('/list/info/'.$admin->id) }}"><font color="white">view</font></a>
-              
-            </div>
-            </div>
-          @endforeach
-      <!--  end   -->
+                <div class="ui card" style="width: 300px;height: 408px;margin-left: 2%;margin-right: 2%;">
+                  <div class="image" style="height: 300px">
+                    <img src="{{$admin->image}}">
+                  </div>
+                <div class="content" style="max-height: 70px">
+                  <a class="header" align = 'center'>{{$admin->name}}</a>
+                </div>
+                <div class="black ui button">
+                  <i class="icon search"></i>
+                  <a href="{{ url('/list/info/'.$admin->id) }}"><font color="white">view</font></a>
+                  
+                </div>
+                </div>
+              @endforeach
+          <!--  end   -->
 
-</div>
+    </div>
+    @else
+        <div class="ui inverted segment" style="text-align: center;margin-left: 20%;margin-right: 20%">ยังไม่มีadmin</div>
+    @endif
 @else
 
 @endif

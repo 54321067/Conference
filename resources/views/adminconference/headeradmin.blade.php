@@ -1,10 +1,10 @@
 <section id ="mainbox">
 		<div class="ui inverted menu fixed">
         @if(Auth::check())
-        <hgroup class ="item">
-      		<i class="icon github alternate"></i>
+        <hgroup class ="item" style="background-color: #99ffce">
+      		<i class="icon black github alternate"></i>
           <a href="/list/admin">
-      			<font color="white">
+      			<font color="black">
               @if(Auth::user()->status == 'superadmin')
                   SuperAdmin
               @else
@@ -37,12 +37,11 @@
                 @endif  
             </div>
       </a>
-      <hgroup class="item ">
-                  <font color="green">W E l l C O M E </font> __ {{ Auth::user()->name }} __
-      </hgroup>
-      <hgroup class ="right item">
-              <a href="{{ route('users.logout') }}" class="ui google plus button">Logout</a>
-      </hgroup>
+      <div class="right menu">
+              <a class="item"><font color="#99ffce">W E L L C O M E __ {{ Auth::user()->name }} __</font></a>
+              <a class="item" href="{{ route('users.logout') }}" class="ui google plus button">Logout</a>
+      </div>
+
       @else
       <a class ="ui btn-modal item" href="#">
             <i class="icon rocket"></i>Login

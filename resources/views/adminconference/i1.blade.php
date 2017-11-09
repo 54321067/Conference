@@ -30,11 +30,11 @@
               
                 <div class="content">
                   <div class="header">
-                    <form method="post" action="{{ url('/list/info/'.$infos[0]->id)}}">
+                    <form method="post" id="form" action="{{ url('/list/info/'.$infos[0]->id)}}">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       <input type="hidden" name="_method" value="DELETE">
                       <h1><u>ข้อมูลส่วนตัว</u>
-                            <button type="submit" style="float: right;" class="ui google plus button">D E L E T E</button>
+                            <button type="button" onclick="" style="float: right;" class="ui google test button">D E L E T E</button>
                       </h1>
                     </form>
                   </div>
@@ -47,8 +47,31 @@
         </div>
       </div>
   </div>
-  
-
+  <div class="ui tiny modal" id="modal-test">
+  <i class="close icon"></i>
+  <div class="header" style="background-color: #80ffaa">
+    <h1>#ยืนยันการลบ</h1>
+  </div>
+  <div class="actions">
+      <button type="submit" style="float: left" form="form"  onclick="return checkMe()"  class="ui positive button">
+      <a><font color="black">ยืนยัน</font></a>
+    </button>
+    <div class="ui black deny button">
+        ยกเลิก
+      </div>
+    </div>
+</div>
+ <script type="text/javascript">
+       function checkMe() {
+    if (confirm("Are you sure")) {
+        alert("Thank you");
+        return true;
+    } else {
+        
+        return false;
+    }
+}
+     </script>
 </body>
 
 </html>

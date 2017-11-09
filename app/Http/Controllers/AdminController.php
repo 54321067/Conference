@@ -28,7 +28,12 @@ class AdminController extends Controller
     public function index()
     {
         $Professor = DB::table('users')->where('status','admin')->get();
-        return view('adminconference.index')->with('admins',$Professor);
+        $i=1;
+        if ($Professor->isEmpty()) {
+            $i=0;
+        }
+        //return response()->json($Professor->isEmpty());
+        return view('adminconference.index')->with('admins',$Professor)->with('i',$i);
     }
     public function info($id)
     {
@@ -40,22 +45,42 @@ class AdminController extends Controller
     {
         $destroy = DB::table('users')->where('id',$id)->delete(); 
         $Professor = DB::table('users')->where('status','admin')->get();
-        return view('adminconference.index')->with('admins',$Professor);
+        return redirect()->route('adminconference.index');
     }
      public function admin()
     {
-        $con = DB::table('conferall')->count(); 
-        $paper = DB::table('paper')->count();
-        $unreview = DB::table('paper')->where('paper.status_send','=','1')->count();
-        $unpay = DB::table('paper')->where('paper.status_payment','=','0')->count();
-        return view('adminconference.path')->with('unreviews',$unreview)->with('unpays',$unpay)->with('cons',$con)->with('papers',$paper);
+        $count1 =0;$count2=0;
+        if (Auth::user()->status == 'superadmin') {
+            $con = DB::table('conferall')->count(); 
+            $paper = DB::table('paper')->count();
+            $unpay = DB::table('paper')->where('paper.status_send','=','1')->count();
+            $count1 =$con;$count2=$paper;
+        }else{
+            $con = DB::table('conferall')->where('own_id',Auth::user()->id)->get();
+            $box1 = array(); 
+            foreach ($con as $key) {
+                $box1[] = $key->conid;
+                $count1++;            
+            }
+            $paper = DB::table('paper')->whereIn('con_id',$box1)->get();
+            $box2 = array(); 
+            foreach ($paper as $key) {
+                $box2[] = $key->con_id;
+                $count2++;            
+            }
+            $unpay = DB::table('paper')->whereIn('paper_id',$box2)->where('paper.status_send','=','1')->count();
+        }
+        return view('adminconference.path')->with('unpays',$unpay)->with('cons',$count1)->with('papers',$count2);
     }
  
     public function adminhome()
     {
-        
-        if (Auth::user()->status == 'superadmin') {
+         //phpinfo();
+        //date_default_timezone_set("Asia/Bangkok");
+        //return response()->json(date("Y-m-d h:i:sa"));
+        if (Auth::user()->status == 'superadmin'){
             $conference = DB::table('conferall')->get();
+            //return response()->json([date("Y-m-d h:i:sa", $a) < date("Y-m-d h:i:sa")]);
         }else{
             $conference = DB::table('conferall')->where('own_id',Auth::user()->id)->get();
         }
@@ -65,8 +90,19 @@ class AdminController extends Controller
     public function aboutConference($id)
     {
         $con = confer::find($id);
-        $admin = DB::table('users')->where('id',$con->own_id)->get();
-        return view('adminconference.aboutConference')->with('con',$con)->with('admin',$admin);
+        if(Auth::user()->status == 'superadmin') {
+            $admin = DB::table('users')->where('id',$con->own_id)->get();
+            if ($admin->isEmpty()) { // superadmin is creater conference.
+                $admin = DB::table('users')->where('id',Auth::user()->id)->get();
+                return view('adminconference.aboutConference')->with('con',$con)->with('admin',$admin);
+            }
+            //return response()->json($admin->isEmpty());
+            return view('adminconference.aboutConference')->with('con',$con)->with('admin',$admin);
+            
+        }else{
+            return view('adminconference.aboutConference')->with('con',$con);
+        }
+        
     }
     public function preview($name)
     {
@@ -89,27 +125,30 @@ class AdminController extends Controller
         $store = new confer;
         $main  = $request->input('main');
         $sub  = $request->input('subcon');
-        $topics1 = explode(",",$main);
-        $topics2 = explode(",", $sub);
+        //$strmain = array();
+        //return response()->json(implode(" ",$strmain));
+        $topics1 = implode(",",$main);
+        $topics2 = implode(",", $sub);
         $store->name = $request->input('type');
         $store->Acronym_N = $request->input('name');
         $store->Acronym_L = $request->input('subname');
         $store->Loca = $request->input('locate');
         $store->Content = $request->input('maincontent');
+        $store->Content = $request->input('chair');
         $store->Detail = $request->input('detail');
         $store->D_Line = $request->input('deadlinetime');
         $store->R_Line = $request->input('completetime');
         $store->S_Line = $request->input('showtime');
         $store->Y_Line = $request->input('i9');
-        $store->topic_1    = $main;
-        $store->topic_2    = $sub;
+        $store->topic_1    = $topics1;
+        $store->topic_2    = $topics2;
         $store->chair_id = $request->input('chair');
         $id = Auth::user()->id;
         $store->own_id  = $id;
         $store->save();
 
         
-        return redirect()->to('/adminhome');
+        return redirect()->route('adminconference.adminhome');
     }
     public function setpayment($id,$conid){
         DB::table('paper')->where('paper_id',$id)->update(['status_payment'=>1]);

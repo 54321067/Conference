@@ -25,7 +25,7 @@ class chairController extends Controller
         if ($check[0]->status_score == -99) {
                    DB::table('paper')->where('paper_id',$id)->update(['status_score'=>$request->input('throughput'),'updated_at'  => new \dateTime]);
         }
-        return redirect()->to('/chairhome');
+        return redirect()->to('/chair/viewpaper/'.$check[0]->con_id);
         
     }
  
@@ -103,41 +103,42 @@ class chairController extends Controller
     public function review(Request $request,$id)
     {
         //1.insert reviewer
-        $C1=DB::table('reviewer')->where('Name','=',$request->input('A1'))->where('Lname','=',$request->input('A2'))->where('Number_people',$request->input('A5'))->count();
-        $C2=DB::table('reviewer')->where('Name','=',$request->input('B1'))->where('Lname','=',$request->input('B2'))->where('Number_people',$request->input('B5'))->count();
-        $C3=DB::table('reviewer')->where('Name','=',$request->input('C1'))->where('Lname','=',$request->input('C2'))->where('Number_people',$request->input('C5'))->count();  
+    
+        $C1=DB::table('reviewer')->where('Name','=',$request->input('name1'))->where('Lname','=',$request->input('lname1'))->where('Number_people',$request->input('mail1'))->count();
+        $C2=DB::table('reviewer')->where('Name','=',$request->input('name2'))->where('Lname','=',$request->input('lname2'))->where('Number_people',$request->input('mail2'))->count();
+        $C3=DB::table('reviewer')->where('Name','=',$request->input('name3'))->where('Lname','=',$request->input('lname3'))->where('Number_people',$request->input('mail3'))->count();  
         $i1=0;$i2=0;$i3=0;
         if($C1 <= 0  ){
-            DB::table('reviewer')->insert(['Name'=>$request->input('A1'),'Lname'=>$request->input('A2'),'Email'=>$request->input('A5'),'Number_people'=>$request->input('A4'),'Rank'=>$request->input('A3'),'Cellphone'=>$request->input('A6'),'created_at'=> new \dateTime,'updated_at'  => new \dateTime]);
+            DB::table('reviewer')->insert(['Name'=>$request->input('name1'),'Lname'=>$request->input('lname1'),'Email'=>$request->input('mail1'),'Number_people'=>$request->input('PID1'),'Rank'=>$request->input('rank1'),'Cellphone'=>$request->input('phone1'),'created_at'=> new \dateTime,'updated_at'  => new \dateTime]);
             $rvid = DB::table('reviewer')->max('Id');
             $add1 = DB::table('reviewer')->where('Id',$rvid)->get();
             //return response()->json($add1);
             $i1 = $add1[0]->Id;
  
         }else{
-             $check = DB::table('reviewer')->where('Name','=',$request->input('A1'))->where('Lname','=',$request->input('A2'))->get();
+             $check = DB::table('reviewer')->where('Name','=',$request->input('name1'))->where('Lname','=',$request->input('lname1'))->get();
              $i1 = $check[0]->Id;
         }
 
         if($C2 <=0 ){
-            DB::table('reviewer')->insert(['Name'=>$request->input('B1'),'Lname'=>$request->input('B2'),'Email'=>$request->input('B5'),'Number_people'=>$request->input('B4'),'Rank'=>$request->input('B3'),'Cellphone'=>$request->input('B6'),'created_at'=> new \dateTime,'updated_at'  => new \dateTime]
+            DB::table('reviewer')->insert(['Name'=>$request->input('name2'),'Lname'=>$request->input('lname2'),'Email'=>$request->input('mail2'),'Number_people'=>$request->input('PID2'),'Rank'=>$request->input('rank2'),'Cellphone'=>$request->input('phone2'),'created_at'=> new \dateTime,'updated_at'  => new \dateTime]
          );
              $rvid = DB::table('reviewer')->max('Id');
              $add2 = DB::table('reviewer')->where('Id',$rvid)->get();
              $i2 = $add2[0]->Id;
          }else{
-             $check2 = DB::table('reviewer')->where('Name','=',$request->input('B1'))->where('Lname','=',$request->input('B2'))->get();
+             $check2 = DB::table('reviewer')->where('Name','=',$request->input('name2'))->where('Lname','=',$request->input('lname2'))->get();
              $i2 = $check2[0]->Id;
          }
  
          if($C3 <=0 ){
-            DB::table('reviewer')->insert(['Name'=>$request->input('C1'),'Lname'=>$request->input('C2'),'Email'=>$request->input('C5'),'Number_people'=>$request->input('C4'),'Rank'=>$request->input('C3'),'Cellphone'=>$request->input('C6'),'created_at'=> new \dateTime,'updated_at'  => new \dateTime]      
+            DB::table('reviewer')->insert(['Name'=>$request->input('name3'),'Lname'=>$request->input('lname3'),'Email'=>$request->input('mail3'),'Number_people'=>$request->input('PID3'),'Rank'=>$request->input('rank3'),'Cellphone'=>$request->input('phone3'),'created_at'=> new \dateTime,'updated_at'  => new \dateTime]      
          );     
             $rvid = DB::table('reviewer')->max('Id');
             $add3 = DB::table('reviewer')->where('Id',$rvid)->get();
             $i3 = $add3[0]->Id;
          }else{
-             $check3 = DB::table('reviewer')->where('Name','=',$request->input('C1'))->where('Lname','=',$request->input('C2'))->get();
+             $check3 = DB::table('reviewer')->where('Name','=',$request->input('name3'))->where('Lname','=',$request->input('lname3'))->get();
              $i3 =  $check3[0]->Id;
          }
 
@@ -146,18 +147,18 @@ class chairController extends Controller
             ['Reviewer_id1' => $i1 ,'Reviewer_id2' => $i2 ,'Reviewer_id3' => $i3]
         );
          //3.update group_id and status_reviewer of paper table
-        $groupid = DB::table('group')->max('Group_id');
+        $groupid = DB::table('group')->where('paper_id',$id)->get();
         DB::table('paper')->where('paper_id',$id)->update(
-            ['Group_id'=>$groupid,'status_reviewer'=>1,'updated_at'  => new \dateTime]
+            ['Group_id'=>$groupid[0]->Group_id,'status_reviewer'=>1,'updated_at'  => new \dateTime]
         );
         //5.send email to reviewers
-        $email = $request->input('A5');
-        $email2 = $request->input('B5');
-        $email3 = $request->input('C5');
+        $email = $request->input('mail1');
+        $email2 = $request->input('mail2');
+        $email3 = $request->input('mail3');
         $data = array('0'=> '','1' => '', '2' => '');
-        $data['0'] = 'http://localhost:8000/list/evaluation/'.$groupid.'/'.$i1;
-        $data['1'] = 'http://localhost:8000/list/evaluation/'.$groupid.'/'.$i2;
-        $data['2'] = 'http://localhost:8000/list/evaluation/'.$groupid.'/'.$i3;
+        $data['0'] = 'http://localhost:8000/list/evaluation/'.$groupid[0]->Group_id.'/'.$i1;
+        $data['1'] = 'http://localhost:8000/list/evaluation/'.$groupid[0]->Group_id.'/'.$i2;
+        $data['2'] = 'http://localhost:8000/list/evaluation/'.$groupid[0]->Group_id.'/'.$i3;
         $data = array( 'email' => $email, 'link' => $data['0'],
                         'email2' => $email2, 'link2' => $data['1'],
                         'email3' => $email3, 'link3' => $data['2']);

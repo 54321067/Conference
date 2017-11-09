@@ -58,6 +58,7 @@ class UserController extends Controller
     {
         $store = New User;
         $store->name = $request->input('name');
+        $store->username = $request->input('username');
         $store->email = $request->input('email');
         $store->nation_id = $request->input('nation');
         $store->phone = $request->input('phone');

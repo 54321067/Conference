@@ -19,12 +19,12 @@
             </div>  </h2>
 <form class="ui form" style="margin:3%;" id="form1" method="post"  action="{{ url('/get') }}">
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-  <div class="field required">
+  <div class="field">
     
-        <div class="field required">
+        <div class="field">
             <label>ประเภทการประชุม</label>
-            <select id="type" name="type" class="ui fluid dropdown" required>
-            <option value="ยังไม่ได้เลือก">เลือกการประชุม*</option>
+            <select id="type" name="type" class="ui dropdown">
+            <option value="">เลือกการประชุม*</option>
             <option value="การประชุม">การประชุม</option>
             <option value="หนังสือ">หนังสือ</option>
             <option value="ใช้สำหรับการเรียนการสอน">ใช้สำหรับการเรียนการสอน</option>
@@ -40,127 +40,124 @@
     
  
 
-  <div class="field required">
+  <div class="field">
         <label>หัวข้อหลัก</label>
-          <div class="ui fluid multiple search selection dropdown">
-            <input name="main" id="main" type="hidden" name="country" required>
-            <i class="dropdown icon"></i>
-              <div class="default text">เลือกหัวข้อหลัก*</div>
-                <div class="menu">
-                  <div class="item" data-value="Artificial Intelligence">Artificial Intelligence</div>
-                  <div class="item" data-value="Big Data">Big Data</div>
+            <select name="main[]" multiple="multiple" class="ui dropdown" id="main">
 
-                  <div class="item" data-value="Data Analytic">Data Analytic</div>
+                  <option value="">เลือกหัวข้อหลัก*</option>
+                
+                  <option value="Artificial Intelligence">Artificial Intelligence</option>
+                  <option value="Big Data">Big Data</option>
 
-                  <div class="item" data-value="Data Mining">Data Mining</div>
+                  <option value="Data Analytic">Data Analytic</option>
 
-                  <div class="item" data-value="Database Technology">Database Technology</div>
+                  <option value="Data Mining">Data Mining</option>
 
-                  <div class="item" data-value="Pattern Recognition">Pattern Recognition</div>
+                  <option value="Database Technology">Database Technology</option>
 
-                  <div class="item" data-value="Information Extraction / Information Retrieval">Information Extraction / Information Retrieval</div>
+                  <option value="Pattern Recognition">Pattern Recognition</option>
 
-                  <div class="item" data-value="Cloud Computing">Cloud Computing</div>
+                  <option value="Information Extraction / Information Retrieval">Information Extraction / Information Retrieval</option>
 
-                  <div class="item" data-value="Communications and Networking">Communications and Networking</div>
+                  <option value="Cloud Computing">Cloud Computing</option>
 
-                  <div class="item" data-value="IT Security and Privacy">IT Security and Privacy</div>
+                  <option value="Communications and Networking">Communications and Networking</option>
+
+                  <option value="IT Security and Privacy">IT Security and Privacy</option>
 
 
-                  <div class="item" data-value="Digital Media Technology">Digital Media Technology</div>
-                  <div class="item" data-value="IT in Education">IT in Education</div>
+                  <option value="Digital Media Technology">Digital Media Technology</option>
+                 <option value="IT in Education">IT in Education</option>
 
-            </div>
-          </div>
+            
+          </select>
   </div>
-  <div class="field required">
+  <div class="field">
         <label>หัวข้อรอง</label>
-          <div class="ui fluid multiple search selection dropdown">
-            <input name="subcon" id="subcon" type="hidden" name="country" required>
-            <i class="dropdown icon"></i>
-              <div class="default text">เลือกหัวข้อรอง*</div>
-                <div class="menu">
-                  <div class="item" data-value="Software Engineering">Software Engineering</div>
-                  <div class="item" data-value="Digital Media Technology">Computer Game</div>
-                  <div class="item" data-value="Other Related Topics">Other Related Topics</div>
+        <select name="subcon[]" multiple="multiple" id="subcon" class="ui dropdown">
+          <option value=""> เลือกหัวข้อรอง*</option>
+               
+                  <option value="Software Engineering">Software Engineering</option>
+                  <option value="Digital Media Technology">Computer Game</option>
+                  <option value="Other Related Topics">Other Related Topics</option>
 
-            </div>
-          </div>
+       
+        </select>
   </div>
-  <div class="field required">
+  <div class="field">
         <label>เลือก Chair ของการประชุม</label>
-          <select id="chair" name="chair" class="ui fluid dropdown" required> 
-            <option value="ยังไม่ได้เลือก">เลือกchair*</option>
+          <select id="chair" name="chair" class="ui dropdown"> 
+            <option value="">เลือกchair*</option>
             <?php foreach ($chair as $a) {?>
                 <option value="{{$a->id}}">{{$a->name}}</option>
             <?php }?>
           </select>
   </div>
-  <div class="field required">
+  <div class="field">
       <label>ชื่อการประชุม</label>
-        <input id="name" name="name" type="text"  placeholder="ชื่อการประชุม" required>
+        <input id="name"   maxlength="200" name="name" type="text"  placeholder="ชื่อการประชุม">
   </div>
 
-  <div class="field required">
+  <div class="field">
       <label>ชื่อย่อการประชุม</label>
-        <input id="subname"  name="subname" type="text"  placeholder="ชื่อย่อการประชุม" required>
+        <input id="subname"   maxlength="35"  name="subname" type="text"  placeholder="ชื่อย่อการประชุม">
   </div>
 
-  <div class="field required">
+  <div class="field">
     <div class="two fields">
       <div class="field">
       <label>วันสิ้นสุดส่งบทความ</label>
       <div class="ui calendar" id="example1">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input id="deadlinetime" name="deadlinetime" type="text" placeholder="Date/Time" required>
+          <input id="deadlinetime" name="deadlinetime" type="text" placeholder="Date/Time">
         </div>
       </div>
       </div>
-      <div class="field required">
+      <div class="field">
       <label>วันแจ้งผลการคัดเลือกบทความวิจัย</label>
         <div class="ui calendar" id="example2">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input id="completetime" name="completetime" type="text" placeholder="Date/Time" required>
+          <input id="completetime" name="completetime" type="text" placeholder="Date/Time">
         </div>
       </div>
       </div>
     </div>
   </div>
-  <div class="field required">
+  <div class="field">
     <div class="two fields">
       <div class="field">
       <label>วันนำเสนอผลงาน</label>
         <div class="ui calendar" id="example3">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
-          <input id="showtime" name="showtime" type="text" placeholder="Date/Time" required>
+          <input id="showtime" name="showtime" type="text" placeholder="Date/Time">
         </div>
       </div>
       </div>
-    <div class="field required">
+    <div class="field">
       <label>url website</label>
         <div class="ui calendar" id="example4">
         <div class="ui input left icon">
           <i class="flag icon"></i>
-          <input id="i9" name="i9" type="website"  placeholder="your websit( - )required"
+          <input id="i9" name="i9" type="website"  placeholder="such as -> www.conference.org"
         </div>
       </div>
       </div>
     </div>
   </div>
 
-   <div class="field required">
+   <div class="field">
       <label>ตำแหน่งการประชุม</label>
-        <input id="locate" name="locate" type="text"  placeholder="สถานที่" required>
+        <input id="locate" name="locate" type="text"  placeholder="สถานที่">
    </div>
 
-   <div class="field required">
+   <div class="field">
       <label>แนวคิดหลักการประชุม</label>
-        <input id="maincontent" name="maincontent" type="text"  placeholder="ชื่อการประชุม" required>
+        <input id="maincontent" name="maincontent" type="text"  placeholder="ชื่อการประชุม">
     </div>
-    <div class="field required">
+    <div class="field">
       <label>รายละเอียดการประชุม</label>
     <textarea id="detail" name="detail" rows="2" placeholder="กรอกรายละเอียด"></textarea>
     </div>
@@ -168,7 +165,7 @@
   
 
   
-<button type="button" class="ui primary test button" style="margin-left: 45%;margin-right: 25%;background-color: #99ffce;color: black" onclick="myFunction()">สร้างหัวข้อ</button>
+<button type="button" class="ui button" style="margin-left: 45%;margin-right: 25%;background-color: #99ffce;color: black" onclick="myFunction()">สร้างหัวข้อ</button>
 
 </form>
 <!--endform-->
@@ -180,58 +177,104 @@
     <h1>#ยืนยันการสร้างหัวข้อ</h1>
   </div>
   <div class="scrolling content">
-    <div class="left" style="margin-left: 2%">
-    	<h2 class="ui horizontal divider" style="color: black;">ประเภทการประชุม</h2>
-    	<h3 id="ctype" style="color: black;"></h3>
-    	<br>
-    	<h2 class="ui horizontal divider" style="color: black;">ชื่อการประชุม</h2>
-    	<h3 id="cname" style="color: black;"></h3>
-    	<br>
-    	<h2 class="ui horizontal divider" style="color: black;">ชื่อย่อ</h2>
-    	<h3 id="csubname" style="color: black;"></h3>
-    	<br>
-    	<h2 class="ui horizontal divider" style="color: black;">หัวข้อหลัก</h2>
-    	<h3 id="cmain" style="color: black;"></h3>
-    	<br>
-    	<h2 class="ui horizontal divider" style="color: black;">หัวข้อรอง</h2>
-    	<h3 id="csubcon" style="color: black;"></h3>
-    	<br>
-    	<h2 class="ui horizontal divider" style="color: black;">วันนำเสนอผลงาน</h2>
-    	<h3 id="cshowtime" style="color: black;"></h3>
-    	<br>
-    	<h2 class="ui horizontal divider" style="color: black;">วันที่สิ้นสุด</h2>
-    	<h3 id="cdeadlinetime" style="color: black;"></h3>
-      <br>
-      <h2 class="ui horizontal divider" style="color: black;">วันแจ้งผลการคัดเลือกบทความวิจัย</h2>
-    	<h3 id="ccompletetime" style="color: black;"></h3>
-    	<br>
-      <h2 class="ui horizontal divider" style="color: black;">วันอื่นๆ</h2>
-      <h3 id="c9" style="color: black;"></h3>
-      <br>
-    	<h2 class="ui horizontal divider" style="color: black;">สถานที่</h2>
-    	<h3 id="clocate" style="color: black;"></h3>
-    	<br>
-    	<h2 class="ui horizontal divider" style="color: black;">แนวคิดหลักการประชุม</h2>
-    	<h3 id="cmaincontent" style="color: black;"></h3>
-    	<br>
-    	<h2 class="ui horizontal divider" style="color: black;">รายละเอียดการประชุม</h2>
-    	<h3 id="cdetail" style="color: black;"></h3>
-    </div>
+    <table class="ui selectable definition table">
+      <tr>
+    	<td  style="color: black;">ประเภทการประชุม</td>
+    	<td id="ctype" style="color: black;"></td>
+    	</tr>
+      <tr>
+    	<td  style="color: black;">ชื่อการประชุม</td>
+    	<td id="cname" style="color: black;"></td>
+    	</tr>
+      <tr>
+    	<td  style="color: black;">ชื่อย่อ</td>
+    	<td id="csubname" style="color: black;"></td>
+    	</tr>
+      <tr>
+    	<td  style="color: black;">หัวข้อหลัก</td>
+    	<td id="cmain" style="color: black;"></td>
+    	</tr>
+      <tr>
+    	<td  style="color: black;">หัวข้อรอง</td>
+    	<td id="csubcon" style="color: black;"></td>
+    	</tr>
+      <tr>
+      <td  style="color: black;">Chair ของ การประชุม</td>
+      <td id="cchair" style="color: black;"></td>
+      </tr>
+      <tr>
+    	<td style="color: black;">วันนำเสนอผลงาน</td>
+    	<td id="cshowtime" style="color: black;"></td>
+    	</tr>
+      <tr>
+    	<td  style="color: black;">วันที่สิ้นสุด</td>
+    	<td id="cdeadlinetime" style="color: black;"></td>
+      </tr>
+      <tr>
+      <td  style="color: black;">วันแจ้งผลการคัดเลือกบทความวิจัย</td>
+    	<td id="ccompletetime" style="color: black;"></td>
+    	</tr>
+      <tr>
+      <td  style="color: black;">Url-website</td>
+      <td id="c9" style="color: black;"></td>
+      </tr>
+      <tr>
+    	<td  style="color: black;">สถานที่</td>
+    	<td id="clocate" style="color: black;"></td>
+    	</tr>
+      <tr>
+    	<td  style="color: black;">แนวคิดหลักการประชุม</td>
+    	<td id="cmaincontent" style="color: black;"></td>
+    	</tr>
+      <tr>
+    	<td  style="color: black;">รายละเอียดการประชุม</td>
+    	<td id="cdetail" style="color: black;"></td>
+      </tr>
+  </table>
   </div>
   <div class="actions">
-      <div class="ui black deny button">
+      <button style="float: left" type="submit" form="form1" class="ui positive button">
+			<a><font color="black">ยืนยัน</font></a>
+	  </button>
+    <div class="ui black deny button">
         ยกเลิก
       </div>
-      <button type="submit" form="form1" class="ui positive button">
-			<a><font color="black">Okay</font></a>
-	  </button>
     </div>
 </div>
 <!--end Modal-->
 <script>
+  $('#form1').on('keyup keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) { 
+    e.preventDefault();
+    return false;
+  }
+  });
+
+$('#form1')
+    .form({
+      fields: {
+      type     : ['minCount[1]', 'empty'],
+      name   : 'empty',
+      subname : 'empty',
+      main : ['minCount[1]', 'empty'],
+      subcon   : ['minCount[1]', 'empty'],
+      chair : ['minCount[1]', 'empty'],
+      deadlinetime    : 'empty',
+      completetime : 'empty',
+      showtime : 'empty',
+      i9 : 'url',
+      locate :  'empty',
+      maincontent :  'empty',
+      detail : 'empty'
+
+      }
+    });
 function myFunction() {
 
-	var typecon = document.getElementById("type");
+
+    if( $('#form1').form('is valid') ){
+	  var typecon = document.getElementById("type");
     document.getElementById("ctype").innerHTML = typecon.value;
     var namecon = document.getElementById("name");
     document.getElementById("cname").innerHTML = namecon.value;
@@ -245,6 +288,8 @@ function myFunction() {
     document.getElementById("cdeadlinetime").innerHTML = sendtime.value;
     var reviewtime = document.getElementById("completetime");
     document.getElementById("ccompletetime").innerHTML = reviewtime.value;
+    var reviewtime = document.getElementById("chair");
+    document.getElementById("cchair").innerHTML = reviewtime.value;
     var publishtime = document.getElementById("showtime");
     document.getElementById("cshowtime").innerHTML = publishtime.value;
     var time = document.getElementById("i9");
@@ -255,7 +300,10 @@ function myFunction() {
     document.getElementById("cmaincontent").innerHTML = content.value;
     var detail = document.getElementById("detail");
     document.getElementById("cdetail").innerHTML = detail.value;
-
+    $('#modal-test').modal('show');
+    }else{
+      $('#form1').form('validate form');
+    }
 }
 </script>
 </div>

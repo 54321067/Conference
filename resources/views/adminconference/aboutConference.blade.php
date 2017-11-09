@@ -20,16 +20,10 @@
       </div>
       <div class="subcontent">
 			<div style="clear:right" id="cfp">
-				<div class="ui segment">
-					<span>&bull;</span>
-					<a class="ui green tag label">รายละเอียด</a>
-					<span>&bull;</span>
-					<a class="ui gray tag label">หัวข้อ</a>
-					@if(Auth::user()->status == 'superadmin')
-						<span>&bull;</span>
-						<a class="ui brown tag label" style="float: right;">ผู้สร้างการประชุม_{{$admin[0]->name}}_</a>
-					@endif
+				@if(Auth::user()->status == 'superadmin')
+				<div class="ui brown tag label" style="margin-bottom: 1%;float: right;">ผู้สร้างการประชุม_{{$admin[0]->name}}_
 				</div>
+				@endif
 				<table>
 					<tr>
 						<td style="width: 842.55px">
@@ -37,7 +31,7 @@
 								<h>
 								  ชื่อการประชุม
 								</h>
-								<p>	{{$con->Acronym_N}}</p>
+								<p>{{$con->name}} {{$con->Acronym_N}}</p>
 								
 							</div>
 							<div class="ui attached segment" style="margin-right: 4%">
@@ -115,12 +109,27 @@
     	</div>
     	<br>
     	<a style="display: inline-block;">
-        <form method="POST" action="/list/{{$con->conid}}">
+        <form method="POST" id="close" action="/list/{{$con->conid}}">
       		<input type="hidden" name="_token" value="{{ csrf_token() }}">
       		<input type="hidden" name="_method" value="DELETE">
-      		<button type="submit" class="ui google plus button">C l o s e</button>
+      		<button type="button" class="ui google plus test button">C l o s e</button>
 		</form>
 		</a>
+<div class="ui tiny modal" id="modal-test">
+  <i class="close icon"></i>
+  <div class="header" style="background-color: #80ffaa">
+    <h1>#ยืนยันการปิดการประชุม</h1>
+  </div>
+  <div class="actions">
+      <button type="submit" style="float: left" form="close"  class="ui positive button">
+      <a><font color="black">ยืนยัน</font></a>
+    </button>
+    <div class="ui black deny button">
+        ยกเลิก
+      </div>
+    </div>
+</div>
+
     </div>
 </body>
 </html>
