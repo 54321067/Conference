@@ -1,9 +1,9 @@
 <section id ="mainbox">
-		<div class="ui menu fixed">
+    <div class="ui menu fixed">
         @if(Auth::check())
         <hgroup class ="item" style="background-color: gray">
-      		<i class="icon github alternate"></i>
-      			<font color="white">
+          <i class="icon github alternate"></i>
+            <font color="white">
               Chair
             </font>
         </hgroup>
@@ -14,12 +14,11 @@
             </font>         
         </a>
         </hgroup>
-      <hgroup class="item ">
-                  <font color="green">W E l l C O M E </font> __ {{ Auth::user()->name }} __
-      </hgroup>
-      <hgroup class ="right item">
-              <a href="{{ route('users.logout') }}" class="ui google plus button">Logout</a>
-      </hgroup>
+      
+      <div class="right menu">
+              <a class="item"><font>W E L L C O M E __ {{ Auth::user()->name }} __</font></a>
+              <a class="item" href="{{ route('users.logout') }}" class="ui google plus button">Logout</a>
+      </div>
       @else
       <a class ="ui btn-modal item" href="#">
             <i class="icon rocket"></i>Login
@@ -67,5 +66,5 @@
       </div>
       <!--end module-->
       @endif
-	</div>
+  </div>
 </section>

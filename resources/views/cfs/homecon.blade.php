@@ -23,69 +23,27 @@
                                             <th>ชื่อการประชุม</th>
                                             <th>สถานที่ตั้ง</th>
                                             <th>สิ้นสุดการรับบทความ</th>
+                                            <th>วันประกาศผลบทความ</th>
                                             <th>นำเสนอบทความ</th>
-                                            <th><a class="ui black tag label">หัวข้อ</a></th>
+                                            <th style="text-align: center">หัวข้อ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
                                     $i=0;
-
-                                    foreach ($values as $value)
-                                        {
-
-                                    ?>
+                                    date_default_timezone_set("Asia/Bangkok");
+                                    foreach ($values as $value){
+                                        $a=strtotime($value->D_Line);
+                                        if(date("Y-m-d h:i:sa", $a) >= date("Y-m-d h:i:sa")) {?>
 
                                     <tr>
-                                    <td>
-                                        <u>
-                                    <a href="{{ route('cfs.coninfo',['id'=>$value->conid ]) }}">{{$value->Acronym_L}}</a></u>
-                                     </td>
-                                     <td>
- 
-                                    <?php
-                                       
-                                        
-                                            echo($value->Acronym_N);
+                                    <td><u><a href="{{ route('cfs.coninfo',['id'=>$value->conid ]) }}">{{$value->Acronym_L}}</a></u></td>
 
-
-                                        
-                                       ?> 
-                                           
-                                     </td>
-                                     <td>
- 
-                                    <?php
-                                       
-                                        
-                                            echo($value->Loca);
-
-
-                                        
-                                       ?> 
-                                           
-                                     </td>
-                                     <td>
- 
-                                    <?php
-                                       
-                                            echo($value->D_Line);
-
-                                    ?>
-                                   
-                                     </td>  
-                                     <td>
- 
-                                    <?php
-                                       
-                                        
-                                            echo($value->R_Line);
-
-
-                                        
-                                       ?> 
-                                           
-                                     </td>
+                                     <td>{{$value->Acronym_N}}</td>
+                                     <td>{{$value->Loca}}</td>
+                                     <td>{{$value->D_Line}}</td>
+                                     <td>{{$value->S_Line}}</td>  
+                                     <td>{{$value->R_Line}}</td>
                                      <td>
                                      
                                         <?php
@@ -125,9 +83,7 @@
                                            
                                      </td>     
                                      </tr>
-                                     <?php
-                                        }
-                                     ?>
+                                     <?php } } ?>
                                       
 
                                     </tbody>

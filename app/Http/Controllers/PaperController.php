@@ -73,7 +73,7 @@ class PaperController extends Controller
        //$data = explode(",", $full);
         $file = Input::file('attachmentName');
         $namefile = Input::file('attachmentName')->getClientOriginalName();
-        
+        date_default_timezone_set("Asia/Bangkok");
         DB::table('paper')->insertGetId(
             [
                 'paper_name'    => $request->input('paper-name'), 
@@ -85,14 +85,14 @@ class PaperController extends Controller
                 'add_keyword1'  => $request->input('add-keyword1'),
                 'add_keyword2'  => $request->input('add-keyword2'),
                 'add_keyword3'  => $request->input('add-keyword3'),
-                'created_at'    => new \dateTime,
-                'updated_at'    => new \dateTime,
+                'created_at'    => date("Y-m-d h:i:sa"),
+                'updated_at'    => date("Y-m-d h:i:sa"),
             ]
         );
 
         $idpaper = DB::table('paper')->max('paper_id');
         DB::table('group')->insert(
-            ['paper_id'=>$idpaper  ,'created_at'=> new \dateTime]
+            ['paper_id'=>$idpaper  ,'created_at'=> date("Y-m-d h:i:sa")]
         );
         $name =  $idpaper.'_'.$namefile;
         DB::table('paper')->where('paper_id',$idpaper)->update(['pdf_name' => $name]);
@@ -125,13 +125,13 @@ class PaperController extends Controller
         return view('moviegod.tshome');
     }*/
     public function upload($id){
-
+        date_default_timezone_set("Asia/Bangkok");
         if(Input::hasFile('file')){
             $file = Input::file('file');
             $file->move('file', $file->getClientOriginalName()); 
         }
         DB::table('paper')->where('paper_id',$id)->update(
-            ['image_payment'=>$file->getClientOriginalName(),'updated_at'  => new \dateTime,'status_send'=>1]);
+            ['image_payment'=>$file->getClientOriginalName(),'updated_at'  => date("Y-m-d h:i:sa"),'status_send'=>1]);
 
         return redirect()->to('/Mysubmition');   
     }

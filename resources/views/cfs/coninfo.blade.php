@@ -165,6 +165,10 @@
 				{{$con->Detail}}
 			</div>
 		</div>
+		<?php date_default_timezone_set("Asia/Bangkok");
+		$a=strtotime($con->D_Line);
+		if(date("Y-m-d h:i:sa", $a) >= date("Y-m-d h:i:sa")) {
+		?>
 		<div style="text-align: center">
 			<a class="ui primary button" tabindex="0" style="font-size: 170%;margin: 2%" href="{{ url('/paperform/'.$id) }}"
 
@@ -172,7 +176,7 @@
         		Send Paper
       		</a>
 		</div>
-		
+		<?php }?>
 	</div>
 </body>
 </html>

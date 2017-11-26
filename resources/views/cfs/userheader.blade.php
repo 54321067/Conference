@@ -9,37 +9,12 @@
     <a href="/homecon" class="item">
       Home
     </a>
-
-    
-    <div>
-
-  <a class="ui simple dropdown link item">
-    <span class="text">Factuly</span>
-    <i class="dropdown icon"></i>
-    <div class="menu">
-      <div class="item">
-        <i class="dropdown icon"></i>
-        <span class="text">Engineer</span>
-        <div class="menu">
-          <div class="header">Computer Engineer</div>
-       
-        </div>
-      </div>
-    </div>
-  </a>
-    </div>
-
-        <a class="ui simple dropdown item">
-      เก้าอี้นวม
-      <i class="dropdown icon"></i>
-      <div class="menu">
-        <div onclick="location.href='/viewinfo'" class="item">บัญชีของฉัน</div>
-        <div onclick="location.href='/Mysubmition'" class="item">การประชุมของฉัน</div>
-        <div class="item">เงื่อนไขการให้บริการ(กำลังปรับปรุง)</div>     
-      </div>
+    <a href='/Mysubmition' class="item">การประชุมของฉัน
     </a>
-    <a class="item">Wellcome : {{ Auth::user()->name }}</a>
-    <a href="{{ route('users.logout') }}" class="item">Logout</a>
+    <div class="right menu">
+              <a class="item" href='/viewinfo'><font color="black">Wellcome : {{ Auth::user()->name }}</font></a>
+              <a href="{{ route('users.logout') }}" class="right item">Logout</a>
+      </div>
     @else
         <a class ="ui btn-modal item" href="#">
             <i class="icon rocket"></i><font color="black">Login</font>

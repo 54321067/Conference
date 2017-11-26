@@ -141,7 +141,7 @@
         <div class="ui calendar" id="example4">
         <div class="ui input left icon">
           <i class="flag icon"></i>
-          <input id="i9" name="i9" type="website"  placeholder="such as -> www.conference.org"
+          <input id="i9" name="i9" type="text"  placeholder="such as -> www.conference.org"
         </div>
       </div>
       </div>
@@ -263,7 +263,7 @@ $('#form1')
       deadlinetime    : 'empty',
       completetime : 'empty',
       showtime : 'empty',
-      i9 : 'url',
+      i9 : 'empty',
       locate :  'empty',
       maincontent :  'empty',
       detail : 'empty'

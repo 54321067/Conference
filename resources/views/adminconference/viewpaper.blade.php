@@ -36,7 +36,7 @@
                   <th>ชื่อPaper</th>
                   <th>Preview Paper</th>
                   <th>StatusPayment</th>
-                  <th>Topic</th>
+                  <th  style="text-align: center">Topic</th>
                  
                 </tr>
 
@@ -61,6 +61,8 @@
                       @else
                           <td class="negative"><i class="icon close"></i>ตรวจสอบผิดพลาด</td>
                       @endif
+                  @else
+                    <td class="negative"><i class="icon close"></i>ไม่อนุมัติ</td>
                   @endif
                   <td>
                                      
@@ -101,21 +103,18 @@
       <img class="ui fluid image" alt="Trolltunga, Norway" src="" id="pic" width="300" height="200" style="max-width: 500px;max-height: 700px;">
   </div>
   <div class="actions">
-    <form id="np" method="post" action="">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <button type="submit" form="np" class="ui red basic cancel button" style="display: inline-block;float: left;">
-      <i class="remove icon"></i>
-      ไม่อนุมัติ
-    </button>
-    </form>
     <form id="ap" method="post" action="">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <button type="submit" form="ap" class="ui green ok inverted button" style="display: inline-block;">
-      <i class="checkmark icon"></i>
+    <button type="submit" form="ap" onclick="return checkMe()" class="ui green ok inverted button" style="display: inline-block;float: left;">
       อนุมัติ
     </button>
   </form>
-    
+    <form id="np" method="post" action="">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <button type="submit" onclick="return checknotMe()" form="np" class="ui red basic cancel button" style="display: inline-block;">
+      ไม่อนุมัติ
+    </button>
+    </form>
     
   </div>
 </div>
@@ -128,6 +127,22 @@
       document.getElementById("ap").action = "/viewpaperpayment/"+id+"/"+conid;
       document.getElementById("np").action = "/resetpayment/"+id+"/"+conid;
   }
+  function checkMe() {
+    if (confirm("ยืนยันการชำระเงิน")) {
+        return true;
+    } else {
+        
+        return false;
+    }
+}
+function checknotMe() {
+    if (confirm("ไม่อนุมัติการชำระเงิน")) {
+        return true;
+    } else {
+        
+        return false;
+    }
+}
 
 </script>
 

@@ -134,7 +134,6 @@ class AdminController extends Controller
         $store->Acronym_L = $request->input('subname');
         $store->Loca = $request->input('locate');
         $store->Content = $request->input('maincontent');
-        $store->Content = $request->input('chair');
         $store->Detail = $request->input('detail');
         $store->D_Line = $request->input('deadlinetime');
         $store->R_Line = $request->input('completetime');
@@ -155,7 +154,7 @@ class AdminController extends Controller
         return redirect()->route('adminconference.viewpaper', ['id' => $conid]);
     }
     public function resetpayment($id,$conid){
-        DB::table('paper')->where('paper_id',$id)->update(['status_send'=>0]);
+        DB::table('paper')->where('paper_id',$id)->update(['status_send'=>-1]);
         return redirect()->route('adminconference.viewpaper', ['id' => $conid]);
     }
     public function table()
@@ -183,9 +182,10 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
+        date_default_timezone_set("Asia/Bangkok");
         $old = DB::table('conferall')->where('conid',$id)->first();
-        DB::table('oldconference')->insert(['name'=> $old->name ,'Acronym_N'=> $old->Acronym_N ,'Acronym_L'=>$old->Acronym_L,'Loca'=>$old->Loca,'Content'=>$old->Content,'Detail'=>$old->Detail,'D_Line'=>$old->D_Line,'R_Line'=>$old->R_Line,'S_Line'=>$old->S_Line,'Y_Line'=>$old->Y_Line,'topic_1'=>$old->topic_1,'topic_2'=>$old->topic_2,'created_at'=> new \dateTime,
-        'updated_at'  => new \dateTime]);
+        DB::table('oldconference')->insert(['name'=> $old->name ,'Acronym_N'=> $old->Acronym_N ,'Acronym_L'=>$old->Acronym_L,'Loca'=>$old->Loca,'Content'=>$old->Content,'Detail'=>$old->Detail,'D_Line'=>$old->D_Line,'R_Line'=>$old->R_Line,'S_Line'=>$old->S_Line,'Y_Line'=>$old->Y_Line,'topic_1'=>$old->topic_1,'topic_2'=>$old->topic_2,'created_at'=> date("Y-m-d h:i:s"),
+        'updated_at'  => date("Y-m-d h:i:s")]);
         $destroy = confer::where('conid',$id)->delete();
         return redirect()->to('/adminhome');
     }

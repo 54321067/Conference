@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
     <head>
-        <title>AdminConferrencs</title>
+        <title>ChairConferrencs</title>
         @include('chaircon.head')
     </head>
 <body>
@@ -22,78 +22,34 @@
                                             </th>
                                             <th>ชื่อการประชุม</th>
                                             <th>สถานที่ตั้ง</th>
-                                            <th>วันประกาศผลบทความ</th>
                                             <th>วันที่สิ้นสุดการรับบทความ</th>
+                                            <th>วันประกาศผลบทความ</th>
                                             <th>วันนำเสนอบทความ</th>
                                             <th>หัวข้อ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php
-                                    $i=0;
-                                    
-
-                                    foreach ($conferences as $value)
+                                    <?php $i=0;
+                                    date_default_timezone_set("Asia/Bangkok");
+                                   foreach ($conferences as $value)
                                         {
-
+                                        $a=strtotime($value->R_Line);
+                                        if(date("Y-m-d h:i:sa", $a) >= date("Y-m-d h:i:sa")) {
+                                    
                                     ?>
 
                                     <tr>
                                     <td>
                                     <u><a href="{{url('/chair/aboutConference/'.$value->conid)}}">{{$value->Acronym_L}}</a></u>
                                      </td>
+                                     <!--<td>{{date("Y-m-d h:i:sa", $a)}} < {{date("Y-m-d h:i:sa")}}</td> -->
+                                     <td>{{$value->Acronym_N}}</td>
+                                     <td>{{$value->Loca}}</td>
+                                     <td>{{$value->D_Line}}</td>  
+                                     <td>{{$value->S_Line}}</td>
+                                     <td>{{$value->R_Line}} </td>
                                      <td>
- 
-                                    <?php
-                                       
-                                        
-                                            echo($value->Acronym_N);
-
-
-                                        
-                                       ?> 
-                                           
-                                     </td>
-                                     <td>
- 
-                                    <?php
-                                       
-                                        
-                                            echo($value->Loca);
-
-
-                                        
-                                       ?> 
-                                           
-                                     </td>
-                                     <td>
- 
-                                    <?php
-                                       
-                                            echo($value->S_Line);
-
-                                    ?>
-                                    </td>
-                                    <td>
-                                   <?php
-                                           echo($value->D_Line);
-                                    ?>
-                                     </td>  
-                                     <td>
- 
-                                    <?php
-                                       
-                                        
-                                            echo($value->R_Line);
-
-
-                                        
-                                       ?> 
-                                           
-                                     </td>
-                                     <td>
-                                     
-                                        <?php
+                                     <?php
                                             $tag1s = explode(",", $value->topic_1);
                                             foreach ($tag1s as $tag) { $i=rand(1,100); ?>
                                                 @if($i<= 20)
@@ -125,21 +81,16 @@
                                                 @endif
 
                                         <?php $j++; }?> 
-                                            
-                                    
-                                           
-                                     </td>        
+                                        </td>     
                                      </tr>
                                      <?php
 
-
+                                        }
                                         }
                                      ?>
-                                      
-
                                     </tbody>
+                                </table>
 
-                                </table>           
 </div>
 </div>
 </body>

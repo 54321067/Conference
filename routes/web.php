@@ -35,6 +35,7 @@ Route::post('/Mysubmition/{id}/{pname}/invoice.pdf',['as'=>'cfs.payment','uses'=
 ////////
 Route::get('/homecon',['as'=>'cfs.homecon','uses'=>'PaperController@conall'])->middleware('auth');
 Route::get('/viewinfo',['as'=>'cfs.account','uses'=>'PaperController@myinfo'])->middleware('auth');
+Route::post('/viewinfo',['as'=>'cfs.updateaccount','uses'=>'UserController@update'])->middleware('auth');
 //NEW//
 Route::get('/paperform/{id}',['as'=>'cfs.paperform','uses'=>'PaperController@viewpaper'])->middleware('auth');
 Route::post('/paperform/{id}',['as'=>'cfs.paperform','uses'=>'PaperController@store'])->middleware('auth');
@@ -66,7 +67,7 @@ Route::get('/choose/paper/{id}/{conid}',['as'=>'gg','uses'=>'AdminController@cho
 Route::get('/checkpayment/{id}',['as'=>'adminconference.checkpayment','uses'=>'AdminController@checkpayment'])->middleware('auth','admin');
 Route::get('/adminhome',['as'=>'adminconference.adminhome','uses'=>'AdminController@adminhome'])->middleware('auth','admin');
 Route::get('/aboutConference/{id}',['as'=>'adminconference.aboutConference','uses'=>'AdminController@aboutConference'])->middleware('auth','admin');
-Route::get('/list/news',['as'=>'adminconference.tables','uses'=>'AdminController@table'])->middleware('auth','admin')->middleware('auth','admin');
+Route::get('/list/news',['as'=>'adminconference.tables','uses'=>'ReviewerController@table']);
 Route::get('/list',['as'=>'adminconference.index','uses'=>'AdminController@index'])->middleware('auth','admin');
 Route::get('/list/admin',['as'=>'adminconference.path','uses'=>'AdminController@admin'])->middleware('auth','admin');
 Route::post('/list/admin',['as'=>'adminconference.path','uses'=>'AdminController@admin'])->middleware('auth','admin');
@@ -97,7 +98,7 @@ Route::post('/resetpayment/{id}/{conid}','AdminController@resetpayment')->middle
 
 Route::get('/reviewer/{name}/preview',['as'=> 'reviewerpreview','uses'=>'PaperController@preview']);
 Route::post('/list/getchair/{id}/{id2}',['as'=>'cfs.chair','uses'=>'ReviewerController@getchair']);
-Route::get('/sendemail/send','mailcontroller@sendemail');
+//Route::get('/sendemail/send','mailcontroller@sendemail');
 Route::post('/list/evaluation/{id}/{id2}','ReviewerController@evaluation');
 Route::get('/list/evaluation/{id}/{id2}','ReviewerController@view');
 ////////////////////

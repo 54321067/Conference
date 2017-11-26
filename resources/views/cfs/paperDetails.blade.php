@@ -84,7 +84,12 @@
 				                        	<font color="black">การตรวจ : </font><font color="green">Weak accept</font>
 				                        	<?php if($paper->status_payment == 0){ ?>
 				                        	&nbsp;&nbsp;&nbsp;&nbsp;
-				                        		<?php if($paper->status_send == 0){ ?>
+				                        		<?php 
+				                        		if ($paper->status_send == -1) {?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">หลักฐานไม่ถูกต้อง</font>
+	                  							<?php
+				                        		}
+				                        		else if($paper->status_send == 0){ ?>
 	                  							<font color="black">การชำระเงิน : </font><font color="red">ยังไม่ชำระเงิน</font>
 	                  							<?php }else{ ?>
 	                  								<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
@@ -101,7 +106,12 @@
 				                        	<font color="black">การตรวจ : </font><font color="green">Accept</font>
 				                        	<?php if($paper->status_payment == 0){ ?>
 				                        	&nbsp;&nbsp;&nbsp;&nbsp;
-	                  							<?php if($paper->status_send == 0){ ?>
+	                  							<?php 
+				                        		if ($paper->status_send == -1) {?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">หลักฐานไม่ถูกต้อง</font>
+	                  							<?php
+				                        		}
+				                        		else if($paper->status_send == 0){ ?>
 	                  							<font color="black">การชำระเงิน : </font><font color="red">ยังไม่ชำระเงิน</font>
 	                  							<?php }else{ ?>
 	                  								<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
@@ -118,7 +128,12 @@
 					                        <font color="black">การตรวจ : </font><font color="green">strong accept</font>
 					                        <?php if($paper->status_payment == 0){ ?>
 					                        &nbsp;&nbsp;&nbsp;&nbsp;
-	                  							<?php if($paper->status_send == 0){ ?>
+	                  							<?php 
+				                        		if ($paper->status_send == -1) {?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">หลักฐานไม่ถูกต้อง</font>
+	                  							<?php
+				                        		}
+				                        		else if($paper->status_send == 0){ ?>
 	                  							<font color="black">การชำระเงิน : </font><font color="red">ยังไม่ชำระเงิน</font>
 	                  							<?php }else{ ?>
 	                  								<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
@@ -135,7 +150,12 @@
 					                    	<font color="black">การตรวจ : </font><font color="red">ติดต่อเจ้าหน้าที่</font>
 					                    	<?php if($paper->status_payment == 0){ ?>
 					                    	&nbsp;&nbsp;&nbsp;&nbsp;
-	                  							<?php if($paper->status_send == 0){ ?>
+	                  							<?php 
+				                        		if ($paper->status_send == -1) {?>
+	                  							<font color="black">การชำระเงิน : </font><font color="red">หลักฐานไม่ถูกต้อง</font>
+	                  							<?php
+				                        		}
+				                        		else if($paper->status_send == 0){ ?>
 	                  							<font color="black">การชำระเงิน : </font><font color="red">ยังไม่ชำระเงิน</font>
 	                  							<?php }else{ ?>
 	                  								<font color="black">การชำระเงิน : </font><font color="blue">รออนุมัติ</font>
@@ -510,17 +530,16 @@
 							
 					</div>
 
-					
+					<?php if($paper->status_score >= 1 and $paper->status_payment == 0 and $paper->status_check==3){?>
 					<div class="ui sixteen wide column form" style="background-color:#fbfffe;">
 						<div style="margin-left:10%;margin-right:10%;" align="center">
-							<?php if($paper->status_score >= 1 and $paper->status_payment == 0 and $paper->status_check==3){?>
                   			 		<button id="btnGotoPaymentSubmit" form="toPayment" align="center" class="large ui green button" type="submit"  onclick="">ไปยังหน้าชำระค่าบริการ</button>
                   			 		</form>
-                  			 		@if($paper->status_send==0  )
+                  			 		@if($paper->status_send<=0)
                   			 		<button  type="button" class="ui primary test button"><h4>อัพโหลดหลักฐานการจ่ายเงิน
                   			 		</h4></button>
                   			 		@endif
-                  			<?php }?>
+                  			
                   			
 
                   			<div class="ui tiny modal" id="modal-test" style="margin-top:0%; position: fixed;top:40px;bottom: 40px">
@@ -536,6 +555,11 @@
 									    
 										<input type="hidden" value="{{ csrf_token() }}" name="_token" >
 										</label>
+										<div style="margin-top: 2%;">
+											<u>หมายเหตุ*</u>
+											<p>หากเป็นรูปถ่ายกรุณาถ่ายรูปแนวตั้งเพื่อให้ง่ายต่อการตรวจสอบ</p>
+
+										</div>
 										<div>
 											<button type="submit" value="Upload" name="submit"  class="ui green button" style="margin-top: 3%;margin-left: 1%">
 									    	Upload
@@ -552,8 +576,14 @@
 							
 
 						</div>
-						<br>
-					</div>
+					<?php }elseif ($paper->status_reviewer<=1 and $paper->status_score == -99)
+					{?>
+					<div class="ui sixteen wide column form" style="background-color:#fbfffe;">
+						<div style="margin-left:10%;margin-right:10%;margin-bottom: 5%;margin-top: 3%" align="center">
+						<button id="btnGotoPaymentSubmit" disabled="true" align="center" class="large ui green button">ไปยังหน้าชำระค่าบริการ</button>
+                  	</div>
+                  </div>
+					<?php  }?>
 				</div>
 			</div>
 			

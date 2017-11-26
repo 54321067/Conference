@@ -93,7 +93,8 @@
 		@include('cfs.userheader')
 		<div class="ui grid" style="margin-left:4.5%;margin-bottom:3%;margin-right:4.5%;">
 			<div class="row">	
-		  		<form class="ui segment twelve wide column" style="background-color:#ebfcf2">
+		  		<form method="post" action="{{route('cfs.updateaccount')}}" class="ui segment twelve wide column" style="background-color:#ebfcf2">
+		  			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		  			<div class="ui center aligned segment" style="background-color:#99ffce">
 					  	<label>
 							<h3 color="#006600" align="center">ข้อมูลส่วนตัว</h3>
@@ -110,7 +111,7 @@
 								</label>
 					    	</div>
 					    	<div class="six wide column" align="center">			    			
-					  			<input id="txtNameSurname" value="{{ $user[0]->name }}" type="text" placeholder="ชือ-นามสกุล" style="background-color:#fcf4f4">
+					  			<input id="txtNameSurname" name="names" value="{{ $user[0]->name }}" type="text" placeholder="ชือ-นามสกุล" style="background-color:#fcf4f4">
 					  			<script>$("#txtNameSurname").prop('disabled', true);</script>
 				  			</div>
 				  			<div class="two wide column">	
@@ -121,7 +122,7 @@
 								</label>
 					    	</div>
 					    	<div class="four wide column" align="left">			    			
-					  			<input id="txtPhone" value="{{ $user[0]->phone }}" type="text" placeholder="เบอร์โทรศัทพ์" style="background-color:#fcf4f4">	    			
+					  			<input id="txtPhone" name="phone" value="{{ $user[0]->phone }}" type="text" placeholder="เบอร์โทรศัทพ์" style="background-color:#fcf4f4">	    			
 			    				<script>$("#txtPhone").prop('disabled', true);</script>
 				  			</div>
 				  			<div class="one wide column">	
@@ -139,7 +140,7 @@
 								</label>
 					    	</div>
 					    	<div class="twelve wide column">			    			
-					  			<textarea rows="1" id="txtOrganization" type="text" placeholder="องค์กรที่สังกัด" style="background-color:#fcf4f4;height:3em;min-height: 3em;max-height: 6em;"></textarea>
+					  			<textarea rows="1" name="department" id="txtOrganization" type="text" placeholder="องค์กรที่สังกัด" style="background-color:#fcf4f4;height:3em;min-height: 3em;max-height: 6em;">{{ $user[0]->department }}</textarea>
 			    				<script>$("#txtOrganization").prop('disabled', true);</script>
 				  			</div>
 				  		</div>
@@ -155,7 +156,7 @@
 								</label>
 					    	</div>
 					    	<div class="twelve wide column">			    			
-					  			<textarea rows="2" id="txtAddress" type="text" placeholder="ที่อยู่" style="background-color:#fcf4f4;height:4em;min-height: 4em;max-height: 8em;"></textarea>
+					  			<textarea name="address" rows="2" id="txtAddress" type="text" placeholder="ที่อยู่" style="background-color:#fcf4f4;height:4em;min-height: 4em;max-height: 8em;">{{ $user[0]->address }}</textarea>
 			    				<script>$("#txtAddress").prop('disabled', true);</script>
 				  			</div>
 				  		</div>
@@ -171,7 +172,7 @@
 								</label>
 					    	</div>
 					    	<div class="four wide column" align="center">			    			
-					  			<input id="txtNationid" value="{{ $user[0]->nation_id }}" type="text" placeholder="เลขบัตรประชาชน" style="background-color:#fcf4f4">
+					  			<input name="nation" id="txtNationid" value="{{ $user[0]->nation_id }}" type="text" placeholder="เลขบัตรประชาชน" style="background-color:#fcf4f4">
 			    				<script>$("#txtNationid").prop('disabled', true);</script>
 				  			</div>
 				  			<div class="two wide column">	
@@ -182,7 +183,7 @@
 								</label>
 					    	</div>
 					    	<div class="six wide column" align="center">			    			
-					  			<input id="txtEmail" value="{{ $user[0]->email }}" type="text" placeholder="อีเมลล์" style="background-color:#fcf4f4">
+					  			<input name="email" id="txtEmail" value="{{ $user[0]->email }}" type="text" placeholder="อีเมลล์" style="background-color:#fcf4f4">
 			    				<script>$("#txtEmail").prop('disabled', true);</script>
 				  			</div>
 				  			<div class="one wide column">	
@@ -198,7 +199,7 @@
 						  			<span class="visible content">แก้ไข</span>
 						  			<span class="hidden content"><i class="large edit icon"></i></span>
 					  			</button>
-					  			<button id="btnSaveEdit" class="ui animated green button" type="button" onclick="getSaveEdit()">
+					  			<button id="btnSaveEdit" class="ui animated green button" type="submit" >
 							  		<span class="visible content">บันทึก</span>
 							  		<span class="hidden content"><i class="large checkmark icon"></i></span>
 							  	</button>

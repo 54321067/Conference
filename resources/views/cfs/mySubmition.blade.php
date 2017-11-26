@@ -37,24 +37,29 @@
 				<div class="row">
 			    	<div class="ui inverted segment sixteen wide column" style="background-color:#99ffce">
 						<label>
-							<h1 align="center">
-								<font color="#000">ส า ร บั ญ ก า ร ป ร ะ ชุ ม ใ น ข ณ ะ นี้</font>
+							<h1 align="center" style="color: black">
+								<font color="green">Paper</font>ของฉัน
 							</h1> 
 						</label>
 					</div>
 					<div class="ui styled accordion sixteen wide column" style="background-color:#ebfcf2">
-					  	<div class="active title">
-					    	<h3><i class="dropdown icon"></i>
+					  	<div class="title">
+					    	<h3 style="color: green"><i class="dropdown icon"></i>
 					    	รายละเอียดการประชุมในขณะนี้</h3>
 					  	</div>
-					  	<div class="active content">
+					  	<div class="content">
 					    	<h4><font color="#006600">หัวข้อการประชุมของฉัน</font></h4>		   
 					   	 	<div class="accordion transition">
 					
-					   	 	<?php foreach ($values as $value) {?>
+					   	 	<?php 
+					   	 	date_default_timezone_set("Asia/Bangkok");
+					   	 	foreach ($values as $value) {
+					   	 		$S=strtotime($value->R_Line);
+					   	 		if(date("Y-m-d h:i:sa", $S) >= date("Y-m-d h:i:sa")) {
+					   	 		?>
 					      		<div class="title">
 					          		<h4><i class="dropdown icon"></i>
-					          		{{$value->Acronym_N}}</h4>
+					          		{{$value->Acronym_N}}<a style="float: right;" href="{{ route('cfs.coninfo',['id'=>$value->conid ]) }}"> รายละเอียดการประชุม </a></h4>
 					      		</div>
 					      		
 					      		<div class="content">
@@ -80,9 +85,11 @@
 					          		</div>
 					        	</div>
 					        
-					        <?php } ?>	
+					        <?php }
+					    			} ?>	
 						    </div>							
 					    </div>
+
 					</div>
 					<script>
 						$('.ui.accordion').accordion();
@@ -97,7 +104,57 @@
 							text-decoration: underline;
 						}
 					</style>
+					<div class="ui styled accordion sixteen wide column" style="background-color:#ebfcf2">
+					  	<div class="title">
+					    	<h3 style="color: black"><i class="dropdown icon"></i>
+					    	รายละเอียดการประชุมที่จบไปแล้ว</h3>
+					  	</div>
+					  	<div class="content">
+					    	<h4><font color="#006600">หัวข้อการประชุมของฉัน</font></h4>		   
+					   	 	<div class="accordion transition">
+					
+					   	 	<?php 
+					   	 	date_default_timezone_set("Asia/Bangkok");
+					   	 	foreach ($values as $value) {
+					   	 		$S=strtotime($value->R_Line);
+					   	 		if(date("Y-m-d h:i:sa", $S) < date("Y-m-d h:i:sa")) {
+					   	 		?>
+					      		<div class="title">
+					          		<h4><i class="dropdown icon"></i>
+					          		{{$value->Acronym_N}}<a style="float: right;" href="{{ route('cfs.coninfo',['id'=>$value->conid ]) }}"> รายละเอียดการประชุม </a></h4>
+					      		</div>
+					      		
+					      		<div class="content">
+					        		<div class="transition "><h4><font color="#006600">งานวิจัยของฉัน</font></h4></div>
+					        		<div class="accordion transition hidden">
+					        			<?php $i=1;?>
+
+					        			<?php foreach ($papers as $paper) {
+
+					        				if ($value->conid == $paper->con_id and $paper->user_id == $userid) {
+					        					
+					        				
+					        				?>
+						          			<div class="title" style="background-color:#fcf4f4">
+						              			<h5><i class="dropdown icon"></i>
+						              			{{$paper->paper_name}}</h5>
+						          			</div>
+						          			<div class="content" style="background-color:#fcf4f4">	
+						              			<a id="pp1" href="{{ route('cfs.paperDetails',['id'=>$value->conid,'pname'=>$paper->paper_name,'paperid'=>$paper->paper_id,'i'=> $i]) }}"><h5>เอกสารลำดับที่ {{$i}} : {{$paper->paper_name}}</h5></a>
+						          			</div>
+						          		<?php $i++;}
+						          		} ?>
+					          		</div>
+					        	</div>
+					        
+					        <?php }
+					    			} ?>	
+						    </div>							
+					    </div>
+
+					</div>
 				</div>
+
 			</div>
 		</div>
 	</body>

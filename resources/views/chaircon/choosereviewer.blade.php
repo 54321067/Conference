@@ -1,7 +1,7 @@
 <!Doctype html>
 <html>
   <head>
-    <title>ระบบผู้ดูแลConference</title>
+    <title>ระบบผู้ตรวจConference</title>
 
      @include('chaircon.head')
     
@@ -18,8 +18,7 @@
 <div class="ui segments">
 <!--Main topic -->
   <div class="ui black message" style="margin-bottom: 1.5%">
-    <h1>PAPER ID : {{$id}} <a  style="float: right;">
-    PAPER NAME : {{$values[0]->paper_name}}</a></h1>
+    <h1> PAPER NAME : {{$values[0]->paper_name}}</h1>
   </div>
   <div class="ui green message"  >
   <div class="item">
@@ -71,7 +70,7 @@
     <div class="field required">
             <label>ตำเเหน่ง</label>
             <select id="rank1" name="rank1" class="ui fluid dropdown" required>
-            <option value="-">เลือกตำเเหน่ง*</option>
+            <option value="">เลือกตำเเหน่ง*</option>
             <option value="ผู้ช่วยศาสตราจารย์">ผู้ช่วยศาสตราจารย์</option>
             <option value="รองศาสตราจารย์">รองศาสตราจารย์</option>
             <option value="ศาสตราจารย์">ศาสตราจารย์</option>
@@ -115,7 +114,7 @@
     <div class="field required">
             <label>ตำเเหน่ง</label>
             <select id="rank2" name="rank2" class="ui fluid dropdown" required>
-            <option value="-">เลือกตำเเหน่ง*</option>
+            <option value="">เลือกตำเเหน่ง*</option>
             <option value="ผู้ช่วยศาสตราจารย์">ผู้ช่วยศาสตราจารย์</option>
             <option value="รองศาสตราจารย์">รองศาสตราจารย์</option>
             <option value="ศาสตราจารย์">ศาสตราจารย์</option>
@@ -150,12 +149,12 @@
 
    <div class="field required">
       <label>นามสกุล</label>
-        <input id="lname3" name="lname3" type="text"  placeholder="นามสกุล" required>
+        <input id="lname3[]" name="lname3" type="text"  placeholder="นามสกุล" required>
     </div>
     <div class="field required">
             <label>ตำเเหน่ง</label>
             <select id="rank3" name="rank3" class="ui fluid dropdown" required>
-            <option value="-" >เลือกตำเเหน่ง*</option>
+            <option value="" >เลือกตำเเหน่ง*</option>
             <option value="ผู้ช่วยศาสตราจารย์">ผู้ช่วยศาสตราจารย์</option>
             <option value="รองศาสตราจารย์">รองศาสตราจารย์</option>
             <option value="ศาสตราจารย์">ศาสตราจารย์</option>
@@ -283,12 +282,12 @@
     </div>
     
   <div class="actions">
-      <div class="ui black deny button">
+      <button style="float: left;width: 100px" type="submit" form="form1" class="ui positive button">
+      <a><font color="black">ยืนยัน</font></a>
+    </button>
+          <div class="ui black deny button">
         ยกเลิก
       </div>
-      <button type="submit" form="form1" class="ui positive button">
-      <a><font color="black">Ok</font></a>
-    </button>
     </div>
 </div>
 <script>
@@ -306,10 +305,38 @@
     if((11-sum%11)%10!=parseFloat(id.charAt(12))) 
       return false; 
     return true;}
-
+// $('#form1')
+//     .form({
+//       fields: {
+//         name1     : 'empty',
+//         lname1   : 'empty',
+//         rank1 : ['minCount[1]', 'empty'],
+//         PID1 : 'empty',
+//         mail1   : 'empty',
+//         phone1 : 'empty',
+        
+//         name2     : 'empty',
+//         lname2   : 'empty',
+//         rank2 : ['minCount[1]', 'empty'],
+//         PID2 : 'empty',
+//         mail2   : 'empty',
+//         phone2 : 'empty',
+        
+//         name3     : 'empty',
+//         lname3   : 'empty',
+//         rank3 : ['minCount[1]', 'empty'],
+//         PID3 : 'empty',
+//         mail3   : 'empty',
+//         phone3 : 'empty'
+//       }
+//     });
   
 
   function myFunction() {
+    
+   if( $('#form1').form('is valid') ){
+
+
     var pid1 = document.getElementsByName("PID1");
     var pid2 = document.getElementsByName("PID2");
     var pid3 = document.getElementsByName("PID3");
@@ -335,6 +362,8 @@
           alert(pid3[0].value+'  :  รหัสประชาชนถูกต้อง');
           check +=1;
         }
+
+
 
     
     
@@ -380,7 +409,12 @@
       $('#modal-test').modal('show');
     }
 
+    }else{
+      $('#form1').form('validate form');
+    }
+
 }
+
 
   </script>
 </body>

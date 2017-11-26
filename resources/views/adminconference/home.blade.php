@@ -62,8 +62,8 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
         <ul class="nospace inline pushright" style="margin-left: 20%">
           
           <button class="huge ui inversed animated basic button " id="test">
-          <span class="visible content">Login</span>
-          <span class="hidden content">Enter</span></button>
+          <span class="visible content">Enter</span>
+          <span class="hidden content">Login</span></button>
 
           <div class="huge ui vertical animated button" style="background-color: #4dffa6" tabindex="0">
               <div onclick="location.href='/register'" class="hidden content">Sign Up</div>
@@ -83,7 +83,7 @@ background-image: -o-linear-gradient(top, #FFFFFF, #abdb92);
         <div class="field required" >
           <div class="ui left icon input" >
             <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail address or user id" required>
+            <input type="text" name="username" placeholder="Username" required>
           </div>
         </div>
         <div class="field required">

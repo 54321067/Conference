@@ -15,7 +15,7 @@
         </hgroup>
         <a class="ui simple dropdown item">
             @if(Auth::user()->status == 'superadmin')
-            โคตรเก้าอี้นวม
+            เก้าอี้นวมตัวใหญ่
             @else
             เก้าอี้นวม
             @endif
